@@ -1,0 +1,74 @@
+[
+ {
+  "id": "fomc-oct",
+  "date": "2026-10-28",
+  "window": "27–28 Okt 2026",
+  "event": "Rapat FOMC",
+  "why": "Ditahan = netral; kenaikan kejutan = negatif kuat",
+  "impact": "Tinggi"
+ },
+ {
+  "id": "bigtech",
+  "date": "2026-10-30",
+  "window": "Akhir Okt 2026",
+  "event": "Laporan keuangan big tech",
+  "why": "Arah sentimen AI dan Nasdaq",
+  "impact": "Sedang"
+ },
+ {
+  "id": "midterm",
+  "date": "2026-11-03",
+  "window": "3 Nov 2026",
+  "event": "Pemilu sela AS",
+  "why": "Nasib CLARITY Act; laporan rencana serangan ke Iran setelah pemilu",
+  "impact": "Tinggi"
+ },
+ {
+  "id": "nfp",
+  "date": "2026-11-06",
+  "window": "Awal Nov 2026",
+  "event": "Laporan tenaga kerja Oktober",
+  "why": "Pasar kerja lemah bisa menghentikan kenaikan suku bunga",
+  "impact": "Tinggi"
+ },
+ {
+  "id": "cpi",
+  "date": "2026-11-12",
+  "window": "Pertengahan Nov 2026",
+  "event": "CPI Oktober",
+  "why": "Di atas 4% memperkuat skenario turun",
+  "impact": "Tinggi"
+ },
+ {
+  "id": "glam",
+  "date": "2026-12-15",
+  "window": "Kuartal IV 2026",
+  "event": "Target mainnet Glamsterdam (ETH)",
+  "why": "Katalis ETH; jadwal sering mundur",
+  "impact": "Sedang"
+ },
+ {
+  "id": "xls",
+  "date": "2026-11-15",
+  "window": "Berjalan",
+  "event": "Voting amandemen XLS-65/66 (XRPL)",
+  "why": "Pinjam-meminjam native menambah utilitas XRPL",
+  "impact": "Rendah"
+ },
+ {
+  "id": "fomc-dec",
+  "date": "2026-12-09",
+  "window": "Des 2026",
+  "event": "Rapat FOMC terakhir 2026",
+  "why": "Peluang kenaikan berikutnya",
+  "impact": "Tinggi"
+ },
+ {
+  "id": "bnbburn",
+  "date": "2027-01-15",
+  "window": "Jan 2027",
+  "event": "Burn BNB kuartalan ke-38",
+  "why": "Pengurangan suplai BNB",
+  "impact": "Rendah"
+ }
+]

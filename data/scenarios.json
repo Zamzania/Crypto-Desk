@@ -1,0 +1,32 @@
+[
+ {
+  "scenario": "Naik",
+  "BTC": "$94.000–$107.000",
+  "ETH": "$3.000–$3.650",
+  "XRP": "$2,00–$2,40",
+  "SOL": "$140–$170",
+  "BNB": "$860–$1.000",
+  "trigger": "Kesepakatan Hormuz, minyak < $90, Fed selesai menaikkan suku bunga, ETF deras",
+  "fail": "Breakout gagal bertahan"
+ },
+ {
+  "scenario": "Dasar",
+  "BTC": "$72.000–$94.000",
+  "ETH": "$2.150–$2.800",
+  "XRP": "$1,14–$1,70",
+  "SOL": "$85–$125",
+  "BNB": "$640–$810",
+  "trigger": "Makro tetap ketat tanpa eskalasi; Fed naik sekali lalu berhenti",
+  "fail": "Penutupan mingguan di luar rentang"
+ },
+ {
+  "scenario": "Turun",
+  "BTC": "$58.000–$69.000",
+  "ETH": "$1.500–$2.000",
+  "XRP": "$0,98–$1,14",
+  "SOL": "$60–$85",
+  "BNB": "$540–$640",
+  "trigger": "Eskalasi perang, minyak > $120, CPI > 4%, krisis kredit AI, Strategy menjual",
+  "fail": "Harga cepat kembali di atas support yang jebol"
+ }
+]

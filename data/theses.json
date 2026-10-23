@@ -1,0 +1,47 @@
+[
+ {
+  "coin": "BTC",
+  "role": "Inti",
+  "project": "Uang digital tanpa perantara; Proof of Work; suplai maks 21 juta; halving tiap ±4 tahun.",
+  "thesis": "Emas digital yang langka dan netral, dengan rel institusi (ETF memegang 6,4% kapitalisasi).",
+  "catalysts": "Fed berhenti menaikkan suku bunga; minyak turun; arus ETF deras; CLARITY Act hidup lagi.",
+  "risks": "Strategy bisa menjual BTC bila mNAV < 1,22x; eskalasi perang; kuantum (jangka panjang).",
+  "invalidation": "Penutupan mingguan di bawah $72.600"
+ },
+ {
+  "coin": "ETH",
+  "role": "Inti kedua",
+  "project": "Komputer global untuk kontrak pintar; Proof of Stake; lapisan penyelesaian stablecoin dan RWA.",
+  "thesis": "Infrastruktur keuangan on-chain terdepan, tetapi penangkapan nilai ke token melemah karena layer-2.",
+  "catalysts": "Glamsterdam (kuartal IV); arus ETF berbalik positif; rasio ETH/BTC di atas MA50.",
+  "risks": "Arus keluar ETF; EIP-8361 menekan imbal hasil staking; persaingan Solana.",
+  "invalidation": "Penutupan harian di bawah $2.150"
+ },
+ {
+  "coin": "BNB",
+  "role": "Penyeimbang defensif",
+  "project": "Token ekosistem Binance dan gas BNB Smart Chain; burn kuartalan menuju 100 juta.",
+  "thesis": "Volatilitas terendah (beta 0,67) dan satu-satunya yang unggul atas BTC dalam setahun.",
+  "catalysts": "Pertumbuhan saham tertokenisasi; burn; ETF VBNB menambah staking.",
+  "risks": "Ketergantungan pada Binance; risiko regulasi dan politik; validator sedikit.",
+  "invalidation": "Penutupan harian di bawah $641"
+ },
+ {
+  "coin": "SOL",
+  "role": "Satelit pertumbuhan",
+  "project": "Blockchain satu lapis yang cepat dan murah; Proof of Stake + Alpenglow (finalitas ratusan milidetik).",
+  "thesis": "Momentum fundamental terbaik: REV +48%, stablecoin rekor $17,5 miliar, volume DEX +23%.",
+  "catalysts": "Alpenglow dan Firedancer; arus ETF staking; adopsi pembayaran dan saham tertokenisasi.",
+  "risks": "Pendapatan bergantung spekulasi (memecoin); inflasi staking; treasury di bawah NAV.",
+  "invalidation": "Penutupan harian di bawah $88"
+ },
+ {
+  "coin": "XRP",
+  "role": "Satelit spekulatif",
+  "project": "XRP Ledger untuk pembayaran lintas negara 3–5 detik; 100 miliar sudah dicetak; dikembangkan Ripple.",
+  "thesis": "Bisnis Ripple tumbuh (RLUSD, bank trust, prime brokerage), tetapi permintaan token tidak otomatis ikut.",
+  "catalysts": "Aktivasi XLS-65/66; regulasi AS jelas; arus ETF kembali.",
+  "risks": "Beta 1,61; pelepasan escrow; sangat peka berita regulasi.",
+  "invalidation": "Penutupan harian di bawah $1,23"
+ }
+]

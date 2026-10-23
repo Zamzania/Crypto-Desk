@@ -1,0 +1,46 @@
+[
+ {
+  "asset": "BTC",
+  "funds": 12,
+  "aum": 105280000000.0,
+  "cum_flow": 57900000000.0,
+  "since": "Jan 2024",
+  "flow_30d": 2650000000.0,
+  "flow_10d": 733900000.0,
+  "as_of": "2026-10-22",
+  "note": "22 Okt parsial (3 dari 12 dana)"
+ },
+ {
+  "asset": "ETH",
+  "funds": 11,
+  "aum": 14750000000.0,
+  "cum_flow": 12740000000.0,
+  "since": "Jul 2024",
+  "flow_30d": -459400000.0,
+  "flow_10d": -601300000.0,
+  "as_of": "2026-10-22",
+  "note": "Keluar 8 dari 10 hari terakhir"
+ },
+ {
+  "asset": "SOL",
+  "funds": 9,
+  "aum": 1600000000.0,
+  "cum_flow": 1530000000.0,
+  "since": "Okt 2025",
+  "flow_30d": 182400000.0,
+  "flow_10d": -46900000.0,
+  "as_of": "2026-10-22",
+  "note": "22 Okt parsial (7 dari 9 dana)"
+ },
+ {
+  "asset": "XRP",
+  "funds": 5,
+  "aum": 1570000000.0,
+  "cum_flow": 1810000000.0,
+  "since": "Nov 2025",
+  "flow_30d": 233100000.0,
+  "flow_10d": 13300000.0,
+  "as_of": "2026-10-21",
+  "note": "Pekan 12–16 Okt mengakhiri 13 pekan arus masuk"
+ }
+]

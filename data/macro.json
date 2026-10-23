@@ -1,0 +1,92 @@
+[
+ {
+  "key": "brent",
+  "label": "Minyak Brent",
+  "value": 111,
+  "unit": "USD/barel",
+  "display": "> $111",
+  "as_of": "2026-10-22",
+  "effect": "Hambatan",
+  "note": "Perang AS–Iran, Selat Hormuz terganggu"
+ },
+ {
+  "key": "cpi",
+  "label": "Inflasi CPI AS",
+  "value": 3.7,
+  "unit": "% tahunan",
+  "display": "3,7%",
+  "as_of": "2026-09",
+  "effect": "Hambatan",
+  "note": "Inti 2,6%; bulanan 0,6%"
+ },
+ {
+  "key": "fed",
+  "label": "Kebijakan Fed",
+  "value": 25,
+  "unit": "bp",
+  "display": "+25 bp (Sep)",
+  "as_of": "2026-09",
+  "effect": "Hambatan",
+  "note": "Ketua Kevin Warsh; rapat 27–28 Okt diperkirakan menahan"
+ },
+ {
+  "key": "us10y",
+  "label": "Yield US 10 tahun",
+  "value": 5.07,
+  "unit": "%",
+  "display": "5,07%",
+  "as_of": "2026-10-15",
+  "effect": "Hambatan",
+  "note": "Biaya peluang memegang aset tanpa bunga tinggi"
+ },
+ {
+  "key": "unemp",
+  "label": "Pengangguran AS",
+  "value": 4.2,
+  "unit": "%",
+  "display": "4,2%",
+  "as_of": "2026-09",
+  "effect": "Campuran",
+  "note": "Hanya +29 ribu pekerjaan; bisa menghentikan kenaikan suku bunga"
+ },
+ {
+  "key": "fng",
+  "label": "Fear & Greed",
+  "value": 68,
+  "unit": "indeks",
+  "display": "68 · Greed",
+  "as_of": "2026-10-22",
+  "effect": "Waspada",
+  "note": "Serakah saat harga melemah = belum kapitulasi"
+ },
+ {
+  "key": "dom",
+  "label": "Dominasi BTC",
+  "value": 57.31,
+  "unit": "%",
+  "display": "57,3%",
+  "as_of": "2026-10-22",
+  "effect": "Netral",
+  "note": "Tertinggi sejak Mei; altcoin tertinggal"
+ },
+ {
+  "key": "mcap",
+  "label": "Total pasar kripto",
+  "value": 2857000000000.0,
+  "unit": "USD",
+  "display": "$2,86 T",
+  "as_of": "2026-10-22",
+  "effect": "Netral",
+  "note": "CoinPaprika"
+ },
+ {
+  "key": "clarity",
+  "label": "CLARITY Act",
+  "value": 49,
+  "unit": "suara",
+  "display": "Gagal 49–50",
+  "as_of": "2026-09-15",
+  "effect": "Hambatan",
+  "note": "Kecil kemungkinan lolos sebelum Kongres baru"
+ }
+]

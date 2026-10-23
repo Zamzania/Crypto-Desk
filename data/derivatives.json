@@ -1,0 +1,42 @@
+[
+ {
+  "coin": "BTC",
+  "funding_pct": 0.0062,
+  "oi": 19790000000.0,
+  "whale_net_24h": -88600000.0,
+  "as_of": "2026-10-23T10:54Z",
+  "note": "OI di 5% teratas dari 79 hari tercatat"
+ },
+ {
+  "coin": "ETH",
+  "funding_pct": 0.0009,
+  "oi": 11440000000.0,
+  "whale_net_24h": -67600000.0,
+  "as_of": "2026-10-23T10:54Z",
+  "note": ""
+ },
+ {
+  "coin": "SOL",
+  "funding_pct": 0.0072,
+  "oi": 2440000000.0,
+  "whale_net_24h": 470000.0,
+  "as_of": "2026-10-23T10:54Z",
+  "note": ""
+ },
+ {
+  "coin": "XRP",
+  "funding_pct": 0.0091,
+  "oi": 1050000000.0,
+  "whale_net_24h": null,
+  "as_of": "2026-10-23T10:54Z",
+  "note": "Arus paus tidak tersedia"
+ },
+ {
+  "coin": "BNB",
+  "funding_pct": 0.0077,
+  "oi": 660000000.0,
+  "whale_net_24h": -2750000.0,
+  "as_of": "2026-10-23T10:54Z",
+  "note": "OI +4,2% dalam 24 jam"
+ }
+]

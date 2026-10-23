@@ -1,0 +1,282 @@
+[
+ {
+  "id": "BTC-94000",
+  "coin": "BTC",
+  "low": 94000,
+  "high": 98000,
+  "kind": "Resistance besar",
+  "basis": "Puncak Januari 2026 ($97.900), wilayah $100.000"
+ },
+ {
+  "id": "BTC-87200",
+  "coin": "BTC",
+  "low": 87200,
+  "high": 87450,
+  "kind": "Resistance",
+  "basis": "Puncak ganda 21 Sep & 2 Okt"
+ },
+ {
+  "id": "BTC-83000",
+  "coin": "BTC",
+  "low": 83000,
+  "high": 84850,
+  "kind": "Resistance terdekat",
+  "basis": "MA20, puncak 21 Okt"
+ },
+ {
+  "id": "BTC-79700",
+  "coin": "BTC",
+  "low": 79700,
+  "high": 80450,
+  "kind": "Support terdekat",
+  "basis": "Low 8 & 15 Okt, Fib 23,6%, Bollinger bawah"
+ },
+ {
+  "id": "BTC-74900",
+  "coin": "BTC",
+  "low": 74900,
+  "high": 76100,
+  "kind": "Support",
+  "basis": "Fib 38,2%, MA50 mingguan, low 15 Sep"
+ },
+ {
+  "id": "BTC-72400",
+  "coin": "BTC",
+  "low": 72400,
+  "high": 72800,
+  "kind": "Support utama",
+  "basis": "Fib 50%, MA200 harian, MA20 mingguan"
+ },
+ {
+  "id": "BTC-69000",
+  "coin": "BTC",
+  "low": 69000,
+  "high": 69100,
+  "kind": "Support dalam",
+  "basis": "Fib 61,8%"
+ },
+ {
+  "id": "ETH-3000",
+  "coin": "ETH",
+  "low": 3000,
+  "high": 3400,
+  "kind": "Resistance besar",
+  "basis": "Puncak Januari 2026 ($3.403)"
+ },
+ {
+  "id": "ETH-2775",
+  "coin": "ETH",
+  "low": 2775,
+  "high": 2810,
+  "kind": "Resistance",
+  "basis": "Puncak ganda 21 Sep & 2 Okt"
+ },
+ {
+  "id": "ETH-2465",
+  "coin": "ETH",
+  "low": 2465,
+  "high": 2550,
+  "kind": "Resistance terdekat",
+  "basis": "EMA55, EMA21, MA20, MA50, Fib 23,6%"
+ },
+ {
+  "id": "ETH-2280",
+  "coin": "ETH",
+  "low": 2280,
+  "high": 2315,
+  "kind": "Support kunci",
+  "basis": "Low 15 Okt, Fib 38,2%, MA100, Bollinger bawah"
+ },
+ {
+  "id": "ETH-2150",
+  "coin": "ETH",
+  "low": 2150,
+  "high": 2170,
+  "kind": "Support utama",
+  "basis": "Fib 50%, MA200, MA20 mingguan"
+ },
+ {
+  "id": "ETH-2000",
+  "coin": "ETH",
+  "low": 2000,
+  "high": 2005,
+  "kind": "Support dalam",
+  "basis": "Fib 61,8%, angka psikologis"
+ },
+ {
+  "id": "ETH-1785",
+  "coin": "ETH",
+  "low": 1785,
+  "high": 1790,
+  "kind": "Support terakhir",
+  "basis": "Fib 78,6%"
+ },
+ {
+  "id": "XRP-1.66",
+  "coin": "XRP",
+  "low": 1.66,
+  "high": 1.7,
+  "kind": "Resistance besar",
+  "basis": "Puncak 22 Agu & 23 Sep"
+ },
+ {
+  "id": "XRP-1.49",
+  "coin": "XRP",
+  "low": 1.49,
+  "high": 1.53,
+  "kind": "Resistance",
+  "basis": "Area 14 Sep & awal Oktober"
+ },
+ {
+  "id": "XRP-1.41",
+  "coin": "XRP",
+  "low": 1.41,
+  "high": 1.43,
+  "kind": "Resistance",
+  "basis": "MA50, Fib 38,2%"
+ },
+ {
+  "id": "XRP-1.34",
+  "coin": "XRP",
+  "low": 1.34,
+  "high": 1.38,
+  "kind": "Resistance terdekat",
+  "basis": "Fib 50%, EMA21, EMA55, MA20"
+ },
+ {
+  "id": "XRP-1.23",
+  "coin": "XRP",
+  "low": 1.23,
+  "high": 1.29,
+  "kind": "Support kunci",
+  "basis": "Low 16 Sep & 18 Okt, Fib 61,8%, MA100, MA200"
+ },
+ {
+  "id": "XRP-1.14",
+  "coin": "XRP",
+  "low": 1.14,
+  "high": 1.145,
+  "kind": "Support",
+  "basis": "Fib 78,6%, konsolidasi Juli"
+ },
+ {
+  "id": "XRP-0.98",
+  "coin": "XRP",
+  "low": 0.98,
+  "high": 1.0,
+  "kind": "Support terakhir",
+  "basis": "Low tahunan $0,985 (14 Agu)"
+ },
+ {
+  "id": "SOL-120",
+  "coin": "SOL",
+  "low": 120,
+  "high": 125,
+  "kind": "Resistance besar",
+  "basis": "Puncak ganda 27 Sep & 2 Okt"
+ },
+ {
+  "id": "SOL-113",
+  "coin": "SOL",
+  "low": 113,
+  "high": 114,
+  "kind": "Resistance",
+  "basis": "Puncak 12 Okt"
+ },
+ {
+  "id": "SOL-106",
+  "coin": "SOL",
+  "low": 106,
+  "high": 110,
+  "kind": "Resistance terdekat",
+  "basis": "EMA55, EMA21, MA20, MA50, Fib 23,6%"
+ },
+ {
+  "id": "SOL-100",
+  "coin": "SOL",
+  "low": 100,
+  "high": 101.5,
+  "kind": "Support kunci",
+  "basis": "Low 15 & 18 Okt, Fib 38,2%, angka psikologis"
+ },
+ {
+  "id": "SOL-95.7",
+  "coin": "SOL",
+  "low": 95.7,
+  "high": 97.7,
+  "kind": "Support",
+  "basis": "Low 15 Sep, MA50 mingguan, MA100"
+ },
+ {
+  "id": "SOL-88",
+  "coin": "SOL",
+  "low": 88,
+  "high": 92.5,
+  "kind": "Support utama",
+  "basis": "MA200, Fib 50%"
+ },
+ {
+  "id": "SOL-85",
+  "coin": "SOL",
+  "low": 85,
+  "high": 85.5,
+  "kind": "Support dalam",
+  "basis": "Fib 61,8%"
+ },
+ {
+  "id": "BNB-860",
+  "coin": "BNB",
+  "low": 860,
+  "high": 960,
+  "kind": "Resistance besar",
+  "basis": "Puncak Januari 2026 ($960)"
+ },
+ {
+  "id": "BNB-807",
+  "coin": "BNB",
+  "low": 807,
+  "high": 810,
+  "kind": "Resistance",
+  "basis": "Puncak ganda 21 Sep & 5 Okt"
+ },
+ {
+  "id": "BNB-780",
+  "coin": "BNB",
+  "low": 780,
+  "high": 797,
+  "kind": "Resistance",
+  "basis": "Bollinger atas, puncak 5 Sep"
+ },
+ {
+  "id": "BNB-749",
+  "coin": "BNB",
+  "low": 749,
+  "high": 760,
+  "kind": "Resistance terdekat",
+  "basis": "MA20, MA50"
+ },
+ {
+  "id": "BNB-700",
+  "coin": "BNB",
+  "low": 700,
+  "high": 717,
+  "kind": "Support kunci",
+  "basis": "Low 8 & 18 Okt, Fib 38,2%, MA50 mingguan"
+ },
+ {
+  "id": "BNB-673",
+  "coin": "BNB",
+  "low": 673,
+  "high": 682,
+  "kind": "Support",
+  "basis": "Fib 50%, MA100"
+ },
+ {
+  "id": "BNB-641",
+  "coin": "BNB",
+  "low": 641,
+  "high": 649,
+  "kind": "Support utama",
+  "basis": "Fib 61,8%, MA200"
+ }
+]

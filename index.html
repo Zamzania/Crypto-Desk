@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crypto Desk</title>
+<meta name="description" content="Meja riset kripto: harga live, grafik teknikal 1 jam, 4 jam, dan 1 hari, arus dana, makro, tesis, dan skenario untuk BTC, ETH, XRP, SOL, dan BNB.">
+<meta name="theme-color" content="#EFEADF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111612" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Crypto Desk">
+<meta property="og:description" content="Harga live, teknikal multi-timeframe, makro, dan tesis untuk BTC, ETH, XRP, SOL, BNB.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>try { const t = localStorage.getItem('cd-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
+</head>
+<body>
+<div class="cd" id="crypto-desk">
+  <div class="cd-wrap">
+    <header class="cd-head" id="masthead">
+      <svg class="cd-crest" viewBox="0 0 64 64" role="img" aria-label="Lambang Crypto Desk">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="32" cy="32" r="26" fill="none" stroke="currentColor" stroke-width=".6"/>
+        <text x="32" y="39" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="20" fill="currentColor" letter-spacing="1">CD</text>
+        <text x="32" y="15" text-anchor="middle" font-size="5" fill="currentColor" letter-spacing="1.6" font-family="Inter, sans-serif">MMXXVI</text>
+      </svg>
+      <div>
+        <p class="cd-eyebrow">Meja riset kripto</p>
+        <h1 class="cd-title">Crypto Desk</h1>
+        <p class="cd-takeaway" id="takeaway"><span class="dash-skeleton">Memuat harga live dan ringkasan pasar terbaru.</span></p>
+      </div>
+      <div class="cd-asof">Harga live per<strong id="asof">—</strong>BTC · ETH · XRP · SOL · BNB
+        <div><span class="cd-live wait" id="live"><i></i><span>Memuat</span></span></div>
+        <button class="cd-theme" id="theme-btn" type="button" aria-label="Ganti tema terang atau gelap">Tema</button>
+      </div>
+    </header>
+
+    <nav class="cd-tabs" role="tablist" aria-label="Halaman">
+      <button class="cd-tab" role="tab" data-page="ringkasan" aria-selected="true">Ringkasan</button>
+      <button class="cd-tab" role="tab" data-page="teknikal" aria-selected="false">Teknikal</button>
+      <button class="cd-tab" role="tab" data-page="arus" aria-selected="false">Arus dana</button>
+      <button class="cd-tab" role="tab" data-page="makro" aria-selected="false">Makro &amp; kalender</button>
+      <button class="cd-tab" role="tab" data-page="tesis" aria-selected="false">Tesis &amp; skenario</button>
+      <button class="cd-tab" role="tab" data-page="arsip" aria-selected="false">Arsip &amp; metode</button>
+    </nav>
+
+    <main>
+    <section class="cd-page" id="ringkasan">
+      <div class="cd-grid-coins" id="coin-cards"></div>
+      <div class="cd-card" id="perf-card">
+        <h2 class="cd-card-title">Kinerja 12 bulan</h2>
+        <p class="cd-card-note" id="perf-note">Indeks harga penutupan harian, hari pertama = 100. Semua koin bergerak searah; selisihnya ditentukan beta terhadap BTC.</p>
+        <div class="cd-chart" id="perf-chart"></div>
+      </div>
+      <div class="cd-card" id="risk-card">
+        <h2 class="cd-card-title">Profil risiko</h2>
+        <p class="cd-card-note">Beta dan korelasi dihitung dari return harian 90 hari terhadap BTC. Beta 1,5 berarti bergerak sekitar 1,5 kali gerak BTC. Volatilitas 30 hari disetahunkan.</p>
+        <div class="cd-table-box">
+          <table class="cd-table" id="risk-table">
+            <thead><tr>
+              <th>Koin</th><th class="num">Beta</th><th class="num">Korelasi</th><th class="num">Volatilitas 30h</th><th class="num">ATR harian</th><th class="num">Dari ATH</th>
+            </tr></thead><tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="cd-page" id="teknikal" hidden>
+      <div class="cd-controls">
+        <div class="cd-seg" id="coin-seg" role="group" aria-label="Pilih koin">
+          <button data-coin="BTC" aria-pressed="true">BTC</button><button data-coin="ETH" aria-pressed="false">ETH</button><button data-coin="XRP" aria-pressed="false">XRP</button><button data-coin="SOL" aria-pressed="false">SOL</button><button data-coin="BNB" aria-pressed="false">BNB</button>
+        </div>
+        <div class="cd-seg" id="tf-seg" role="group" aria-label="Timeframe">
+          <button data-tf="1h" aria-pressed="false">1 jam</button><button data-tf="4h" aria-pressed="true">4 jam</button><button data-tf="1day" aria-pressed="false">1 hari</button>
+        </div>
+        <div class="cd-seg" id="range-seg" role="group" aria-label="Jumlah lilin">
+          <button data-n="100" aria-pressed="false">100 lilin</button><button data-n="200" aria-pressed="true">200 lilin</button><button data-n="400" aria-pressed="false">400 lilin</button>
+        </div>
+      </div>
+      <div class="cd-card" id="tech-card">
+        <h2 class="cd-card-title" id="tech-title">Harga, rata-rata bergerak, dan zona kunci</h2>
+        <p class="cd-card-note" id="tech-note">Lilin live terhadap USDT, waktu dalam WITA. Garis tipis: MA50 (kuningan) dan MA200 (burgundi). Pita hijau = zona support harian, pita merah anggur = zona resistance harian.</p>
+        <div class="cd-chart" id="tech-chart"></div>
+        <div class="cd-chart short" id="rsi-chart"></div>
+        <div class="cd-chart short" id="macd-chart"></div>
+      </div>
+      <div class="cd-grid">
+        <div class="cd-card" id="ind-card">
+          <h2 class="cd-card-title" id="ind-title">Indikator lilin terakhir</h2>
+          <p class="cd-card-note">Dihitung dari lilin timeframe yang dipilih. RSI di bawah 30 jenuh jual, di atas 70 jenuh beli; ADX di atas 25 menandakan tren kuat. Lilin terakhir masih berjalan.</p>
+          <dl class="cd-ind" id="ind-list"></dl>
+        </div>
+        <div class="cd-card" id="lvl-card">
+          <h2 class="cd-card-title">Zona support dan resistance harian<span class="cd-stamp" data-stamp></span></h2>
+          <p class="cd-card-note">Pertemuan Fibonacci, rata-rata bergerak, dan titik balik harga pada grafik harian; diperbarui setiap analisis.</p>
+          <div class="cd-table-box">
+            <table class="cd-table" id="lvl-table">
+              <thead><tr><th>Jenis</th><th class="num">Dari</th><th class="num">Sampai</th><th>Dasar</th></tr></thead><tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cd-page" id="arus" hidden>
+      <div class="cd-card" id="etf-card">
+        <h2 class="cd-card-title">ETF spot AS<span class="cd-stamp" id="etf-stamp"></span></h2>
+        <p class="cd-card-note">Arus bersih dana institusi. Arus 30 hari menunjukkan arah permintaan; data diterbitkan sehari setelahnya.</p>
+        <div class="cd-chart short" id="etf-chart"></div>
+        <div class="cd-table-box">
+          <table class="cd-table" id="etf-table">
+            <thead><tr><th>Aset</th><th class="num">Dana</th><th class="num">Aset kelolaan</th><th class="num">Arus kumulatif</th><th class="num">30 hari</th><th class="num">10 hari</th><th>Catatan</th></tr></thead><tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="cd-card" id="der-card">
+        <h2 class="cd-card-title">Derivatif dan arus paus<span class="cd-stamp" id="der-stamp"></span></h2>
+        <p class="cd-card-note">Funding positif berarti posisi long membayar short. Open interest tinggi saat harga melemah berarti leverage belum dibersihkan.</p>
+        <div class="cd-table-box">
+          <table class="cd-table" id="der-table">
+            <thead><tr><th>Koin</th><th class="num">Funding / 8 jam</th><th class="num">Open interest</th><th class="num">Arus paus 24 jam</th><th>Catatan</th></tr></thead><tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="cd-page" id="makro" hidden>
+      <div>
+        <h2 class="cd-section-title">Rantai makro<span class="cd-stamp" data-stamp></span></h2>
+        <p class="cd-section-note">Minyak → inflasi → suku bunga → yield obligasi → selera risiko. Selama minyak di atas $100 dan Fed berbias naik, rezimnya risk-off.</p>
+      </div>
+      <div class="cd-macro" id="macro-cards"></div>
+      <div class="cd-grid">
+        <div class="cd-card" id="fng-card">
+          <h2 class="cd-card-title">Fear &amp; Greed, 30 hari</h2>
+          <p class="cd-card-note" id="fng-note">Garis putus-putus di 50 adalah netral. Sentimen serakah saat harga melemah berarti pasar belum kapitulasi.</p>
+          <div class="cd-chart short" id="fng-chart"></div>
+        </div>
+        <div class="cd-card" id="events-card">
+          <h2 class="cd-card-title">Kalender peristiwa</h2>
+          <p class="cd-card-note">Urut menurut tanggal. Dampak menunjukkan seberapa besar peristiwa bisa menggerakkan harga.</p>
+          <div class="cd-table-box">
+            <table class="cd-table" id="events-table">
+              <thead><tr><th>Waktu</th><th>Peristiwa</th><th>Dampak</th><th>Mengapa penting</th></tr></thead><tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cd-page" id="tesis" hidden>
+      <div>
+        <h2 class="cd-section-title">Tesis per koin<span class="cd-stamp" data-stamp></span></h2>
+        <p class="cd-section-note">Peran tiap koin, alasan memegang, katalis, risiko, dan level yang membatalkan tesis.</p>
+      </div>
+      <div class="cd-grid" id="thesis-cards"></div>
+      <div class="cd-card" id="scen-card">
+        <h2 class="cd-card-title">Skenario 3–12 bulan</h2>
+        <p class="cd-card-note">Peta wilayah harga, bukan ramalan. Skenario dasar paling didukung data saat ini.</p>
+        <div class="cd-table-box">
+          <table class="cd-table" id="scen-table">
+            <thead><tr><th>Skenario</th><th>Pemicu</th><th class="num">BTC</th><th class="num">ETH</th><th class="num">XRP</th><th class="num">SOL</th><th class="num">BNB</th><th>Tanda gagal</th></tr></thead><tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="cd-page" id="arsip" hidden>
+      <div class="cd-card" id="log-card">
+        <h2 class="cd-card-title">Arsip analisis</h2>
+        <p class="cd-card-note">Setiap analisis tercatat di sini, terbaru di atas.</p>
+        <div class="cd-table-box">
+          <table class="cd-table" id="log-table">
+            <thead><tr><th>Tanggal</th><th>Judul</th><th>Jenis</th><th>Kesimpulan</th></tr></thead><tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="cd-card" id="method-card">
+        <h2 class="cd-card-title">Metode dan sumber</h2>
+        <p class="cd-card-note">Harga, kapitalisasi, peringkat, perubahan, dan ATH: <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a> (cadangan: CoinPaprika), dimuat langsung di browser Anda. Lilin 1 jam, 4 jam, dan 1 hari: bursa publik (Binance, cadangan Bybit, OKX, Kraken) terhadap USDT. Sentimen: Alternative.me Fear &amp; Greed. Kinerja 12 bulan, beta, korelasi, volatilitas, tren, RSI, MACD, ADX, dan ATR dihitung ulang di browser dari lilin mentah, bukan dikutip. ETF, derivatif, makro, kalender, zona kunci, tesis, dan skenario adalah penilaian analis yang diperbarui setiap analisis; tanggalnya tertera di tiap bagian.</p>
+      </div>
+    </section>
+    </main>
+
+    <footer class="cd-foot">
+      <p>Informasi edukatif, bukan nasihat keuangan. Aset kripto sangat fluktuatif dan bisa kehilangan sebagian besar nilainya; lakukan riset sendiri sebelum mengambil keputusan.</p>
+      <p>Analisis terakhir <span id="foot-updated">—</span>. Data pasar oleh <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a>.</p>
+    </footer>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
