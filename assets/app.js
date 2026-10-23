@@ -35,7 +35,7 @@
   function put(id, status, data, extra) {
     STORE[id] = Object.assign({ status, data }, extra || {});
     derive();
-    if (!drawQueued) { drawQueued = true; requestAnimationFrame(() => { drawQueued = false; draw(); }); }
+    if (!drawQueued) { drawQueued = true; const run = () => { if (!drawQueued) return; drawQueued = false; draw(); }; requestAnimationFrame(run); setTimeout(run, 120); }
   }
 
   /* ---------- network helpers ---------- */
