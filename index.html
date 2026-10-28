@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=3">
+<link rel="stylesheet" href="assets/style.css?v=4">
 <script>try { const t = localStorage.getItem('cd-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 </head>
 <body>
@@ -40,6 +40,8 @@
 
     <nav class="cd-tabs" role="tablist" aria-label="Halaman">
       <button class="cd-tab" role="tab" data-page="ringkasan" aria-selected="true">Ringkasan</button>
+      <button class="cd-tab" role="tab" data-page="pasar" aria-selected="false">Pasar</button>
+      <button class="cd-tab" role="tab" data-page="berita" aria-selected="false">Berita</button>
       <button class="cd-tab" role="tab" data-page="teknikal" aria-selected="false">Teknikal</button>
       <button class="cd-tab" role="tab" data-page="arus" aria-selected="false">Arus dana</button>
       <button class="cd-tab" role="tab" data-page="makro" aria-selected="false">Makro &amp; kalender</button>
@@ -80,6 +82,7 @@
           <button data-n="100" aria-pressed="false">100 lilin</button><button data-n="200" aria-pressed="true">200 lilin</button><button data-n="400" aria-pressed="false">400 lilin</button>
         </div>
       </div>
+      <a class="cd-btn cd-btn-primary" id="tech-fullchart" href="chart.html?s=BTC&amp;id=bitcoin&amp;tf=4h">See chart layar penuh</a>
       <div class="cd-card" id="tech-card">
         <h2 class="cd-card-title" id="tech-title">Harga, rata-rata bergerak, dan zona kunci</h2>
         <p class="cd-card-note" id="tech-note">Lilin live terhadap USDT, waktu dalam WITA. Garis tipis: MA50 (kuningan) dan MA200 (burgundi). Pita hijau = zona support harian, pita merah anggur = zona resistance harian.</p>
@@ -168,6 +171,71 @@
       </div>
     </section>
 
+    <section class="cd-page" id="pasar" hidden>
+      <div>
+        <h2 class="cd-section-title">Pasar kripto</h2>
+        <p class="cd-section-note">Koin populer berdasarkan kapitalisasi (tanpa stablecoin dan token bungkus), koin yang sedang ramai dicari, serta koin yang baru atau akan listing di bursa besar. Klik nama koin untuk analisis otomatis, atau See chart untuk chart candlestick.</p>
+      </div>
+      <div class="cd-card" id="mkt-card">
+        <div class="cd-coin-head cd-wrap-row">
+          <h2 class="cd-card-title">Koin populer</h2>
+          <form class="cd-search cd-search-sm" id="mkt-form" role="search" autocomplete="off" onsubmit="return false">
+            <label for="mkt-q" class="cd-sr">Cari koin</label>
+            <input id="mkt-q" type="search" placeholder="Cari nama atau simbol" spellcheck="false">
+          </form>
+        </div>
+        <p class="cd-card-note" id="mkt-note">Memuat data pasar…</p>
+        <div class="cd-table-box">
+          <table class="cd-table cd-mkt" id="mkt-table">
+            <thead><tr>
+              <th class="num"><button class="cd-sort" data-sort="rank">#</button></th><th>Koin</th>
+              <th class="num"><button class="cd-sort" data-sort="price">Harga</button></th>
+              <th class="num"><button class="cd-sort" data-sort="percent_change_24h">24 jam</button></th>
+              <th class="num"><button class="cd-sort" data-sort="percent_change_7d">7 hari</button></th>
+              <th class="num cd-hide-sm"><button class="cd-sort" data-sort="percent_change_30d">30 hari</button></th>
+              <th class="num cd-hide-sm"><button class="cd-sort" data-sort="market_cap">Kapitalisasi</button></th>
+              <th class="num cd-hide-sm"><button class="cd-sort" data-sort="volume">Volume 24 jam</button></th>
+              <th class="num">Aksi</th>
+            </tr></thead><tbody></tbody>
+          </table>
+        </div>
+        <button class="cd-btn" id="mkt-more" type="button" hidden>Tampilkan semua</button>
+      </div>
+      <div class="cd-grid">
+        <div class="cd-card" id="trend-card">
+          <h2 class="cd-card-title">Sedang tren</h2>
+          <p class="cd-card-note">Koin yang paling banyak dicari di CoinGecko dalam 24 jam terakhir. Ramai dicari tidak sama dengan layak dibeli; banyak di antaranya koin kecil yang sangat fluktuatif.</p>
+          <div class="cd-list" id="trend-list"></div>
+        </div>
+        <div class="cd-card" id="list-card">
+          <h2 class="cd-card-title">Baru &amp; akan listing<span class="cd-stamp" id="list-stamp"></span></h2>
+          <p class="cd-card-note">Pengumuman listing dari bursa besar. Klik judul untuk membuka pengumuman resminya. Harga koin baru biasanya sangat liar pada hari-hari pertama.</p>
+          <div class="cd-seg cd-seg-sm" id="list-seg" role="group" aria-label="Jenis listing">
+            <button data-kind="upcoming" aria-pressed="true">Akan listing</button><button data-kind="new" aria-pressed="false">Baru listing</button>
+          </div>
+          <div class="cd-list" id="list-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cd-page" id="berita" hidden>
+      <div class="cd-coin-head cd-wrap-row">
+        <div>
+          <h2 class="cd-section-title">Berita kripto</h2>
+          <p class="cd-section-note" id="news-note">Memuat berita…</p>
+        </div>
+        <form class="cd-search cd-search-sm" id="news-form" role="search" autocomplete="off" onsubmit="return false">
+          <label for="news-q" class="cd-sr">Cari berita</label>
+          <input id="news-q" type="search" placeholder="Cari judul, mis. ETF atau Solana" spellcheck="false">
+        </form>
+      </div>
+      <div class="cd-seg cd-seg-wrap" id="news-seg" role="group" aria-label="Saring berita per koin">
+        <button data-coin="ALL" aria-pressed="true">Semua</button><button data-coin="BTC" aria-pressed="false">BTC</button><button data-coin="ETH" aria-pressed="false">ETH</button><button data-coin="XRP" aria-pressed="false">XRP</button><button data-coin="SOL" aria-pressed="false">SOL</button><button data-coin="BNB" aria-pressed="false">BNB</button><button data-coin="ALT" aria-pressed="false">Altcoin lain</button>
+      </div>
+      <div class="cd-news-grid" id="news-grid"></div>
+      <button class="cd-btn" id="news-more" type="button" hidden>Muat lebih banyak</button>
+    </section>
+
     <section class="cd-page" id="arsip" hidden>
       <div class="cd-card" id="log-card">
         <h2 class="cd-card-title">Arsip analisis</h2>
@@ -180,7 +248,7 @@
       </div>
       <div class="cd-card" id="method-card">
         <h2 class="cd-card-title">Metode dan sumber</h2>
-        <p class="cd-card-note">Harga, kapitalisasi, peringkat, perubahan, dan ATH: <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a> (cadangan: CoinPaprika), dimuat langsung di browser Anda. Lilin 1 jam, 4 jam, dan 1 hari: bursa publik (Binance, cadangan Bybit, OKX, Kraken) terhadap USDT. Sentimen: Alternative.me Fear &amp; Greed. Kinerja 12 bulan, beta, korelasi, volatilitas, tren, RSI, MACD, ADX, dan ATR dihitung ulang di browser dari lilin mentah, bukan dikutip. ETF, derivatif, makro, kalender, zona kunci, tesis, dan skenario adalah penilaian analis yang diperbarui setiap analisis; tanggalnya tertera di tiap bagian.</p>
+        <p class="cd-card-note">Harga, kapitalisasi, peringkat, perubahan, ATH, profil proyek, dan koin yang sedang tren: <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a> (cadangan: CoinPaprika), dimuat langsung di browser Anda. Berita: umpan RSS CoinDesk, Cointelegraph, Decrypt, The Block, Bitcoin Magazine, CryptoSlate, dan lainnya, dikumpulkan otomatis setiap 3 jam; setiap kartu menautkan ke artikel aslinya. Pengumuman listing: Binance, OKX, Bybit, KuCoin, dan Coinbase. Analisis otomatis di halaman detail koin memakai aturan yang sama untuk semua koin dan bukan penilaian analis; koin inti (BTC, ETH, XRP, SOL, BNB) juga mendapat analisis manual. Lilin 1 jam, 4 jam, dan 1 hari: bursa publik (Binance, cadangan Bybit, OKX, Kraken) terhadap USDT. Sentimen: Alternative.me Fear &amp; Greed. Kinerja 12 bulan, beta, korelasi, volatilitas, tren, RSI, MACD, ADX, dan ATR dihitung ulang di browser dari lilin mentah, bukan dikutip. ETF, derivatif, makro, kalender, zona kunci, tesis, dan skenario adalah penilaian analis yang diperbarui setiap analisis; tanggalnya tertera di tiap bagian.</p>
       </div>
     </section>
     </main>
@@ -192,6 +260,7 @@
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="assets/app.js?v=3"></script>
+<script src="assets/core.js?v=4"></script>
+<script src="assets/app.js?v=4"></script>
 </body>
 </html>

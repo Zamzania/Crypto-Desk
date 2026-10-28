@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chart · Crypto Desk</title>
+<meta name="description" content="Chart candlestick live untuk koin kripto populer: 15 menit, 1 jam, 4 jam, 1 hari, 1 minggu, dengan MA, volume, RSI, dan zona kunci.">
+<meta name="theme-color" content="#EFEADF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111612" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=4">
+<script>try { const t = localStorage.getItem('cd-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
+</head>
+<body>
+<div class="cd" id="crypto-desk">
+  <div class="cd-wrap cd-wrap-wide">
+    <nav class="cd-crumbs" aria-label="Navigasi">
+      <a href="index.html">← Crypto Desk</a>
+      <span aria-hidden="true">/</span>
+      <a href="index.html#pasar">Pasar</a>
+      <span aria-hidden="true">/</span>
+      <a id="crumb-coin" href="#">Detail koin</a>
+      <button class="cd-theme" id="theme-btn" type="button" aria-label="Ganti tema terang atau gelap">Tema</button>
+    </nav>
+
+    <header class="cd-chart-head">
+      <div class="cd-chart-id">
+        <img id="coin-img" class="cd-coin-logo" alt="" width="40" height="40" hidden>
+        <div>
+          <p class="cd-eyebrow" id="coin-sym">—</p>
+          <h1 class="cd-title cd-title-sm" id="coin-name">Chart</h1>
+        </div>
+      </div>
+      <div class="cd-chart-price">
+        <strong id="last-price">—</strong>
+        <span id="last-chg" class="cd-chip">—</span>
+      </div>
+      <form class="cd-search" id="coin-form" role="search" autocomplete="off">
+        <label for="coin-input" class="cd-sr">Cari koin</label>
+        <input id="coin-input" list="coin-list" placeholder="Cari koin, mis. DOGE atau Avalanche" spellcheck="false">
+        <datalist id="coin-list"></datalist>
+        <button type="submit">Buka</button>
+      </form>
+    </header>
+
+    <div class="cd-controls">
+      <div class="cd-seg" id="tf-seg" role="group" aria-label="Timeframe">
+        <button data-tf="15m" aria-pressed="false">15 menit</button><button data-tf="1h" aria-pressed="false">1 jam</button><button data-tf="4h" aria-pressed="true">4 jam</button><button data-tf="1day" aria-pressed="false">1 hari</button><button data-tf="1week" aria-pressed="false">1 minggu</button>
+      </div>
+      <div class="cd-seg" id="ind-seg" role="group" aria-label="Indikator">
+        <button data-ind="ma20" aria-pressed="false">MA20</button><button data-ind="ma50" aria-pressed="true">MA50</button><button data-ind="ma200" aria-pressed="true">MA200</button><button data-ind="ema21" aria-pressed="false">EMA21</button><button data-ind="levels" aria-pressed="true">Zona</button><button data-ind="rsi" aria-pressed="true">RSI</button>
+      </div>
+    </div>
+
+    <section class="cd-card cd-chart-card" aria-labelledby="coin-name">
+      <div class="cd-legend" id="legend" aria-live="polite"></div>
+      <div id="chart-main" class="cd-lwc" role="img" aria-label="Chart candlestick"></div>
+      <div id="chart-rsi" class="cd-lwc cd-lwc-rsi" role="img" aria-label="RSI 14"></div>
+      <p class="cd-chart-status" id="status">Memuat lilin…</p>
+    </section>
+
+    <div class="cd-grid">
+      <div class="cd-card">
+        <h2 class="cd-card-title" id="ind-title">Ringkasan lilin terakhir</h2>
+        <p class="cd-card-note">Dihitung dari lilin timeframe yang dipilih. Lilin terakhir masih berjalan, jadi nilainya bisa berubah sampai lilin ditutup.</p>
+        <dl class="cd-ind" id="ind-list"></dl>
+      </div>
+      <div class="cd-card">
+        <h2 class="cd-card-title">Cara membaca chart</h2>
+        <p class="cd-card-note">Tiap lilin mewakili satu periode. Badan berongga (hijau) berarti harga tutup di atas harga buka; badan penuh (merah anggur) berarti tutup di bawah buka. Sumbu bawah menunjukkan volume. Garis putus-putus berlabel S (support, di bawah harga) dan R (resistance, di atas harga) dihitung otomatis dari titik balik harga. Untuk BTC, ETH, XRP, SOL, dan BNB ada tambahan garis tegas berlabel “analis”, yaitu zona hasil analisis manual. Gulir untuk zoom, seret untuk menggeser, klik dua kali untuk kembali ke tampilan awal.</p>
+      </div>
+    </div>
+
+    <footer class="cd-foot">
+      <p>Informasi edukatif, bukan nasihat keuangan. Data lilin dari bursa publik (Binance, cadangan OKX dan Kraken) terhadap USDT/USD; waktu dalam WITA.</p>
+      <p>Chart oleh <a href="https://www.tradingview.com/lightweight-charts/" target="_blank" rel="noopener">TradingView Lightweight Charts</a>. Data pasar oleh <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a>.</p>
+    </footer>
+  </div>
+</div>
+<script src="assets/vendor/lightweight-charts.standalone.production.js"></script>
+<script src="assets/core.js?v=4"></script>
+<script src="assets/chart.js?v=4"></script>
+</body>
+</html>

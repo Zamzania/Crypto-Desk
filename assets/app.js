@@ -216,6 +216,7 @@
     draw();
   }));
   function syncControls() {
+    const fc = document.getElementById('tech-fullchart'); if (fc) fc.href = 'chart.html?s=' + P.coin + '&id=' + K.PORTFOLIO_ID[P.coin] + '&tf=' + P.tf;
     document.querySelectorAll('#coin-seg button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.coin === P.coin)));
     document.querySelectorAll('#tf-seg button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.tf === P.tf)));
   }
@@ -331,6 +332,10 @@
         }
         card.append(foot);
       }
+      const acts = el('div', 'cd-card-actions');
+      const det = el('a', 'cd-btn cd-btn-sm', 'Detail & analisis'); det.href = 'coin.html?id=' + K.PORTFOLIO_ID[sym] + '&s=' + sym;
+      const ch = el('a', 'cd-btn cd-btn-sm cd-btn-primary', 'See chart'); ch.href = 'chart.html?s=' + sym + '&id=' + K.PORTFOLIO_ID[sym] + '&tf=4h';
+      acts.append(det, ch); card.append(acts);
       return card;
     }));
   }
@@ -653,6 +658,133 @@
     }));
   }
 
+  /* ---------- market (popular, trending, listings) ---------- */
+  const K = window.CDCore;
+  const MKT = { rows: null, err: null, sort: 'rank', dir: 1, q: '', all: false, trend: null, trendErr: null, listings: null, listErr: null, kind: 'upcoming', started: false };
+  function loadMarketData() {
+    if (MKT.started) return; MKT.started = true;
+    K.fetchMarkets().then((m) => { MKT.rows = m.rows.filter(K.isAsset).slice(0, 100); MKT.src = m.source; MKT.at = m.at; draw(); }).catch((e) => { MKT.err = String(e); draw(); });
+    K.fetchTrending().then((t) => { MKT.trend = t; draw(); }).catch((e) => { MKT.trendErr = String(e); draw(); });
+    K.getJSON('data/listings.json?t=' + Math.floor(Date.now() / 600e3), 12000).then((l) => { MKT.listings = l; draw(); }).catch((e) => { MKT.listErr = String(e); draw(); });
+  }
+  const coinHref = (id, sym) => 'coin.html?id=' + encodeURIComponent(id || '') + '&s=' + encodeURIComponent(sym || '');
+  const chartHref = (id, sym) => 'chart.html?s=' + encodeURIComponent(sym || '') + (id ? '&id=' + encodeURIComponent(id) : '') + '&tf=4h';
+  function coinCell(c) {
+    const a = el('a', 'cd-coin-cell'); a.href = coinHref(c.id, c.symbol);
+    if (c.image && K.safeUrl(c.image)) { const im = el('img', 'cd-coin-logo'); im.src = c.image; im.alt = ''; im.width = 22; im.height = 22; im.loading = 'lazy'; a.append(im); }
+    const t = el('span'); t.append(el('span', 'nm', c.name), ' ', el('span', 'sy', c.symbol)); a.append(t);
+    return a;
+  }
+  function actionCell(id, sym) {
+    const d = el('div', 'cd-row-actions');
+    const a1 = el('a', 'cd-link-sm', 'Detail'); a1.href = coinHref(id, sym);
+    const a2 = el('a', 'cd-link-sm strong', 'See chart'); a2.href = chartHref(id, sym);
+    d.append(a1, a2); return d;
+  }
+  function drawMarket() {
+    loadMarketData();
+    const tb = document.querySelector('#mkt-table tbody'), note = document.getElementById('mkt-note'), more = document.getElementById('mkt-more');
+    if (!MKT.rows) {
+      if (MKT.err) { note.textContent = 'Data pasar gagal dimuat (batas permintaan CoinGecko mungkin tercapai). Coba muat ulang dalam satu menit.'; tb.replaceChildren(); }
+      else tb.replaceChildren(...Array.from({ length: 8 }, () => { const tr = el('tr'); const td = el('td', 'dash-skeleton', '—'); td.colSpan = 9; tr.append(td); return tr; }));
+    } else {
+      note.textContent = MKT.rows.length + ' koin teratas berdasarkan kapitalisasi, tanpa stablecoin, token bungkus, dan token staking. Sumber: ' + MKT.src + ', per ' + K.witaTime(MKT.at) + '.';
+      const q = MKT.q.trim().toLowerCase();
+      let rows = MKT.rows.filter((r) => !q || r.name.toLowerCase().includes(q) || r.symbol.toLowerCase().includes(q));
+      const k = MKT.sort, dir = MKT.dir;
+      rows = rows.slice().sort((a, b) => { const x = num(a[k]), y = num(b[k]); if (isNaN(x)) return 1; if (isNaN(y)) return -1; return (x - y) * dir; });
+      const shown = MKT.all || q ? rows : rows.slice(0, 30);
+      more.hidden = MKT.all || !!q || rows.length <= 30; more.textContent = 'Tampilkan semua ' + rows.length + ' koin';
+      tb.replaceChildren(...shown.map((r) => {
+        const tr = el('tr');
+        const c2 = el('td'); c2.append(coinCell(r));
+        if (K.PORTFOLIO.includes(r.symbol)) c2.append(el('span', 'cd-chip flat cd-chip-xs', 'inti'));
+        const act = el('td', 'num'); act.append(actionCell(r.id, r.symbol));
+        tr.append(el('td', 'num', String(r.rank || '—')), c2, el('td', 'num', usd(r.price)), el('td', 'num ' + sgnCls(r.percent_change_24h), pct(r.percent_change_24h)), el('td', 'num ' + sgnCls(r.percent_change_7d), pct(r.percent_change_7d)),
+          el('td', 'num cd-hide-sm ' + sgnCls(r.percent_change_30d), pct(r.percent_change_30d)), el('td', 'num cd-hide-sm', bigAbs(r.market_cap)), el('td', 'num cd-hide-sm', bigAbs(r.volume)), act);
+        return tr;
+      }));
+      if (!shown.length) { const tr = el('tr'); const td = el('td', null, 'Tidak ada koin yang cocok di 100 besar. Coba buka chart lewat pencarian di halaman See chart.'); td.colSpan = 9; tr.append(td); tb.replaceChildren(tr); }
+    }
+    document.querySelectorAll('#mkt-table .cd-sort').forEach((b) => b.setAttribute('aria-sort', b.dataset.sort === MKT.sort ? (MKT.dir > 0 ? 'ascending' : 'descending') : 'none'));
+    // trending
+    const tl = document.getElementById('trend-list');
+    if (MKT.trend) tl.replaceChildren(...MKT.trend.slice(0, 10).map((t, i) => {
+      const row = el('div', 'cd-list-row');
+      const left = el('div', 'cd-list-main'); left.append(el('span', 'cd-list-n', String(i + 1)), coinCell(t));
+      const right = el('div', 'cd-list-side');
+      right.append(el('span', 'cd-list-meta', t.rank ? '#' + t.rank : 'belum berperingkat'), el('span', 'num ' + sgnCls(t.change_24h), pct(t.change_24h)), actionCell(t.id, t.symbol));
+      row.append(left, right); return row;
+    }));
+    else tl.replaceChildren(el('p', 'cd-card-note', MKT.trendErr ? 'Daftar tren gagal dimuat. Coba lagi sebentar.' : 'Memuat…'));
+    drawListings();
+  }
+  function drawListings() {
+    const box = document.getElementById('list-list');
+    document.querySelectorAll('#list-seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kind === MKT.kind)));
+    if (!MKT.listings) { box.replaceChildren(el('p', 'cd-card-note', MKT.listErr ? 'Data listing belum tersedia. Pengumpul otomatis memperbaruinya setiap 3 jam.' : 'Memuat…')); return; }
+    document.getElementById('list-stamp').textContent = MKT.listings.updated ? 'per ' + K.witaTime(MKT.listings.updated) : '';
+    const items = (MKT.listings[MKT.kind] || []).slice(0, 14);
+    if (!items.length) { box.replaceChildren(el('p', 'cd-card-note', MKT.kind === 'upcoming' ? 'Tidak ada pengumuman listing mendatang yang terdeteksi saat ini.' : 'Tidak ada listing baru dalam 14 hari terakhir yang terdeteksi.')); return; }
+    box.replaceChildren(...items.map((it) => {
+      const row = el('div', 'cd-list-row cd-list-row-top');
+      const main = el('div', 'cd-list-main cd-list-col');
+      const meta = el('div', 'cd-list-meta'); meta.append(el('span', 'src', it.exchange), ' · ', K.ago(it.date));
+      const href = K.safeUrl(it.url);
+      const title = href ? K.link(href, 'cd-list-title', it.title + ' ↗', true) : el('span', 'cd-list-title', it.title);
+      main.append(meta, title);
+      const side = el('div', 'cd-list-side');
+      (it.symbols || []).slice(0, 3).forEach((sy) => { const d = el('div', 'cd-row-actions'); d.append(el('span', 'cd-chip cd-chip-xs', sy)); const a = el('a', 'cd-link-sm', 'Detail'); a.href = coinHref('', sy); const b = el('a', 'cd-link-sm strong', 'Chart'); b.href = chartHref('', sy); d.append(a, b); side.append(d); });
+      row.append(main, side); return row;
+    }));
+  }
+  document.getElementById('mkt-q').addEventListener('input', (e) => { MKT.q = e.target.value; drawMarket(); });
+  document.getElementById('mkt-more').addEventListener('click', () => { MKT.all = true; drawMarket(); });
+  document.querySelectorAll('#mkt-table .cd-sort').forEach((b) => b.addEventListener('click', () => {
+    const k = b.dataset.sort; if (MKT.sort === k) MKT.dir = -MKT.dir; else { MKT.sort = k; MKT.dir = k === 'rank' ? 1 : -1; } drawMarket();
+  }));
+  document.querySelectorAll('#list-seg button').forEach((b) => b.addEventListener('click', () => { MKT.kind = b.dataset.kind; drawListings(); }));
+
+  /* ---------- news ---------- */
+  const NEWS = { data: null, err: null, coin: 'ALL', q: '', limit: 24, started: false };
+  const qsNews = (new URLSearchParams(location.search).get('news') || '').toUpperCase();
+  if (qsNews) NEWS.coin = K.PORTFOLIO.includes(qsNews) ? qsNews : qsNews;
+  function loadNews() {
+    if (NEWS.started) return; NEWS.started = true;
+    K.fetchNews().then((n) => {
+      // Make sure the five core coins are tagged even when the feed came from the live fallback.
+      K.tagCoins(n.items, [{ symbol: 'BTC', name: 'Bitcoin' }, { symbol: 'ETH', name: 'Ethereum' }, { symbol: 'XRP', name: 'Ripple' }, { symbol: 'SOL', name: 'Solana' }, { symbol: 'BNB', name: 'BNB Chain' }]);
+      NEWS.data = n; draw();
+    }).catch((e) => { NEWS.err = String(e); draw(); });
+  }
+  function drawNews() {
+    loadNews();
+    const grid = document.getElementById('news-grid'), note = document.getElementById('news-note'), more = document.getElementById('news-more');
+    const seg = document.getElementById('news-seg');
+    if (NEWS.coin !== 'ALL' && NEWS.coin !== 'ALT' && !seg.querySelector('[data-coin="' + NEWS.coin + '"]')) { const b = el('button', null, NEWS.coin); b.dataset.coin = NEWS.coin; b.addEventListener('click', () => { NEWS.coin = b.dataset.coin; NEWS.limit = 24; drawNews(); }); seg.append(b); }
+    seg.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.coin === NEWS.coin)));
+    if (!NEWS.data) {
+      note.textContent = NEWS.err ? 'Berita gagal dimuat. Coba muat ulang halaman.' : 'Memuat berita…';
+      if (!NEWS.err) grid.replaceChildren(...Array.from({ length: 6 }, () => el('div', 'cd-news dash-skeleton', '—'))); else grid.replaceChildren();
+      more.hidden = true; return;
+    }
+    const q = NEWS.q.trim().toLowerCase();
+    const items = NEWS.data.items.filter((it) => {
+      const tags = it.coins || [];
+      if (NEWS.coin === 'ALT') { if (!tags.some((t) => !K.PORTFOLIO.includes(t))) return false; }
+      else if (NEWS.coin !== 'ALL' && !tags.includes(NEWS.coin)) return false;
+      return !q || (it.title + ' ' + (it.summary || '')).toLowerCase().includes(q);
+    });
+    const srcs = Array.from(new Set(NEWS.data.items.map((x) => x.source))).slice(0, 8).join(', ');
+    note.textContent = NEWS.data.items.length + ' berita terbaru dari ' + srcs + '. Diperbarui ' + K.witaTime(NEWS.data.updated) + '. Klik kartu untuk membaca artikel lengkap di situs penerbit.';
+    grid.replaceChildren(...items.slice(0, NEWS.limit).map(K.newsCard));
+    if (!items.length) grid.replaceChildren(el('p', 'cd-card-note', 'Tidak ada berita yang cocok dengan saringan ini.'));
+    more.hidden = items.length <= NEWS.limit;
+  }
+  document.querySelectorAll('#news-seg button').forEach((b) => b.addEventListener('click', () => { NEWS.coin = b.dataset.coin; NEWS.limit = 24; drawNews(); }));
+  document.getElementById('news-q').addEventListener('input', (e) => { NEWS.q = e.target.value; NEWS.limit = 24; drawNews(); });
+  document.getElementById('news-more').addEventListener('click', () => { NEWS.limit += 24; drawNews(); });
+
   function draw() {
     if (document.documentElement.clientWidth < 200) return; // transient collapsed layout (e.g. tab closing)
     drawHeader();
@@ -662,6 +794,8 @@
     if (page === 'makro') { drawMacro(); drawFng(); drawEvents(); }
     if (page === 'tesis') { drawTheses(); drawScen(); }
     if (page === 'arsip') { drawLog(); }
+    if (page === 'pasar') { drawMarket(); }
+    if (page === 'berita') { drawNews(); }
   }
 
   /* ---------- boot ---------- */

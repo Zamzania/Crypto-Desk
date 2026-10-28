@@ -14,6 +14,10 @@ Situs ini statis (HTML, CSS, JavaScript) dan dihosting gratis di GitHub Pages. T
 | Lilin 1j / 4j / 1h | Binance (cadangan: Bybit, OKX, Kraken), pasangan USDT | Live |
 | Kinerja 12 bulan, beta, korelasi, volatilitas, RSI, MACD, ADX, ATR | Dihitung di browser dari lilin mentah | Live |
 | Fear & Greed | Alternative.me | Live |
+| Koin populer (100 besar) & sedang tren | CoinGecko | Live |
+| Analisis otomatis tiap koin | Dihitung di browser dari lilin harian & 4 jam (aturan yang sama untuk semua koin) | Live |
+| Berita | RSS CoinDesk, Cointelegraph, Decrypt, The Block, dll. (`data/news.json`) | Otomatis tiap 3 jam (GitHub Actions) |
+| Pengumuman listing | Binance, OKX, Bybit, KuCoin, Coinbase (`data/listings.json`) | Otomatis tiap 3 jam (GitHub Actions) |
 | Zona kunci, tesis, skenario, makro, ETF, derivatif, kalender | `data/*.json` (penilaian analis) | Setiap analisis baru |
 
 Semua data live diambil langsung oleh browser pengunjung, jadi pemilik situs tidak membayar apa pun.
@@ -21,10 +25,17 @@ Semua data live diambil langsung oleh browser pengunjung, jadi pemilik situs tid
 ## Struktur
 
 ```
-index.html          halaman
+index.html          halaman utama (ringkasan, pasar, berita, teknikal, makro, tesis)
+coin.html           detail koin + analisis otomatis (coin.html?id=<id CoinGecko>)
+chart.html          chart candlestick layar penuh / "See chart" (chart.html?s=BTC&tf=4h)
+assets/core.js      fungsi bersama: data, lilin, indikator, berita
+assets/app.js       halaman utama
+assets/coin.js      halaman detail koin
+assets/chart.js     halaman chart (TradingView Lightweight Charts, assets/vendor)
 assets/style.css    gaya (palet old money, mode gelap)
-assets/app.js       pengambilan data, indikator, grafik (d3)
-data/*.json         data analisis yang diperbarui manual
+scripts/collect.mjs pengumpul berita, listing, dan cuplikan pasar
+.github/workflows/  jadwal pengumpul (tiap 3 jam)
+data/*.json         data analisis manual + hasil pengumpul
 ```
 
 ## Memperbarui analisis

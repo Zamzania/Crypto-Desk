@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detail Koin · Crypto Desk</title>
+<meta name="description" content="Profil, statistik pasar, analisis teknikal otomatis, level kunci, dan berita untuk koin kripto populer.">
+<meta name="theme-color" content="#EFEADF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111612" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=4">
+<script>try { const t = localStorage.getItem('cd-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
+</head>
+<body>
+<div class="cd" id="crypto-desk">
+  <div class="cd-wrap">
+    <nav class="cd-crumbs" aria-label="Navigasi">
+      <a href="index.html">← Crypto Desk</a>
+      <span aria-hidden="true">/</span>
+      <a href="index.html#pasar">Pasar</a>
+      <button class="cd-theme" id="theme-btn" type="button" aria-label="Ganti tema terang atau gelap">Tema</button>
+    </nav>
+
+    <header class="cd-coin-hero" id="hero">
+      <div class="cd-chart-id">
+        <img id="coin-img" class="cd-coin-logo cd-coin-logo-lg" alt="" width="56" height="56" hidden>
+        <div>
+          <p class="cd-eyebrow" id="coin-sym">Memuat…</p>
+          <h1 class="cd-title" id="coin-name">Detail koin</h1>
+          <div class="cd-chips" id="coin-badges"></div>
+        </div>
+      </div>
+      <div class="cd-hero-right">
+        <div class="cd-chart-price"><strong id="coin-price">—</strong><span id="coin-chg" class="cd-chip">—</span></div>
+        <div class="cd-actions" id="coin-actions">
+          <a class="cd-btn cd-btn-primary" id="see-chart" href="chart.html">See chart</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="cd-card" aria-labelledby="stats-title">
+      <h2 class="cd-card-title" id="stats-title">Statistik pasar</h2>
+      <p class="cd-card-note" id="stats-note">Data CoinGecko, dalam USD.</p>
+      <div class="cd-spark" id="spark" aria-hidden="true"></div>
+      <dl class="cd-ind" id="stats"></dl>
+    </section>
+
+    <section class="cd-card cd-analysis" aria-labelledby="auto-title">
+      <div class="cd-coin-head">
+        <h2 class="cd-card-title" id="auto-title">Analisis otomatis</h2>
+        <span class="cd-chip flat" id="verdict">Menghitung…</span>
+      </div>
+      <p class="cd-card-note">Disusun otomatis dari lilin harian dan 4 jam memakai aturan yang sama untuk semua koin, dihitung ulang setiap halaman dibuka. Ini pembacaan data, bukan penilaian analis dan bukan nasihat keuangan.</p>
+      <div id="auto-body" class="cd-prose"><p class="dash-skeleton">Memuat data lilin untuk analisis.</p></div>
+      <h3 class="cd-sub">Level kunci otomatis</h3>
+      <div class="cd-table-box">
+        <table class="cd-table" id="lvl-table">
+          <thead><tr><th>Jenis</th><th class="num">Zona</th><th class="num">Jarak dari harga</th><th class="num">Sentuhan</th><th>Terakhir disentuh</th></tr></thead><tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="cd-card" id="analyst-card" hidden aria-labelledby="analyst-title">
+      <h2 class="cd-card-title" id="analyst-title">Analisis analis<span class="cd-stamp" id="analyst-stamp"></span></h2>
+      <p class="cd-card-note">Koin inti Crypto Desk mendapat tesis dan zona hasil analisis manual, selain analisis otomatis di atas.</p>
+      <div id="analyst-body" class="cd-prose"></div>
+    </section>
+
+    <section class="cd-card" aria-labelledby="about-title">
+      <h2 class="cd-card-title" id="about-title">Tentang proyek</h2>
+      <p class="cd-card-note">Deskripsi dari CoinGecko (bahasa Inggris), ditampilkan apa adanya.</p>
+      <dl class="cd-ind" id="about-meta"></dl>
+      <div id="about-body" class="cd-prose cd-desc"></div>
+    </section>
+
+    <section class="cd-card" aria-labelledby="news-title">
+      <div class="cd-coin-head">
+        <h2 class="cd-card-title" id="news-title">Berita terkait</h2>
+        <a class="cd-more" id="news-more" href="index.html#berita">Semua berita →</a>
+      </div>
+      <p class="cd-card-note">Klik judul untuk membaca artikel lengkap di situs penerbitnya (tab baru).</p>
+      <div class="cd-news-grid" id="news"></div>
+    </section>
+
+    <footer class="cd-foot">
+      <p>Informasi edukatif, bukan nasihat keuangan. Aset kripto sangat fluktuatif; koin kecil dan baru bisa kehilangan sebagian besar nilainya dalam waktu singkat.</p>
+      <p>Data pasar oleh <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a>. Lilin dari bursa publik (Binance, cadangan OKX dan Kraken).</p>
+    </footer>
+  </div>
+</div>
+<script src="assets/core.js?v=4"></script>
+<script src="assets/coin.js?v=4"></script>
+</body>
+</html>
