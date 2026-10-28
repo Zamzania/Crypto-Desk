@@ -79,7 +79,8 @@ const ALIASES = { BTC: ['Bitcoin'], ETH: ['Ethereum', 'Ether'], XRP: ['XRP', 'Ri
 function tagger(coins) {
   const pats = coins.map((c) => {
     const names = new Set([c.name, ...(ALIASES[c.symbol] || [])].filter((n) => n && n.length >= 3 && !/^(the|one|near|sun|gas)$/i.test(n)));
-    const rxName = new RegExp('(^|[^A-Za-z0-9])(' + Array.from(names).map(esc).join('|') + ')(?![A-Za-z0-9])', ''); // case-sensitive: names are proper nouns
+    // Case-sensitive: names are proper nouns. No usable name (e.g. "MX") means ticker-only matching.
+    const rxName = names.size ? new RegExp('(^|[^A-Za-z0-9])(' + Array.from(names).map(esc).join('|') + ')(?![A-Za-z0-9])', '') : null;
     const s = esc(c.symbol);
     const rxSym = WORDLIKE.has(c.symbol) || c.symbol.length < 3 ? new RegExp('\\$' + s + '(?![A-Za-z0-9])') : new RegExp('(^|[^A-Za-z0-9$])\\$?' + s + '(?![A-Za-z0-9])');
     return { sym: c.symbol, rxName, rxSym };
@@ -87,7 +88,7 @@ function tagger(coins) {
   return (it) => {
     const text = it.title + ' ' + it.summary + ' ' + (it.categories || []).join(' ');
     const out = [];
-    for (const p of pats) if (p.rxName.test(text) || p.rxSym.test(text)) out.push(p.sym);
+    for (const p of pats) if ((p.rxName && p.rxName.test(text)) || p.rxSym.test(text)) out.push(p.sym);
     // "Bitcoin Cash" should not also count as Bitcoin when Bitcoin is not mentioned on its own.
     if (out.includes('BCH') && out.includes('BTC') && !/Bitcoin(?! Cash)|BTC/.test(text)) out.splice(out.indexOf('BTC'), 1);
     return out.slice(0, 8);
@@ -102,18 +103,20 @@ const symbolsIn = (title) => {
   ['USDT', 'USDC', 'USD', 'BTC', 'ETH', 'BNB', 'NFT', 'API', 'P2P', 'VIP', 'APR', 'UTC'].forEach((x) => { if (!title.includes('(' + x + ')')) s.delete(x); });
   return Array.from(s).slice(0, 4);
 };
-const isListing = (t) => /\b(will list|lists|listing|listed|to list|launch(es)? .*spot|new (spot|token)|adds?|adding|roadmap|pre-?market|launchpool|perpetual|now available|gem spotlight|world premiere|available for trading)\b/i.test(t) && !/\b(delist|delisting|remove|removal|suspend|cease|maintenance|airdrop result|wallet)\b/i.test(t);
+// Spot listings of crypto assets only: futures/perpetuals, margin, collateral, earn products and tokenized stocks are not coin listings.
+const NOT_COIN = /\b(delist|delisting|remove|removal|suspend|cease|maintenance|airdrop result|wallet|futures?|perpetual|perp|contracts?|margin|collateral|leverage|options?|earn|loan|convert|copy trading|trading bots?|index|indices|stocks?|bstocks?|equit(y|ies)|tokenized securit|securities|tradfi|etf|gold|silver|commodit)/i;
+const isListing = (t) => /\b(will list|lists|listing|listed|to list|launch(es)? .*spot|new (spot|token)|adds?|adding|roadmap|pre-?market|launchpool|hodler airdrops?|now available|gem spotlight|world premiere|available for trading)\b/i.test(t) && !NOT_COIN.test(t);
 const isUpcoming = (t, ts) => ts > Date.now() || /\b(will list|will launch|to list|roadmap|pre-?market|launchpool|will add|coming soon|opens trading on)\b/i.test(t);
 async function listings() {
   const out = [];
-  const add = (exchange, title, url, ts) => { if (!title || !url || !Number.isFinite(ts)) return; if (!isListing(title)) return; out.push({ exchange, title: title.trim(), url, date: new Date(ts).toISOString(), symbols: symbolsIn(title), upcoming: isUpcoming(title, ts) }); };
-  const bn = await tryGet('Binance announcements', 'https://www.binance.com/bapi/composite/v1/public/cms/article/list/query?type=1&catalogId=48&pageNo=1&pageSize=20');
+  const add = (exchange, title, url, ts) => { if (!title || !url || !Number.isFinite(ts)) return; if (!isListing(title)) return; if (!symbolsIn(title).length && !/listed|will list|lists/i.test(title)) return; out.push({ exchange, title: title.trim(), url, date: new Date(ts).toISOString(), symbols: symbolsIn(title), upcoming: isUpcoming(title, ts) }); };
+  const bn = await tryGet('Binance announcements', 'https://www.binance.com/bapi/composite/v1/public/cms/article/list/query?type=1&catalogId=48&pageNo=1&pageSize=50');
   (bn && bn.data && bn.data.catalogs && bn.data.catalogs[0] ? bn.data.catalogs[0].articles : []).forEach((a) => add('Binance', a.title, 'https://www.binance.com/en/support/announcement/' + a.code, a.releaseDate));
   const okx = await tryGet('OKX announcements', 'https://www.okx.com/api/v5/support/announcements?annType=announcements-new-listings');
   (okx && okx.data && okx.data[0] ? okx.data[0].details : []).forEach((a) => add('OKX', a.title, a.url, Number(a.pTime)));
   const by = await tryGet('Bybit announcements', 'https://api.bybit.com/v5/announcements/index?locale=en-US&type=new_crypto&limit=20');
   (by && by.result ? by.result.list : []).forEach((a) => add('Bybit', a.title, a.url, Number(a.dateTimestamp || a.publishTime)));
-  const ku = await tryGet('KuCoin announcements', 'https://api.kucoin.com/api/v3/announcements?annType=new-listings&lang=en_US&pageSize=20');
+  const ku = await tryGet('KuCoin announcements', 'https://api.kucoin.com/api/v3/announcements?annType=new-listings&lang=en_US&pageSize=50');
   (ku && ku.data ? ku.data.items : []).forEach((a) => add('KuCoin', a.annTitle, a.annUrl, Number(a.cTime)));
   const cb = await tryGet('Coinbase roadmap (blog RSS)', 'https://www.coinbase.com/blog/rss.xml', { json: false });
   if (cb) parseFeed(cb, 'Coinbase').filter((i) => /roadmap|now available|listing|will add|added/i.test(i.title)).forEach((i) => add('Coinbase', i.title, i.link, Date.parse(i.published)));

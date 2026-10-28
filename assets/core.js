@@ -228,13 +228,12 @@
     const pats = coins.map((c) => {
       const nm = String(c.name).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const sym = String(c.symbol).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const parts = ['\\b' + nm + '\\b'];
-      return { sym: c.symbol, rxName: new RegExp(parts.join('|'), 'i'), rxSym: c.symbol.length >= 2 && !AMBIG.has(c.symbol) ? new RegExp('(^|[^A-Za-z0-9$])\\$?' + sym + '(?![A-Za-z0-9])') : new RegExp('\\$' + sym + '(?![A-Za-z0-9])') };
+      return { sym: c.symbol, rxName: String(c.name || '').length >= 3 ? new RegExp('\\b' + nm + '\\b', 'i') : null, rxSym: c.symbol.length >= 2 && !AMBIG.has(c.symbol) ? new RegExp('(^|[^A-Za-z0-9$])\\$?' + sym + '(?![A-Za-z0-9])') : new RegExp('\\$' + sym + '(?![A-Za-z0-9])') };
     });
     items.forEach((it) => {
       const text = (it.title || '') + ' ' + (it.summary || '');
       const tags = new Set(it.coins || []);
-      pats.forEach((p) => { if (p.rxName.test(text) || p.rxSym.test(text)) tags.add(p.sym); });
+      pats.forEach((p) => { if ((p.rxName && p.rxName.test(text)) || p.rxSym.test(text)) tags.add(p.sym); });
       it.coins = Array.from(tags);
     });
     return items;
