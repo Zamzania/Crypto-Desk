@@ -725,7 +725,16 @@
     if (!MKT.listings) { box.replaceChildren(el('p', 'cd-card-note', MKT.listErr ? 'Data listing belum tersedia. Pengumpul otomatis memperbaruinya setiap 3 jam.' : 'Memuat…')); return; }
     document.getElementById('list-stamp').textContent = MKT.listings.updated ? 'per ' + K.witaTime(MKT.listings.updated) : '';
     const items = (MKT.listings[MKT.kind] || []).slice(0, 14);
-    if (!items.length) { box.replaceChildren(el('p', 'cd-card-note', MKT.kind === 'upcoming' ? 'Tidak ada pengumuman listing mendatang yang terdeteksi saat ini.' : 'Tidak ada listing baru dalam 14 hari terakhir yang terdeteksi.')); return; }
+    const agg = MKT.kind === 'new' ? (MKT.listings.aggregator_new || []).slice().sort((x, y) => (x.rank || 1e9) - (y.rank || 1e9)).slice(0, 12) : [];
+    if (!items.length && !agg.length) { box.replaceChildren(el('p', 'cd-card-note', MKT.kind === 'upcoming' ? 'Tidak ada pengumuman listing koin mendatang yang terdeteksi saat ini. Pengumuman futures, perpetual, dan saham tokenisasi sengaja tidak dihitung.' : 'Tidak ada listing baru dalam 14 hari terakhir yang terdeteksi.')); return; }
+    const aggRows = agg.map((c) => {
+      const row = el('div', 'cd-list-row');
+      const main = el('div', 'cd-list-main'); const nm = el('span'); nm.append(el('span', 'cd-list-title', c.name), ' ', el('span', 'cd-list-meta', c.symbol)); main.append(nm);
+      const side = el('div', 'cd-list-side'); side.append(el('span', 'cd-list-meta', c.rank ? '#' + c.rank : 'belum berperingkat'), actionCell('', c.symbol));
+      row.append(main, side); return row;
+    });
+    const aggHead = agg.length ? [el('h3', 'cd-sub', 'Baru masuk indeks CoinPaprika'), el('p', 'cd-card-note', 'Koin yang baru ditambahkan ke indeks agregator dalam beberapa hari terakhir. Banyak di antaranya belum diperdagangkan di bursa besar, jadi chart-nya mungkin belum tersedia.')] : [];
+    if (!items.length) { box.replaceChildren(...aggHead, ...aggRows); return; }
     box.replaceChildren(...items.map((it) => {
       const row = el('div', 'cd-list-row cd-list-row-top');
       const main = el('div', 'cd-list-main cd-list-col');
@@ -736,7 +745,7 @@
       const side = el('div', 'cd-list-side');
       (it.symbols || []).slice(0, 3).forEach((sy) => { const d = el('div', 'cd-row-actions'); d.append(el('span', 'cd-chip cd-chip-xs', sy)); const a = el('a', 'cd-link-sm', 'Detail'); a.href = coinHref('', sy); const b = el('a', 'cd-link-sm strong', 'Chart'); b.href = chartHref('', sy); d.append(a, b); side.append(d); });
       row.append(main, side); return row;
-    }));
+    }), ...aggHead, ...aggRows);
   }
   document.getElementById('mkt-q').addEventListener('input', (e) => { MKT.q = e.target.value; drawMarket(); });
   document.getElementById('mkt-more').addEventListener('click', () => { MKT.all = true; drawMarket(); });
