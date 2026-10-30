@@ -184,8 +184,8 @@
     });
   }
   async function fetchCoinDetail(id) {
-    return cached('coin:' + id, 600e3, async () => {
-      const j = await getJSON(`https://api.coingecko.com/api/v3/coins/${encodeURIComponent(id)}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`, 12000);
+    return cached('coin2:' + id, 600e3, async () => {
+      const j = await getJSON(`https://api.coingecko.com/api/v3/coins/${encodeURIComponent(id)}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false`, 12000);
       const m = j.market_data || {};
       return {
         id: j.id, symbol: String(j.symbol || '').toUpperCase(), name: j.name, image: j.image && (j.image.large || j.image.small), rank: j.market_cap_rank,
@@ -197,6 +197,8 @@
         atl: m.atl && m.atl.usd, atl_date: m.atl_date && m.atl_date.usd, high_24h: m.high_24h && m.high_24h.usd, low_24h: m.low_24h && m.low_24h.usd,
         percent_change_24h: m.price_change_percentage_24h, percent_change_7d: m.price_change_percentage_7d, percent_change_30d: m.price_change_percentage_30d, percent_change_1y: m.price_change_percentage_1y,
         last_updated_time: m.last_updated || j.last_updated,
+        sentiment_up: j.sentiment_votes_up_percentage, watchlist: j.watchlist_portfolio_users,
+        dev: j.developer_data ? { commits4w: j.developer_data.commit_count_4_weeks, stars: j.developer_data.stars, forks: j.developer_data.forks, contributors: j.developer_data.pull_request_contributors, prs: j.developer_data.pull_requests_merged } : null,
       };
     });
   }

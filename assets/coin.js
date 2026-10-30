@@ -155,7 +155,7 @@
     if (!rows.length) { const tr = el('tr'); const td = el('td', null, 'Belum ada level yang jelas.'); td.colSpan = 5; tr.append(td); tb.replaceChildren(tr); return; }
     tb.replaceChildren(...rows.map(([k, z]) => {
       const tr = el('tr'); const mid = (z.lo + z.hi) / 2;
-      tr.append(el('td', k === 'Support' ? 'cd-pos' : 'cd-neg', k), el('td', 'num', z.lo === z.hi ? usd(z.lo) : usd(z.lo) + ' – ' + usd(z.hi)), el('td', 'num', pct(dist(mid, price))), el('td', 'num', String(z.touches)), el('td', null, tgl(z.last)));
+      tr.append(el('td', k === 'Support' ? 'cd-pos' : 'cd-neg', k + (z.analyst ? ' (analis)' : '')), el('td', 'num', z.lo === z.hi ? usd(z.lo) : usd(z.lo) + ' – ' + usd(z.hi)), el('td', 'num', pct(dist(mid, price))), el('td', 'num', z.touches ? String(z.touches) : '—'), el('td', null, z.last ? tgl(z.last) : (z.analyst ? 'Zona analisis manual' : '—')));
       return tr;
     }));
   }
@@ -200,23 +200,155 @@
     } catch (e) { box.replaceChildren(el('p', 'cd-card-note', 'Berita gagal dimuat. Coba muat ulang halaman.')); }
   }
 
+  /* ---------- trade plan ---------- */
+  const A = window.CDAnalysis;
+  const PLAN = { tf: '4h', rows: {}, cache: {}, ath: null, analystLv: null, current: null };
+  const fmtRR = (v) => (isFinite(v) ? v.toFixed(2) + ' : 1' : '—');
+  function planCard(su, plan) {
+    const card = el('article', 'cd-card cd-setup');
+    const head = el('div', 'cd-coin-head'); head.append(el('h3', 'cd-card-title cd-setup-title', su.name));
+    const g = el('span', 'cd-chip ' + su.grade.cls, 'Mutu ' + su.grade.g + ' · ' + su.grade.txt); head.append(g);
+    card.append(head, el('span', 'cd-chip cd-status ' + su.status.cls, su.status.txt));
+    const tbl = el('table', 'cd-table cd-plan-table'); const tb = el('tbody');
+    const row = (k, v, extra, cls) => { const tr = el('tr', cls); tr.append(el('th', null, k), el('td', 'num', v), el('td', 'num cd-muted', extra || '')); tb.append(tr); };
+    if (su.key === 'breakout') row('Pemicu', 'Tutup > ' + usd(su.trigger), C.pct(dist(su.trigger, plan.price)) + ' dari harga');
+    row('Entry', su.entryLo === su.entryHi ? usd(su.entry) : usd(su.entryLo) + ' – ' + usd(su.entryHi), su.entryLo === su.entryHi ? C.pct(dist(su.entry, plan.price)) + ' dari harga' : 'acuan ' + usd(su.entry), 'cd-row-entry');
+    row('Stop loss', usd(su.sl), '−' + su.riskPct.toFixed(1) + '% dari entry', 'cd-row-sl');
+    su.tps.forEach((t, i) => row('Take profit ' + (i + 1), usd(t.p), C.pct(t.pct) + ' · R:R ' + fmtRR(t.rr), 'cd-row-tp'));
+    tbl.append(tb); const box = el('div', 'cd-table-box'); box.append(tbl); card.append(box);
+    const d = el('div', 'cd-prose cd-setup-why');
+    d.append(el('p', null, su.logic));
+    const tpb = el('p'); tpb.append(el('span', 'lbl', 'Dasar target'), su.tps.map((t, i) => 'TP' + (i + 1) + ': ' + t.basis).join(' · ')); d.append(tpb);
+    const slb = el('p'); slb.append(el('span', 'lbl', 'Dasar stop loss'), su.slBasis + ' (ATR ' + TFL_(plan.tf) + ' ≈ ' + usd(plan.atr) + ').'); d.append(slb);
+    d.append(el('p', 'inv', su.invalidation));
+    card.append(d);
+    return card;
+  }
+  const TFL_ = (tf) => A.TFL[tf];
+  function renderPlan() {
+    const tf = PLAN.tf;
+    document.querySelectorAll('#plan-seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tf === tf)));
+    const grid = document.getElementById('plan-setups'), ctx = document.getElementById('plan-ctx'), notes = document.getElementById('plan-notes');
+    const rows = PLAN.rows[tf];
+    if (rows === undefined) { grid.replaceChildren(el('div', 'cd-card dash-skeleton', '—')); return; }
+    if (!rows || rows.length < 40) { grid.replaceChildren(el('p', 'cd-card-note', 'Lilin ' + TFL_(tf) + ' untuk koin ini belum tersedia atau terlalu sedikit di bursa publik yang dipakai, jadi rencana trading belum bisa dihitung.' + (tf !== '1day' ? ' Coba timeframe 1 hari.' : ''))); ctx.replaceChildren(); notes.replaceChildren(); PLAN.current = null; calc(); return; }
+    if (!PLAN.cache[tf]) PLAN.cache[tf] = A.tradePlan(rows, tf, { ath: tf === '1day' ? PLAN.ath : null, analystLevels: tf === '1day' ? PLAN.analystLv : null, htf: tf !== '1day' ? PLAN.htf : null });
+    const plan = PLAN.cache[tf]; PLAN.current = plan;
+    const S = plan.S;
+    ctx.replaceChildren();
+    [['Harga', usd(plan.price)], ['Tren ' + TFL_(tf), S.trend], ['Jangka pendek', S.short_term], ['RSI 14', S.rsi14 !== null ? S.rsi14.toFixed(1) : '—'], ['ATR', usd(plan.atr) + ' (' + S.atr_pct.toFixed(2) + '%)']].forEach(([k, v]) => { const x = el('div'); x.append(el('span', 'lbl', k), el('strong', null, v)); ctx.append(x); });
+    grid.replaceChildren(...plan.setups.map((su) => planCard(su, plan)));
+    const items = plan.notes.slice(); if (plan.downside) items.push(plan.downside);
+    items.push('Rasio R:R membandingkan potensi untung dengan risiko: R:R 2 : 1 berarti target memberi dua kali jarak stop. Secara umum skenario baru layak dipertimbangkan bila R:R ke TP2 minimal 1,5–2.');
+    items.push('Cara umum mengelola posisi: ambil sebagian keuntungan di TP1, geser stop ke harga entry (impas), lalu biarkan sisanya menuju TP2 dan TP3.');
+    notes.replaceChildren(el('h3', 'cd-sub', 'Catatan untuk timeframe ' + TFL_(tf)), ...items.map((t) => el('p', null, t)));
+    const chart = document.getElementById('see-chart'); chart.href = 'chart.html?s=' + encodeURIComponent(P.sym) + '&id=' + encodeURIComponent(P.id) + '&tf=' + tf + '&plan=1';
+    calc();
+  }
+  function calc() {
+    const out = document.getElementById('calc-out');
+    const cap = num(document.getElementById('calc-cap').value), risk = num(document.getElementById('calc-risk').value), k = +document.getElementById('calc-setup').value;
+    const su = PLAN.current && PLAN.current.setups[k];
+    if (!su) { out.replaceChildren(); return; }
+    const r = A.positionSize(cap, risk, su.entry, su.sl);
+    if (!r) { out.replaceChildren(el('p', 'cd-card-note', 'Isi modal dan persentase risiko untuk menghitung. Contoh: modal $500 dengan risiko 1% berarti rugi maksimal $5 bila stop loss tersentuh.')); return; }
+    const qty = r.overCap ? r.capQty : r.qty;
+    const items = [['Rugi maksimal di stop', usd(r.riskUsd)], ['Jumlah koin', (qty < 1 ? qty.toPrecision(4) : qty < 1000 ? qty.toFixed(2) : C.compactN(qty)) + ' ' + P.sym], ['Nilai posisi', usd(qty * su.entry)],
+      ['Untung di TP1', usd(qty * (su.tps[0].p - su.entry))], ['Untung di TP2', su.tps[1] ? usd(qty * (su.tps[1].p - su.entry)) : '—'], ['Untung di TP3', su.tps[2] ? usd(qty * (su.tps[2].p - su.entry)) : '—']];
+    out.replaceChildren(...items.map(([a, b]) => { const x = el('div'); x.append(el('dt', null, a), el('dd', null, b)); return x; }));
+    if (r.overCap) out.append(el('p', 'cd-card-note cd-warn', 'Ukuran posisi ideal (' + usd(r.value) + ') melebihi modal karena jarak stop sangat dekat. Tanpa leverage, posisi dibatasi ke seluruh modal, sehingga risiko nyata di stop menjadi ' + usd(r.capQty * (su.entry - su.sl)) + '.'));
+  }
+  document.querySelectorAll('#plan-seg button').forEach((b) => b.addEventListener('click', () => { PLAN.tf = b.dataset.tf; renderPlan(); }));
+  ['calc-cap', 'calc-risk', 'calc-setup'].forEach((id) => document.getElementById(id).addEventListener('input', calc));
+
+  /* ---------- multi-timeframe & advanced technicals ---------- */
+  function renderMTF(map) {
+    const tb = document.querySelector('#mtf-table tbody');
+    const rows = [['1 minggu', map['1week']], ['1 hari', map['1day']], ['4 jam', map['4h']], ['1 jam', map['1h']]].map(([l, r]) => A.mtfRow(l, r));
+    tb.replaceChildren(...rows.map((x) => {
+      const tr = el('tr'); tr.append(el('td', 'sym', x.label));
+      if (x.na) { const td = el('td', 'cd-muted', 'Data tidak tersedia'); td.colSpan = 7; tr.append(td); return tr; }
+      const S = x.S; const tc = /^Naik/.test(S.trend) ? 'cd-pos' : /^Turun/.test(S.trend) ? 'cd-neg' : '';
+      const sc = S.short_term === 'Kuat' ? 'cd-pos' : S.short_term === 'Lemah' ? 'cd-neg' : '';
+      const mh = S.macd_hist === null ? '—' : (S.macd_hist >= 0 ? 'Positif' : 'Negatif') + (S.macd_hist_prev !== null ? (S.macd_hist > S.macd_hist_prev ? ', menguat' : ', melemah') : '');
+      tr.append(el('td', tc, S.trend), el('td', sc, S.short_term), el('td', 'num', S.rsi14 !== null ? S.rsi14.toFixed(1) : '—'), el('td', S.macd_hist >= 0 ? 'cd-pos' : 'cd-neg', mh),
+        el('td', 'num ' + C.sgnCls(x.vs50), x.vs50 === null ? '—' : pct(x.vs50)), el('td', 'num ' + C.sgnCls(x.vs200), x.vs200 === null ? '—' : pct(x.vs200)), el('td', 'num', S.adx14 !== null ? S.adx14.toFixed(1) : '—'));
+      return tr;
+    }));
+    const ok = rows.filter((x) => !x.na);
+    const ups = ok.filter((x) => /^Naik/.test(x.S.trend)).length, downs = ok.filter((x) => /^Turun/.test(x.S.trend)).length;
+    return ok.length ? (ups === ok.length ? 'Semua timeframe menunjukkan tren naik: arah pasar selaras.' : downs === ok.length ? 'Semua timeframe menunjukkan tren turun: arah pasar selaras ke bawah.' : 'Arah antartimeframe belum selaras (' + ups + ' naik, ' + downs + ' turun, ' + (ok.length - ups - downs) + ' menyamping). Dalam kondisi ini timeframe yang lebih besar biasanya lebih menentukan, sedangkan timeframe kecil dipakai untuk mencari titik masuk.') : '';
+  }
+  function renderAdvanced(dRows, hRows, dS) {
+    const tb = document.querySelector('#sig-table tbody'), body = document.getElementById('adv-body');
+    if (!dRows || dRows.length < 30) { tb.replaceChildren(); body.replaceChildren(el('p', 'cd-card-note', 'Lilin harian belum cukup untuk analisis lanjutan.')); return; }
+    const tech = C.techCalc(dRows);
+    const pat = A.candlePattern(dRows), pat4 = hRows && hRows.length > 5 ? A.candlePattern(hRows) : null, div = A.divergence(tech), cross = A.maCross(tech), ob = A.obv(dRows);
+    const extras = [pat && Object.assign({ label: 'Pola lilin harian terakhir' }, pat), div && Object.assign({ label: 'Divergensi RSI' }, div), cross && Object.assign({ label: 'Persilangan MA50/MA200' }, cross), ob && Object.assign({ label: 'On-Balance Volume' }, ob)];
+    const st = A.signalTable(dS, extras);
+    tb.replaceChildren(...st.rows.map((r) => { const tr = el('tr'); tr.append(el('td', null, r.name), el('td', 'num', r.value), el('td', null, r.reading), el('td', 'num ' + (r.sig > 0 ? 'cd-pos' : r.sig < 0 ? 'cd-neg' : ''), r.sig > 0 ? '+' : r.sig < 0 ? '−' : '0')); return tr; }));
+    const sc = document.getElementById('sig-score'); sc.textContent = 'Skor sinyal ' + (st.score > 0 ? '+' : '') + st.score + ' dari ' + st.rows.length + ' indikator'; sc.className = 'cd-chip ' + (st.score >= 3 ? 'up' : st.score <= -3 ? 'down' : 'flat');
+    const fib = A.fibonacci(dRows, 180); const ftb = document.querySelector('#fib-table tbody');
+    if (fib) {
+      document.getElementById('fib-note').textContent = 'Dari swing ' + (fib.up ? 'terendah ' + usd(fib.lo) + ' (' + C.tgl(fib.loT.slice(0, 10)) + ') ke tertinggi ' + usd(fib.hi) + ' (' + C.tgl(fib.hiT.slice(0, 10)) + ')' : 'tertinggi ' + usd(fib.hi) + ' (' + C.tgl(fib.hiT.slice(0, 10)) + ') ke terendah ' + usd(fib.lo) + ' (' + C.tgl(fib.loT.slice(0, 10)) + ')') + ' dalam 180 hari. Level 38,2%, 50%, dan 61,8% paling sering diperhatikan pasar; level 127,2% dan 161,8% adalah perpanjangan untuk target.';
+      ftb.replaceChildren(...fib.levels.map((l) => { const tr = el('tr', fib.nearest === l ? 'cd-row-near' : null); tr.append(el('td', null, (l.ext ? 'Ext ' : '') + (l.r * 100).toFixed(1).replace('.0', '') + '%'), el('td', 'num', usd(l.p)), el('td', 'num ' + C.sgnCls(dist(l.p, fib.price)), pct(dist(l.p, fib.price)))); return tr; }));
+    }
+    const para = (h, t) => { const x = el('div', 'cd-para'); x.append(el('h3', 'cd-sub', h), el('p', null, t)); return x; };
+    const parts = [];
+    if (pat) parts.push(para('Pola lilin harian: ' + pat.name, pat.txt + ' (lilin ' + C.tgl(pat.time.slice(0, 10)) + ').'));
+    if (pat4) parts.push(para('Pola lilin 4 jam: ' + pat4.name, pat4.txt));
+    if (div) parts.push(para(div.name, div.txt));
+    if (cross) parts.push(para(cross.name, cross.txt));
+    if (ob) parts.push(para(ob.name, ob.txt));
+    if (fib) parts.push(para('Posisi terhadap Fibonacci', 'Harga paling dekat dengan level ' + (fib.nearest.r * 100).toFixed(1).replace('.0', '') + '% (' + usd(fib.nearest.p) + '). ' + (fib.up ? 'Selama harga bertahan di atas level 61,8% (' + usd(fib.levels[4].p) + '), kenaikan dari swing terendah masih dianggap utuh.' : 'Selama harga di bawah level 61,8% (' + usd(fib.levels[4].p) + '), pantulan dari swing terendah masih dianggap koreksi dalam tren turun.')));
+    body.replaceChildren(...parts);
+  }
+  function renderFund(d, btc) {
+    const f = A.fundamentals(d, btc);
+    const tb = document.querySelector('#fund-table tbody');
+    tb.replaceChildren(...f.rows.map((r) => { const tr = el('tr'); tr.append(el('td', null, r.factor), el('td', 'num', r.value), el('td', null, r.reading), el('td', 'num ' + (r.sig > 0 ? 'cd-pos' : r.sig < 0 ? 'cd-neg' : ''), r.sig > 0 ? '+' : r.sig < 0 ? '−' : '0')); return tr; }));
+    const v = document.getElementById('fund-verdict'); v.textContent = f.verdict + ' (skor ' + (f.score > 0 ? '+' : '') + f.score + ')'; v.className = 'cd-chip ' + f.cls;
+    const pos = f.rows.filter((r) => r.sig > 0).map((r) => r.factor.toLowerCase()), neg = f.rows.filter((r) => r.sig < 0).map((r) => r.factor.toLowerCase());
+    const body = document.getElementById('fund-body'); const ps = [];
+    if (pos.length) ps.push(el('p', null, 'Kekuatan: ' + pos.join(', ') + '.'));
+    if (neg.length) ps.push(el('p', null, 'Kelemahan: ' + neg.join(', ') + '.'));
+    ps.push(el('p', null, 'Cara membacanya: teknikal menjawab kapan harga cenderung bergerak, fundamental menjawab apakah aset ini layak dipegang lebih lama. Koin dengan fundamental lemah (likuiditas rendah, dilusi besar, umur muda) sebaiknya diperlakukan sebagai trading jangka pendek dengan ukuran posisi kecil, walaupun sinyal teknikalnya bagus.'));
+    if (d && d.dev && !isFinite(num(d.dev.commits4w))) ps.push(el('p', 'cd-card-note', 'Data aktivitas developer tidak tersedia untuk koin ini di CoinGecko.'));
+    body.replaceChildren(...ps);
+  }
+
   /* ---------- boot ---------- */
   (async () => {
     const m = await resolve();
     if (m) { header(m); stats(m); }
     else { header({ name: P.sym }); }
     let d = m;
+    const analystP = C.PORTFOLIO.includes(P.sym) ? C.getJSON('data/levels.json').then((l) => l.filter((x) => x.coin === P.sym)).catch(() => null) : Promise.resolve(null);
     try { const det = await C.fetchCoinDetail(P.id); d = Object.assign({}, m || {}, Object.fromEntries(Object.entries(det).filter(([, v]) => v !== undefined && v !== null))); header(d); stats(d); about(d); }
     catch (e) { if (m) about(m); else document.getElementById('about-body').replaceChildren(el('p', null, 'Profil proyek gagal dimuat dari CoinGecko (batas permintaan mungkin tercapai). Coba lagi sebentar.')); }
     analyst(); news(d || { name: P.sym });
-    const [day, h4] = await Promise.allSettled([C.fetchCandles(P.sym, '1day', 400, P.id), C.fetchCandles(P.sym, '4h', 300)]);
-    const dRows = day.status === 'fulfilled' ? day.value.rows : [];
+    let btc = null; try { const mk = await C.fetchMarkets(); btc = mk.rows.find((x) => x.symbol === 'BTC'); } catch (e) { /* optional */ }
+    renderFund(d || {}, btc);
+    PLAN.ath = d && d.ath; PLAN.analystLv = await analystP;
+    const tfs = ['1week', '1day', '4h', '1h'], lim = { '1week': 200, '1day': 400, '4h': 300, '1h': 300 };
+    const res = await Promise.allSettled(tfs.map((tf) => C.fetchCandles(P.sym, tf, lim[tf], tf === '1day' ? P.id : undefined)));
+    const map = {}; tfs.forEach((tf, i) => { map[tf] = res[i].status === 'fulfilled' ? res[i].value.rows : null; });
+    ['1h', '4h', '1day'].forEach((tf) => { PLAN.rows[tf] = map[tf]; });
+    if (!map['4h'] || map['4h'].length < 40) PLAN.tf = map['1day'] && map['1day'].length >= 40 ? '1day' : PLAN.tf;
+    const dRows = map['1day'] || [];
     const dS = dRows.length >= 30 ? C.summarize(C.techCalc(dRows)) : null;
-    const hS = h4.status === 'fulfilled' && h4.value.rows.length >= 30 ? C.summarize(C.techCalc(h4.value.rows)) : null;
+    const hS = map['4h'] && map['4h'].length >= 30 ? C.summarize(C.techCalc(map['4h'])) : null;
     if (dRows.length) spark(dRows);
-    const lv = dRows.length ? C.keyLevels(dRows, { look: 150, w: 4, max: 3, tol: 0.02 }) : { supports: [], resistances: [] };
-    renderAnalysis(analyze(dS, hS, lv, d));
+    const lv = dRows.length ? A.levels(dRows, '1day', PLAN.analystLv) : { supports: [], resistances: [] };
+    PLAN.htf = dRows.length >= 40 ? lv : null;
+    const a = analyze(dS, hS, lv, d);
+    const mtfTxt = renderMTF(map);
+    if (mtfTxt) a.html.splice(1, 0, ['Keselarasan antartimeframe', mtfTxt]);
+    renderAnalysis(a);
     renderLevels(lv, dS ? dS.close : (d && d.price));
+    renderAdvanced(dRows, map['4h'], dS);
+    renderPlan();
+    const day = res[1];
     if (day.status === 'fulfilled') document.querySelector('.cd-analysis .cd-card-note').textContent += ' Sumber lilin: ' + day.value.source + (day.value.synthetic ? ' (harga penutupan harian saja)' : '') + '.';
   })();
 })();

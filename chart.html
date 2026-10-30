@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <script>try { const t = localStorage.getItem('cd-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 </head>
 <body>
@@ -53,7 +53,11 @@
       <div class="cd-seg" id="ind-seg" role="group" aria-label="Indikator">
         <button data-ind="ma20" aria-pressed="false">MA20</button><button data-ind="ma50" aria-pressed="true">MA50</button><button data-ind="ma200" aria-pressed="true">MA200</button><button data-ind="ema21" aria-pressed="false">EMA21</button><button data-ind="levels" aria-pressed="true">Zona</button><button data-ind="rsi" aria-pressed="true">RSI</button>
       </div>
+      <div class="cd-seg" id="plan-seg" role="group" aria-label="Rencana trading di chart">
+        <button data-plan="off" aria-pressed="true">Rencana: mati</button><button data-plan="0" aria-pressed="false">Beli di support</button><button data-plan="1" aria-pressed="false">Beli breakout</button>
+      </div>
     </div>
+    <p class="cd-card-note cd-plan-legend" id="plan-legend" hidden></p>
 
     <section class="cd-card cd-chart-card" aria-labelledby="coin-name">
       <div class="cd-legend" id="legend" aria-live="polite"></div>
@@ -81,7 +85,8 @@
   </div>
 </div>
 <script src="assets/vendor/lightweight-charts.standalone.production.js"></script>
-<script src="assets/core.js?v=5"></script>
-<script src="assets/chart.js?v=4"></script>
+<script src="assets/core.js?v=6"></script>
+<script src="assets/analysis.js?v=6"></script>
+<script src="assets/chart.js?v=6"></script>
 </body>
 </html>

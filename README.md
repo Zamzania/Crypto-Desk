@@ -15,7 +15,9 @@ Situs ini statis (HTML, CSS, JavaScript) dan dihosting gratis di GitHub Pages. T
 | Kinerja 12 bulan, beta, korelasi, volatilitas, RSI, MACD, ADX, ATR | Dihitung di browser dari lilin mentah | Live |
 | Fear & Greed | Alternative.me | Live |
 | Koin populer (100 besar) & sedang tren | CoinGecko | Live |
-| Analisis otomatis tiap koin | Dihitung di browser dari lilin harian & 4 jam (aturan yang sama untuk semua koin) | Live |
+| Analisis otomatis tiap koin | Dihitung di browser dari lilin 1 minggu, 1 hari, 4 jam, dan 1 jam (aturan yang sama untuk semua koin) | Live |
+| Rencana trading (entry, stop loss, TP1–3, R:R) & kalkulator posisi | `assets/analysis.js`: support/resistance dari titik balik harga, stop berbasis ATR, target dari resistance | Live |
+| Skor fundamental | CoinGecko: ukuran, likuiditas, suplai, FDV, umur, aktivitas developer, sentimen, kinerja vs BTC | Live |
 | Berita | RSS CoinDesk, Cointelegraph, Decrypt, The Block, dll. (`data/news.json`) | Otomatis tiap 3 jam (GitHub Actions) |
 | Pengumuman listing | Binance, OKX, Bybit, KuCoin, Coinbase (`data/listings.json`) | Otomatis tiap 3 jam (GitHub Actions) |
 | Zona kunci, tesis, skenario, makro, ETF, derivatif, kalender | `data/*.json` (penilaian analis) | Setiap analisis baru |
@@ -30,6 +32,7 @@ coin.html           detail koin + analisis otomatis (coin.html?id=<id CoinGecko>
 chart.html          chart candlestick layar penuh / "See chart" (chart.html?s=BTC&tf=4h)
 assets/core.js      fungsi bersama: data, lilin, indikator, berita
 assets/app.js       halaman utama
+assets/analysis.js  mesin analisis: rencana trading, teknikal lanjutan, skor fundamental
 assets/coin.js      halaman detail koin
 assets/chart.js     halaman chart (TradingView Lightweight Charts, assets/vendor)
 assets/style.css    gaya (palet old money, mode gelap)

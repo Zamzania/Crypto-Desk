@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <script>try { const t = localStorage.getItem('cd-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 </head>
 <body>
@@ -48,12 +48,41 @@
       <dl class="cd-ind" id="stats"></dl>
     </section>
 
+    <section class="cd-card cd-plan" aria-labelledby="plan-title">
+      <div class="cd-coin-head cd-wrap-row">
+        <h2 class="cd-card-title" id="plan-title">Rencana trading: entry, stop loss, take profit</h2>
+        <div class="cd-seg cd-seg-sm" id="plan-seg" role="group" aria-label="Timeframe rencana">
+          <button data-tf="1h" aria-pressed="false">1 jam</button><button data-tf="4h" aria-pressed="true">4 jam</button><button data-tf="1day" aria-pressed="false">1 hari</button>
+        </div>
+      </div>
+      <p class="cd-card-note cd-warn">Skenario ini disusun otomatis dari support, resistance, dan ATR dengan aturan yang sama untuk semua koin. Ini bukan rekomendasi atau sinyal beli. Hanya skenario beli (spot) yang dibuat, tanpa short atau leverage. Selalu cek chart sendiri sebelum mengambil keputusan, dan jangan pernah mempertaruhkan uang yang tidak siap hilang.</p>
+      <div id="plan-ctx" class="cd-plan-ctx"></div>
+      <div class="cd-plan-grid" id="plan-setups"><div class="cd-card dash-skeleton" style="min-height:260px"></div><div class="cd-card dash-skeleton" style="min-height:260px"></div></div>
+      <div id="plan-notes" class="cd-prose"></div>
+      <details class="cd-calc" id="calc">
+        <summary>Kalkulator ukuran posisi</summary>
+        <p class="cd-card-note">Hitung berapa banyak koin yang boleh dibeli supaya kerugian saat stop loss tersentuh tidak melebihi persentase modal yang kamu tentukan. Angka hanya dihitung di browser dan tidak disimpan.</p>
+        <form class="cd-calc-form" id="calc-form" onsubmit="return false">
+          <label>Modal (USD)<input id="calc-cap" type="number" min="0" step="any" inputmode="decimal" placeholder="mis. 500"></label>
+          <label>Risiko per transaksi (%)<input id="calc-risk" type="number" min="0.1" max="10" step="0.1" value="1" inputmode="decimal"></label>
+          <label>Skenario<select id="calc-setup"><option value="0">Beli di area support</option><option value="1">Beli saat breakout</option></select></label>
+        </form>
+        <dl class="cd-ind" id="calc-out"></dl>
+      </details>
+    </section>
+
     <section class="cd-card cd-analysis" aria-labelledby="auto-title">
       <div class="cd-coin-head">
         <h2 class="cd-card-title" id="auto-title">Analisis otomatis</h2>
         <span class="cd-chip flat" id="verdict">Menghitung…</span>
       </div>
       <p class="cd-card-note">Disusun otomatis dari lilin harian dan 4 jam memakai aturan yang sama untuk semua koin, dihitung ulang setiap halaman dibuka. Ini pembacaan data, bukan penilaian analis dan bukan nasihat keuangan.</p>
+      <h3 class="cd-sub">Ringkasan multi-timeframe</h3>
+      <div class="cd-table-box">
+        <table class="cd-table" id="mtf-table">
+          <thead><tr><th>Timeframe</th><th>Tren</th><th>Jangka pendek</th><th class="num">RSI</th><th>MACD</th><th class="num">vs MA50</th><th class="num">vs MA200</th><th class="num">ADX</th></tr></thead><tbody></tbody>
+        </table>
+      </div>
       <div id="auto-body" class="cd-prose"><p class="dash-skeleton">Memuat data lilin untuk analisis.</p></div>
       <h3 class="cd-sub">Level kunci otomatis</h3>
       <div class="cd-table-box">
@@ -61,6 +90,37 @@
           <thead><tr><th>Jenis</th><th class="num">Zona</th><th class="num">Jarak dari harga</th><th class="num">Sentuhan</th><th>Terakhir disentuh</th></tr></thead><tbody></tbody>
         </table>
       </div>
+    </section>
+
+    <section class="cd-card" aria-labelledby="adv-title">
+      <div class="cd-coin-head">
+        <h2 class="cd-card-title" id="adv-title">Teknikal lanjutan (harian)</h2>
+        <span class="cd-chip flat" id="sig-score">—</span>
+      </div>
+      <p class="cd-card-note">Tabel sinyal merangkum indikator utama: tanda + mendukung kenaikan, − mendukung penurunan, 0 netral. Skor adalah jumlahnya; makin jauh dari nol, makin searah sinyalnya.</p>
+      <div class="cd-table-box">
+        <table class="cd-table" id="sig-table"><thead><tr><th>Indikator</th><th class="num">Nilai</th><th>Bacaan</th><th class="num">Sinyal</th></tr></thead><tbody></tbody></table>
+      </div>
+      <div class="cd-grid cd-grid-tight">
+        <div>
+          <h3 class="cd-sub">Fibonacci retracement</h3>
+          <p class="cd-card-note" id="fib-note">—</p>
+          <div class="cd-table-box"><table class="cd-table" id="fib-table"><thead><tr><th>Level</th><th class="num">Harga</th><th class="num">Jarak</th></tr></thead><tbody></tbody></table></div>
+        </div>
+        <div id="adv-body" class="cd-prose"></div>
+      </div>
+    </section>
+
+    <section class="cd-card" aria-labelledby="fund-title">
+      <div class="cd-coin-head">
+        <h2 class="cd-card-title" id="fund-title">Analisis fundamental</h2>
+        <span class="cd-chip flat" id="fund-verdict">—</span>
+      </div>
+      <p class="cd-card-note">Faktor pasar dan tokenomik dari CoinGecko. Ini mengukur kesehatan aset sebagai instrumen yang diperdagangkan (ukuran, likuiditas, dilusi, umur, aktivitas pengembang), bukan menilai teknologi atau tim secara mendalam.</p>
+      <div class="cd-table-box">
+        <table class="cd-table" id="fund-table"><thead><tr><th>Faktor</th><th class="num">Nilai</th><th>Bacaan</th><th class="num">Sinyal</th></tr></thead><tbody></tbody></table>
+      </div>
+      <div id="fund-body" class="cd-prose"></div>
     </section>
 
     <section class="cd-card" id="analyst-card" hidden aria-labelledby="analyst-title">
@@ -91,7 +151,8 @@
     </footer>
   </div>
 </div>
-<script src="assets/core.js?v=5"></script>
-<script src="assets/coin.js?v=4"></script>
+<script src="assets/core.js?v=6"></script>
+<script src="assets/analysis.js?v=6"></script>
+<script src="assets/coin.js?v=6"></script>
 </body>
 </html>

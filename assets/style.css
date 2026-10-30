@@ -253,3 +253,34 @@ a.cd-news:hover { border-top-color: var(--cd-brass); }
 .cd-legend .lg-t { color: var(--cd-ink); }
 .cd-chart-status { margin: 8px 4px 0; font-size: 12px; color: var(--cd-muted); }
 #tech-fullchart { justify-self: start; }
+
+/* ---------- v6: trade plan, advanced technicals, fundamentals ---------- */
+.cd-warn { border-left: 3px solid var(--cd-brass); padding-left: 10px; color: var(--cd-ink); }
+.cd-muted { color: var(--cd-muted); }
+.cd-plan-ctx { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 10px 0 14px; border-bottom: 1px solid var(--cd-rule); margin-bottom: 14px; }
+.cd-plan-ctx > div { display: grid; gap: 2px; }
+.cd-plan-ctx strong { font-family: var(--cd-serif); font-weight: 400; font-size: 1.15rem; font-variant-numeric: lining-nums tabular-nums; }
+.lbl { display: block; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--cd-muted); margin-bottom: 2px; }
+.cd-plan-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }
+.cd-setup { display: grid; gap: 10px; align-content: start; border-top: 3px solid var(--cd-brass); }
+.cd-setup-title { font-size: 1.1rem; }
+.cd-status { width: fit-content; white-space: normal; text-transform: none; letter-spacing: .02em; font-size: 12px; }
+.cd-plan-table th { text-align: left; font-weight: 500; font-size: 12px; letter-spacing: .04em; text-transform: none; color: var(--cd-ink); padding: 8px 10px; border-bottom: 1px solid var(--cd-rule); white-space: nowrap; }
+.cd-plan-table td { font-size: 13.5px; }
+.cd-plan-table td.num:nth-child(2) { font-family: var(--cd-serif); font-size: 1.05rem; color: var(--cd-ink); }
+.cd-row-entry th { color: var(--cd-brass) !important; }
+.cd-row-sl th, .cd-row-sl td.num:nth-child(2) { color: var(--cd-down) !important; }
+.cd-row-tp th, .cd-row-tp td.num:nth-child(2) { color: var(--cd-up) !important; }
+.cd-setup-why p { font-size: var(--cds-font-size-caption); margin-bottom: 8px; }
+.cd-calc { margin-top: 16px; border-top: 1px solid var(--cd-rule); padding-top: 12px; }
+.cd-calc summary { cursor: pointer; font-family: var(--cd-serif); font-size: 1.1rem; color: var(--cd-ink); }
+.cd-calc summary:focus-visible { outline: 2px solid var(--cd-brass); outline-offset: 3px; }
+.cd-calc-form { display: flex; flex-wrap: wrap; gap: 12px 18px; margin: 10px 0 14px; }
+.cd-calc-form label { display: grid; gap: 4px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--cd-muted); }
+.cd-calc-form input, .cd-calc-form select { font: inherit; font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--cd-ink); background: var(--cd-paper); border: 1px solid var(--cd-rule-strong); border-radius: 2px; padding: 7px 10px; min-width: 10rem; }
+.cd-calc-form input:focus-visible, .cd-calc-form select:focus-visible { outline: 2px solid var(--cd-brass); outline-offset: 2px; }
+.cd-grid-tight { gap: 22px; margin-top: 10px; align-items: start; }
+.cd-row-near td { background: var(--cd-brass-wash); }
+.cd-plan-legend { margin: -6px 0 0; }
+.cd-card > .cd-coin-head { flex-wrap: wrap; row-gap: 6px; }
+#fund-verdict, #sig-score, #verdict { white-space: normal; text-align: left; }
