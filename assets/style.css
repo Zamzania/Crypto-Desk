@@ -284,3 +284,26 @@ a.cd-news:hover { border-top-color: var(--cd-brass); }
 .cd-plan-legend { margin: -6px 0 0; }
 .cd-card > .cd-coin-head { flex-wrap: wrap; row-gap: 6px; }
 #fund-verdict, #sig-score, #verdict { white-space: normal; text-align: left; }
+
+/* ---------- v7: futures planner, backtest, risk profile ---------- */
+.cd-plan-controls { display: flex; gap: 8px 12px; flex-wrap: wrap; }
+.cd-plan-best { border: 1px solid var(--cd-rule-strong); border-left: 3px solid var(--cd-green); background: var(--cd-up-wash); padding: 12px 14px; font-size: var(--cds-font-size-body); line-height: 1.6; margin-bottom: 4px; }
+.cd-plan-best:empty { display: none; }
+.cd-plan-best strong { font-family: var(--cd-serif); font-weight: 500; font-size: 1.08rem; }
+.cd-side { display: inline-block; font-family: var(--cd-sans); font-size: 10.5px; font-weight: 600; letter-spacing: .12em; padding: 2px 7px; border-radius: 2px; vertical-align: middle; }
+.cd-side.long { background: var(--cd-up); color: var(--cd-paper); }
+.cd-side.short { background: var(--cd-down); color: var(--cd-paper); }
+.cd-setup.is-short { border-top-color: var(--cd-burgundy); }
+.cd-setup.is-long { border-top-color: var(--cd-green); }
+.cd-fut, .cd-bt { border-top: 1px solid var(--cd-rule); padding-top: 10px; }
+.cd-fut p, .cd-bt p { margin: 0 0 6px; font-size: var(--cds-font-size-caption); line-height: 1.55; }
+.cd-fut strong { font-family: var(--cd-serif); font-size: 1.05rem; font-weight: 500; margin-right: 6px; }
+.cd-bt-title { margin: 0 0 6px; font-family: var(--cd-serif); font-weight: 500; font-size: 1rem; color: var(--cd-ink); }
+.cd-conf summary { cursor: pointer; font-size: var(--cds-font-size-caption); color: var(--cd-navy); }
+.cd-conf summary:focus-visible { outline: 2px solid var(--cd-brass); outline-offset: 3px; }
+.cd-conf ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; }
+.cd-conf li { display: grid; grid-template-columns: 1.2em 1fr auto; gap: 6px; font-size: 12.5px; line-height: 1.45; color: var(--cd-ink); }
+.cd-conf li .mk { font-weight: 700; }
+.cd-conf li.ok .mk { color: var(--cd-up); } .cd-conf li.no .mk { color: var(--cd-down); }
+.cd-conf li .pt { color: var(--cd-muted); font-variant-numeric: tabular-nums; }
+.cd-danger { border-left-color: var(--cd-down) !important; color: var(--cd-down) !important; }

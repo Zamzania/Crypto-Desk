@@ -45,7 +45,7 @@
   };
   const rsiLine = rsiChart.addLineSeries({ lineWidth: 2, priceLineVisible: false, lastValueVisible: true, autoscaleInfoProvider: () => ({ priceRange: { minValue: 0, maxValue: 100 } }) });
   let rsiBands = [], levelLines = [], planLines = [];
-  let PLANSEL = qs.get('plan') === '1' ? '0' : 'off'; let htfLv = null, htfLoading = false;
+  let PLANSEL = qs.get('plan') === '1' ? '0' : 'off'; let htfLv = null, htfLoading = false, htfDaily = null;
   function applyColors() {
     const v = (n) => C.cssVar(n);
     main.applyOptions(baseOpts()); const ro = baseOpts(); ro.layout.attributionLogo = false; rsiChart.applyOptions(ro);
@@ -104,22 +104,23 @@
     planLines.forEach((l) => candles.removePriceLine(l)); planLines = [];
     const legend = document.getElementById('plan-legend');
     document.querySelectorAll('#plan-seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.plan === PLANSEL)));
-    if (PLANSEL === 'off' || !lastRows.length || !window.CDAnalysis) { legend.hidden = true; return; }
-    const tf = ['1h', '4h', '1day', '1week'].includes(P.tf) ? P.tf : '1h';
+    if (PLANSEL === 'off' || !lastRows.length || !window.CDTrade) { legend.hidden = true; return; }
+    const T = window.CDTrade;
+    const tf = ['1h', '4h', '1day'].includes(P.tf) ? P.tf : P.tf === '1week' ? '1day' : '1h';
+    if (tf !== '1day' && !htfLv && !htfLoading && P.sym) { htfLoading = true; C.fetchCandles(P.sym, '1day', 1000, P.id).then((r) => { htfDaily = r.rows; htfLv = window.CDAnalysis.levels(r.rows, '1day', analystLevels.filter((l) => l.coin === P.sym)); drawPlan(); }).catch(() => {}); }
     const raw = lastRows.map((r) => ({ time: r.time, open: r.open, high: r.high, low: r.low, close: r.close, volume: r.volume }));
-    if (tf !== '1day' && !htfLv && !htfLoading && P.sym) { htfLoading = true; C.fetchCandles(P.sym, '1day', 400, P.id).then((r) => { htfLv = window.CDAnalysis.levels(r.rows, '1day', analystLevels.filter((l) => l.coin === P.sym)); drawPlan(); }).catch(() => {}); }
-    const plan = window.CDAnalysis.tradePlan(raw, tf, { analystLevels: tf === '1day' ? analystLevels.filter((l) => l.coin === P.sym) : null, htf: tf !== '1day' ? htfLv : null });
+    const plan = T.plan(raw, tf, { analyst: analystLevels.filter((l) => l.coin === P.sym), htfLevels: tf !== '1day' ? htfLv : null, htfRows: tf === '4h' ? htfDaily : null });
     if (!plan) { legend.hidden = false; legend.textContent = 'Lilin terlalu sedikit untuk menyusun rencana.'; return; }
-    const su = plan.setups[+PLANSEL]; const v = (n) => C.cssVar(n);
+    const su = plan.setups.find((x) => x.key === T.KEYS[+PLANSEL]); if (!su) { legend.hidden = true; return; }
+    const v = (n) => C.cssVar(n);
     const add = (price, title, color, style, w) => planLines.push(candles.createPriceLine({ price, color, lineWidth: w || 2, lineStyle: style, axisLabelVisible: true, title }));
     if (su.entryLo !== su.entryHi) { add(su.entryHi, 'Entry atas', v('--cd-brass'), LW.LineStyle.Solid); add(su.entryLo, 'Entry bawah', v('--cd-brass'), LW.LineStyle.Solid); }
     else add(su.entry, 'Entry', v('--cd-brass'), LW.LineStyle.Solid);
     add(su.sl, 'SL', v('--cd-down'), LW.LineStyle.Solid);
     su.tps.forEach((t, i) => add(t.p, 'TP' + (i + 1) + ' · ' + t.rr.toFixed(1) + 'R', v('--cd-up'), LW.LineStyle.Solid));
     legend.hidden = false;
-    legend.textContent = su.name + ' (' + TFL[P.tf] + (P.tf === '15m' ? ', level dari aturan 1 jam' : '') + '): entry ' + (su.entryLo !== su.entryHi ? C.usd(su.entryLo) + '–' + C.usd(su.entryHi) : C.usd(su.entry)) + ', stop loss ' + C.usd(su.sl) + ' (−' + su.riskPct.toFixed(1) + '%), TP1 ' + C.usd(su.tps[0].p) + ', TP2 ' + C.usd(su.tps[1].p) + ', TP3 ' + C.usd(su.tps[2].p) + '. Mutu ' + su.grade.g + ' · ' + su.status.txt + '. Disusun otomatis, bukan rekomendasi.';
-  }
-  document.querySelectorAll('#plan-seg button').forEach((b) => b.addEventListener('click', () => { PLANSEL = b.dataset.plan; drawPlan(); }));
+    legend.textContent = (su.side > 0 ? 'LONG · ' : 'SHORT · ') + su.name + ' (' + TFL[P.tf] + (P.tf === '15m' ? ', level dari aturan 1 jam' : P.tf === '1week' ? ', level dari aturan 1 hari' : '') + '): entry ' + (su.entryLo !== su.entryHi ? C.usd(su.entryLo) + '–' + C.usd(su.entryHi) : C.usd(su.entry)) + ', stop loss ' + C.usd(su.sl) + ' (' + su.riskPct.toFixed(2) + '%), TP1 ' + C.usd(su.tps[0].p) + ', TP2 ' + C.usd(su.tps[1].p) + ', TP3 ' + C.usd(su.tps[2].p) + '. Konfluensi ' + su.conf.score + '/100 · leverage ≤ ' + su.maxLev + '× menurut jarak stop (batas profil risiko di halaman detail koin bisa lebih rendah) · ' + su.status.txt + '. Uji historis lengkap ada di halaman detail koin. Disusun otomatis, bukan rekomendasi.';
+  }  document.querySelectorAll('#plan-seg button').forEach((b) => b.addEventListener('click', () => { PLANSEL = b.dataset.plan; drawPlan(); }));
   function render(rows, fit) {
     const tech = C.techCalc(rows); lastRows = tech; byTime = new Map(tech.map((r) => [ts(r.time), r]));
     candles.setData(tech.map((r) => ({ time: ts(r.time), open: r.open, high: r.high, low: r.low, close: r.close })));

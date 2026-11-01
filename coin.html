@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=6">
+<link rel="stylesheet" href="assets/style.css?v=7">
 <script>try { const t = localStorage.getItem('cd-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 </head>
 <body>
@@ -50,25 +50,45 @@
 
     <section class="cd-card cd-plan" aria-labelledby="plan-title">
       <div class="cd-coin-head cd-wrap-row">
-        <h2 class="cd-card-title" id="plan-title">Rencana trading: entry, stop loss, take profit</h2>
-        <div class="cd-seg cd-seg-sm" id="plan-seg" role="group" aria-label="Timeframe rencana">
-          <button data-tf="1h" aria-pressed="false">1 jam</button><button data-tf="4h" aria-pressed="true">4 jam</button><button data-tf="1day" aria-pressed="false">1 hari</button>
+        <h2 class="cd-card-title" id="plan-title">Rencana trading spot &amp; futures</h2>
+        <div class="cd-plan-controls">
+          <div class="cd-seg cd-seg-sm" id="mode-seg" role="group" aria-label="Jenis pasar">
+            <button data-mode="futures" aria-pressed="true">Futures (long &amp; short)</button><button data-mode="spot" aria-pressed="false">Spot (beli saja)</button>
+          </div>
+          <div class="cd-seg cd-seg-sm" id="plan-seg" role="group" aria-label="Timeframe rencana">
+            <button data-tf="1h" aria-pressed="false">1 jam</button><button data-tf="4h" aria-pressed="true">4 jam</button><button data-tf="1day" aria-pressed="false">1 hari</button>
+          </div>
         </div>
       </div>
-      <p class="cd-card-note cd-warn">Skenario ini disusun otomatis dari support, resistance, dan ATR dengan aturan yang sama untuk semua koin. Ini bukan rekomendasi atau sinyal beli. Hanya skenario beli (spot) yang dibuat, tanpa short atau leverage. Selalu cek chart sendiri sebelum mengambil keputusan, dan jangan pernah mempertaruhkan uang yang tidak siap hilang.</p>
+      <p class="cd-card-note cd-warn">Skenario disusun otomatis dengan aturan yang sama untuk semua koin, lalu diuji ke data historis koin ini sendiri. Hasil masa lalu tidak menjamin hasil berikutnya, dan tidak ada aturan yang menjamin winrate tinggi. Ini bukan rekomendasi atau sinyal. Futures dengan leverage bisa menghabiskan margin dalam satu gerakan; gunakan stop loss dan ukuran posisi berbasis risiko.</p>
+      <div id="plan-best" class="cd-plan-best"></div>
       <div id="plan-ctx" class="cd-plan-ctx"></div>
       <div class="cd-plan-grid" id="plan-setups"><div class="cd-card dash-skeleton" style="min-height:260px"></div><div class="cd-card dash-skeleton" style="min-height:260px"></div></div>
+      <p class="cd-card-note" id="bt-status"></p>
       <div id="plan-notes" class="cd-prose"></div>
       <details class="cd-calc" id="calc">
-        <summary>Kalkulator ukuran posisi</summary>
-        <p class="cd-card-note">Hitung berapa banyak koin yang boleh dibeli supaya kerugian saat stop loss tersentuh tidak melebihi persentase modal yang kamu tentukan. Angka hanya dihitung di browser dan tidak disimpan.</p>
+        <summary>Kalkulator posisi, leverage &amp; likuidasi</summary>
+        <p class="cd-card-note">Ukuran posisi dihitung dari risiko: kerugian saat stop loss tersentuh tidak melebihi persentase modal yang kamu tentukan. Leverage hanya mengubah margin yang dikunci, bukan besar risiko. Angka dihitung di browser dan tidak disimpan.</p>
         <form class="cd-calc-form" id="calc-form" onsubmit="return false">
           <label>Modal (USD)<input id="calc-cap" type="number" min="0" step="any" inputmode="decimal" placeholder="mis. 500"></label>
           <label>Risiko per transaksi (%)<input id="calc-risk" type="number" min="0.1" max="10" step="0.1" value="1" inputmode="decimal"></label>
-          <label>Skenario<select id="calc-setup"><option value="0">Beli di area support</option><option value="1">Beli saat breakout</option></select></label>
+          <label>Skenario<select id="calc-setup"></select></label>
+          <label>Leverage (futures)<input id="calc-lev" type="number" min="1" max="125" step="1" value="5" inputmode="numeric"></label>
+          <label>Biaya per sisi (%)<input id="calc-fee" type="number" min="0" max="1" step="0.01" value="0.05" inputmode="decimal"></label>
         </form>
         <dl class="cd-ind" id="calc-out"></dl>
+        <div id="calc-warn"></div>
       </details>
+    </section>
+
+    <section class="cd-card" aria-labelledby="risk-title">
+      <div class="cd-coin-head">
+        <h2 class="cd-card-title" id="risk-title">Profil risiko</h2>
+        <span class="cd-chip flat" id="risk-score">Menghitung…</span>
+      </div>
+      <p class="cd-card-note">Mengukur seberapa liar koin ini bergerak dan seberapa besar kerugian yang realistis terjadi, dari data harian setahun terakhir. Skor 1 (rendah) sampai 10 (sangat tinggi).</p>
+      <dl class="cd-ind" id="risk-grid"></dl>
+      <div id="risk-body" class="cd-prose"></div>
     </section>
 
     <section class="cd-card cd-analysis" aria-labelledby="auto-title">
@@ -151,8 +171,9 @@
     </footer>
   </div>
 </div>
-<script src="assets/core.js?v=6"></script>
-<script src="assets/analysis.js?v=6"></script>
-<script src="assets/coin.js?v=6"></script>
+<script src="assets/core.js?v=7"></script>
+<script src="assets/analysis.js?v=7"></script>
+<script src="assets/trade.js?v=7"></script>
+<script src="assets/coin.js?v=7"></script>
 </body>
 </html>

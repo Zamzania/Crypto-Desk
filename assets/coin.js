@@ -200,22 +200,58 @@
     } catch (e) { box.replaceChildren(el('p', 'cd-card-note', 'Berita gagal dimuat. Coba muat ulang halaman.')); }
   }
 
-  /* ---------- trade plan ---------- */
-  const A = window.CDAnalysis;
-  const PLAN = { tf: '4h', rows: {}, cache: {}, ath: null, analystLv: null, current: null };
+  /* ---------- trade plan (spot & futures) ---------- */
+  const A = window.CDAnalysis; const T = window.CDTrade;
+  const PLAN = { tf: '4h', mode: 'futures', rows: {}, htfRows: {}, bt: {}, btBusy: {}, ath: null, atl: null, analystLv: null, htfLevels: {}, deriv: null, current: null, shown: [] };
+  const TFL_ = (tf) => T.TFL[tf];
   const fmtRR = (v) => (isFinite(v) ? v.toFixed(2) + ' : 1' : '—');
+  const fmtR = (v) => (isFinite(v) ? (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(2) + 'R' : '—');
+  function btBlock(su) {
+    const box = el('div', 'cd-bt');
+    const b = su.bt;
+    if (!b) { box.append(el('p', 'cd-card-note', PLAN.btBusy[PLAN.tf] ? 'Menguji aturan ini ke data historis…' : 'Uji historis belum tersedia (lilin kurang dari 260).')); return box; }
+    const f = b.filtered, a = b.all;
+    const line = (lab, x) => {
+      const p = el('p'); p.append(el('span', 'lbl', lab));
+      if (!x || !x.n) { p.append('Tidak ada sinyal pada periode uji.'); return p; }
+      const wr = el('strong', x.winrate >= 55 ? 'cd-pos' : x.winrate < 45 ? 'cd-neg' : null, 'winrate ' + x.winrate.toFixed(0) + '%');
+      const ex = el('strong', x.expR > 0 ? 'cd-pos' : 'cd-neg', fmtR(x.expR) + '/transaksi');
+      p.append(x.n + ' sinyal · ', wr, ' · TP2 tercapai ' + x.tp2Rate.toFixed(0) + '% · ', ex, ' · profit factor ' + (isFinite(x.pf) ? x.pf.toFixed(2) : '∞') + ' · rugi beruntun maks ' + x.maxLS + ' · drawdown maks ' + x.maxDD.toFixed(1) + 'R · rata-rata ' + x.avgBars.toFixed(0) + ' lilin');
+      if (x.n < 15) p.append(el('span', 'cd-muted', ' (sampel kecil, belum bisa diandalkan)'));
+      return p;
+    };
+    box.append(el('h4', 'cd-bt-title', 'Uji historis ' + C.tgl(b.from.slice(0, 10)) + ' – ' + C.tgl(b.to.slice(0, 10)) + ' (' + b.bars + ' lilin ' + TFL_(PLAN.tf) + ')'));
+    box.append(line('Dengan filter (searah tren, RSI tidak ekstrem, level ≥2 sentuhan, R:R ≥1,5)', f), line('Tanpa filter', a));
+    if (f && f.halves && f.halves[0].n >= 6 && f.halves[1].n >= 6) {
+      const [h1, h2] = f.halves; const same = (h1.expR > 0) === (h2.expR > 0);
+      box.append(el('p', 'cd-card-note', 'Konsistensi (paruh awal vs paruh akhir): ' + h1.winrate.toFixed(0) + '% / ' + fmtR(h1.expR) + ' lalu ' + h2.winrate.toFixed(0) + '% / ' + fmtR(h2.expR) + '. ' + (same ? 'Hasilnya searah di kedua paruh, jadi kecil kemungkinan hanya kebetulan.' : 'Hasilnya berbalik antarparuh: keunggulan aturan ini belum stabil.')));
+    }
+    return box;
+  }
   function planCard(su, plan) {
-    const card = el('article', 'cd-card cd-setup');
-    const head = el('div', 'cd-coin-head'); head.append(el('h3', 'cd-card-title cd-setup-title', su.name));
-    const g = el('span', 'cd-chip ' + su.grade.cls, 'Mutu ' + su.grade.g + ' · ' + su.grade.txt); head.append(g);
+    const card = el('article', 'cd-card cd-setup ' + (su.side > 0 ? 'is-long' : 'is-short'));
+    const head = el('div', 'cd-coin-head');
+    const ttl = el('h3', 'cd-card-title cd-setup-title'); ttl.append(el('span', 'cd-side ' + (su.side > 0 ? 'long' : 'short'), su.side > 0 ? 'LONG' : 'SHORT'), ' ', su.name.replace(/^(Long|Short) /, ''));
+    head.append(ttl, el('span', 'cd-chip ' + su.conf.cls, 'Konfluensi ' + su.conf.score + '/100'));
     card.append(head, el('span', 'cd-chip cd-status ' + su.status.cls, su.status.txt));
     const tbl = el('table', 'cd-table cd-plan-table'); const tb = el('tbody');
     const row = (k, v, extra, cls) => { const tr = el('tr', cls); tr.append(el('th', null, k), el('td', 'num', v), el('td', 'num cd-muted', extra || '')); tb.append(tr); };
-    if (su.key === 'breakout') row('Pemicu', 'Tutup > ' + usd(su.trigger), C.pct(dist(su.trigger, plan.price)) + ' dari harga');
+    if (su.trigger !== null) row('Pemicu', (su.side > 0 ? 'Tutup > ' : 'Tutup < ') + usd(su.trigger), C.pct(dist(su.trigger, plan.price)) + ' dari harga');
     row('Entry', su.entryLo === su.entryHi ? usd(su.entry) : usd(su.entryLo) + ' – ' + usd(su.entryHi), su.entryLo === su.entryHi ? C.pct(dist(su.entry, plan.price)) + ' dari harga' : 'acuan ' + usd(su.entry), 'cd-row-entry');
-    row('Stop loss', usd(su.sl), '−' + su.riskPct.toFixed(1) + '% dari entry', 'cd-row-sl');
+    row('Stop loss', usd(su.sl), su.riskPct.toFixed(2) + '% dari entry', 'cd-row-sl');
     su.tps.forEach((t, i) => row('Take profit ' + (i + 1), usd(t.p), C.pct(t.pct) + ' · R:R ' + fmtRR(t.rr), 'cd-row-tp'));
     tbl.append(tb); const box = el('div', 'cd-table-box'); box.append(tbl); card.append(box);
+    if (PLAN.mode === 'futures') {
+      const fx = el('div', 'cd-fut');
+      const lev = su.levFinal;
+      const p1 = el('p'); p1.append(el('span', 'lbl', 'Leverage maksimal yang wajar'), el('strong', null, '≤ ' + lev + '×'), ' · perkiraan likuidasi pada ' + lev + '×: ' + usd(T.liqPrice(su.side, su.entry, lev)));
+      const why = 'Dari jarak stop (' + su.riskPct.toFixed(2) + '%), likuidasi tetap minimal dua kali lebih jauh dari stop sampai ' + su.maxLev + '×' + (PLAN.risk ? '; profil risiko koin ini membatasi ' + PLAN.risk.levCap + '× karena volatilitas hariannya' : '') + '. Yang dipakai adalah angka terkecil. Perhitungan memakai asumsi margin isolated dan maintenance margin 0,5%; harga likuidasi resmi tetap lihat di bursa.';
+      fx.append(p1, el('p', 'cd-card-note', why));
+      card.append(fx);
+    }
+    card.append(btBlock(su));
+    const det = el('details', 'cd-conf'); det.append(el('summary', null, 'Rincian konfluensi (' + su.conf.label.toLowerCase() + ')'));
+    const ul = el('ul'); su.conf.factors.forEach((f) => { const li = el('li', f.ok ? 'ok' : 'no'); li.append(el('span', 'mk', f.ok ? '✓' : '✗'), f.label, el('span', 'pt', f.pts + '/' + f.max)); ul.append(li); }); det.append(ul); card.append(det);
     const d = el('div', 'cd-prose cd-setup-why');
     d.append(el('p', null, su.logic));
     const tpb = el('p'); tpb.append(el('span', 'lbl', 'Dasar target'), su.tps.map((t, i) => 'TP' + (i + 1) + ': ' + t.basis).join(' · ')); d.append(tpb);
@@ -224,42 +260,121 @@
     card.append(d);
     return card;
   }
-  const TFL_ = (tf) => A.TFL[tf];
+  function computePlan() {
+    const tf = PLAN.tf; const rows = PLAN.rows[tf];
+    if (!rows || rows.length < 60) return null;
+    return T.plan(rows, tf, { ath: tf === '1day' ? PLAN.ath : null, atl: tf === '1day' ? PLAN.atl : null, analyst: PLAN.analystLv, htfLevels: tf !== '1day' ? PLAN.htfLevels['1day'] : null, htfRows: PLAN.htfRows[tf], deriv: PLAN.deriv, bt: PLAN.bt[tf] });
+  }
+  function runBacktest(tf) {
+    if (PLAN.bt[tf] || PLAN.btBusy[tf] || !PLAN.rows[tf] || PLAN.rows[tf].length < 260) return;
+    PLAN.btBusy[tf] = true; document.getElementById('bt-status').textContent = 'Menguji keempat skenario ke data historis ' + TFL_(tf) + '…';
+    setTimeout(() => {
+      try { PLAN.bt[tf] = T.backtest(PLAN.rows[tf], tf, { fee: 0.001, maxBars: tf === '1day' ? 760 : 800 }); } catch (e) { console.warn('backtest', e); PLAN.bt[tf] = null; }
+      PLAN.btBusy[tf] = false; if (PLAN.tf === tf) renderPlan();
+    }, 40);
+  }
   function renderPlan() {
     const tf = PLAN.tf;
     document.querySelectorAll('#plan-seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tf === tf)));
-    const grid = document.getElementById('plan-setups'), ctx = document.getElementById('plan-ctx'), notes = document.getElementById('plan-notes');
+    document.querySelectorAll('#mode-seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === PLAN.mode)));
+    const grid = document.getElementById('plan-setups'), ctx = document.getElementById('plan-ctx'), notes = document.getElementById('plan-notes'), best = document.getElementById('plan-best'), bts = document.getElementById('bt-status');
     const rows = PLAN.rows[tf];
     if (rows === undefined) { grid.replaceChildren(el('div', 'cd-card dash-skeleton', '—')); return; }
-    if (!rows || rows.length < 40) { grid.replaceChildren(el('p', 'cd-card-note', 'Lilin ' + TFL_(tf) + ' untuk koin ini belum tersedia atau terlalu sedikit di bursa publik yang dipakai, jadi rencana trading belum bisa dihitung.' + (tf !== '1day' ? ' Coba timeframe 1 hari.' : ''))); ctx.replaceChildren(); notes.replaceChildren(); PLAN.current = null; calc(); return; }
-    if (!PLAN.cache[tf]) PLAN.cache[tf] = A.tradePlan(rows, tf, { ath: tf === '1day' ? PLAN.ath : null, analystLevels: tf === '1day' ? PLAN.analystLv : null, htf: tf !== '1day' ? PLAN.htf : null });
-    const plan = PLAN.cache[tf]; PLAN.current = plan;
-    const S = plan.S;
+    const plan = computePlan(); PLAN.current = plan;
+    if (!plan) { grid.replaceChildren(el('p', 'cd-card-note', 'Lilin ' + TFL_(tf) + ' untuk koin ini belum tersedia atau terlalu sedikit, jadi rencana trading belum bisa dihitung.' + (tf !== '1day' ? ' Coba timeframe 1 hari.' : ''))); ctx.replaceChildren(); notes.replaceChildren(); best.replaceChildren(); bts.textContent = ''; fillCalcOptions([]); return; }
+    runBacktest(tf);
+    const S = plan.S, dv = PLAN.deriv;
     ctx.replaceChildren();
-    [['Harga', usd(plan.price)], ['Tren ' + TFL_(tf), S.trend], ['Jangka pendek', S.short_term], ['RSI 14', S.rsi14 !== null ? S.rsi14.toFixed(1) : '—'], ['ATR', usd(plan.atr) + ' (' + S.atr_pct.toFixed(2) + '%)']].forEach(([k, v]) => { const x = el('div'); x.append(el('span', 'lbl', k), el('strong', null, v)); ctx.append(x); });
-    grid.replaceChildren(...plan.setups.map((su) => planCard(su, plan)));
-    const items = plan.notes.slice(); if (plan.downside) items.push(plan.downside);
-    items.push('Rasio R:R membandingkan potensi untung dengan risiko: R:R 2 : 1 berarti target memberi dua kali jarak stop. Secara umum skenario baru layak dipertimbangkan bila R:R ke TP2 minimal 1,5–2.');
-    items.push('Cara umum mengelola posisi: ambil sebagian keuntungan di TP1, geser stop ke harga entry (impas), lalu biarkan sisanya menuju TP2 dan TP3.');
-    notes.replaceChildren(el('h3', 'cd-sub', 'Catatan untuk timeframe ' + TFL_(tf)), ...items.map((t) => el('p', null, t)));
-    const chart = document.getElementById('see-chart'); chart.href = 'chart.html?s=' + encodeURIComponent(P.sym) + '&id=' + encodeURIComponent(P.id) + '&tf=' + tf + '&plan=1';
+    const items = [['Harga', usd(plan.price)], ['Tren ' + TFL_(tf), S.trend], ['Tren ' + TFL_(T.HTF[tf]), plan.htfS ? plan.htfS.trend : '—'], ['RSI 14', S.rsi14 !== null ? S.rsi14.toFixed(1) : '—'], ['ATR', usd(plan.atr) + ' (' + S.atr_pct.toFixed(2) + '%)']];
+    if (PLAN.mode === 'futures') {
+      items.push(['Funding / 8 jam', dv && isFinite(dv.funding) ? (dv.funding >= 0 ? '+' : '') + (dv.funding * 100).toFixed(4) + '%' : '—']);
+      items.push(['Open interest', dv && isFinite(dv.oiUsd) ? C.compact(dv.oiUsd) : '—']);
+      items.push(['Rasio akun long/short', dv && isFinite(dv.lsr) ? dv.lsr.toFixed(2) : '—']);
+    }
+    items.forEach(([k, v]) => { const x = el('div'); x.append(el('span', 'lbl', k), el('strong', null, v)); ctx.append(x); });
+    const shown = plan.setups.filter((su) => PLAN.mode === 'futures' || su.side > 0); PLAN.shown = shown;
+    shown.forEach((su) => { su.levFinal = Math.max(1, Math.min(su.maxLev, PLAN.risk ? PLAN.risk.levCap : su.maxLev)); });
+    grid.replaceChildren(...shown.map((su) => planCard(su, plan)));
+    // Best setup summary.
+    const cand = shown.filter((su) => su.status.live).sort((a, b) => score(b) - score(a));
+    best.replaceChildren();
+    const b0 = cand[0];
+    if (!b0 || b0.conf.score < 50) {
+      best.append(el('strong', null, 'Belum ada skenario berkualitas di timeframe ' + TFL_(tf) + '.'), ' Semua skenario memiliki konfluensi di bawah 50 atau sudah batal. Menunggu harga mencapai level yang lebih baik juga merupakan keputusan trading yang sah.');
+    } else {
+      const bt = b0.bt && b0.bt.filtered;
+      best.append(el('span', 'lbl', 'Bobot terbaik saat ini'), el('strong', null, b0.name + ' · konfluensi ' + b0.conf.score + '/100' + (PLAN.mode === 'futures' ? ' · leverage ≤ ' + b0.levFinal + '×' : '')),
+        ' — entry ' + (b0.entryLo === b0.entryHi ? usd(b0.entry) : usd(b0.entryLo) + '–' + usd(b0.entryHi)) + ', stop ' + usd(b0.sl) + ', TP1 ' + usd(b0.tps[0].p) + ', TP2 ' + usd(b0.tps[1].p) + '. ' +
+        (bt && bt.n >= 15 ? 'Secara historis aturan ini (dengan filter) menghasilkan winrate ' + bt.winrate.toFixed(0) + '% dan ' + fmtR(bt.expR) + ' per transaksi pada ' + bt.n + ' sinyal. ' : bt ? 'Sampel uji historis masih kecil (' + bt.n + ' sinyal). ' : '') + b0.status.txt + '.');
+    }
+    const bt = PLAN.bt[tf];
+    bts.textContent = PLAN.btBusy[tf] ? 'Menguji keempat skenario ke data historis ' + TFL_(tf) + '…' : bt ? 'Uji historis: aturan yang sama dijalankan lilin demi lilin tanpa melihat data masa depan. Entry di zona (order limit) atau saat penutupan menembus level; 50% posisi ditutup di TP1 lalu stop digeser ke harga entry; sisanya di TP2; batas waktu ' + ({ '1h': 72, '4h': 60, '1day': 45 }[tf]) + ' lilin; biaya 0,1% pulang-pergi sudah dipotong. "Menang" berarti TP1 tercapai sebelum stop loss.' : '';
+    const ns = plan.notes.slice();
+    ns.push('Winrate dan R:R saling tarik: target dekat menaikkan winrate tetapi memperkecil untung per transaksi. Yang menentukan profit jangka panjang adalah ekspektasi (rata-rata R per transaksi), bukan winrate saja.');
+    ns.push('Pengelolaan posisi yang dipakai di uji historis: ambil 50% di TP1, geser stop ke harga entry (impas), sisanya menuju TP2. TP3 adalah target lanjutan bila momentum kuat.');
+    notes.replaceChildren(el('h3', 'cd-sub', 'Catatan untuk timeframe ' + TFL_(tf)), ...ns.map((t) => el('p', null, t)));
+    document.getElementById('see-chart').href = 'chart.html?s=' + encodeURIComponent(P.sym) + '&id=' + encodeURIComponent(P.id) + '&tf=' + tf + '&plan=1';
+    fillCalcOptions(shown);
+  }
+  const score = (su) => su.conf.score + (su.bt && su.bt.filtered && su.bt.filtered.n >= 15 ? Math.max(-10, Math.min(10, su.bt.filtered.expR * 10)) : 0);
+  function fillCalcOptions(shown) {
+    const sel = document.getElementById('calc-setup'); const cur = sel.value;
+    sel.replaceChildren(...shown.map((su, i) => { const o = el('option', null, su.name); o.value = String(i); return o; }));
+    if (cur && +cur < shown.length) sel.value = cur;
     calc();
   }
   function calc() {
-    const out = document.getElementById('calc-out');
+    const out = document.getElementById('calc-out'), warn = document.getElementById('calc-warn');
     const cap = num(document.getElementById('calc-cap').value), risk = num(document.getElementById('calc-risk').value), k = +document.getElementById('calc-setup').value;
-    const su = PLAN.current && PLAN.current.setups[k];
+    const lev = Math.max(1, num(document.getElementById('calc-lev').value) || 1), fee = Math.max(0, num(document.getElementById('calc-fee').value) || 0) / 100;
+    const su = PLAN.shown[k]; warn.replaceChildren();
     if (!su) { out.replaceChildren(); return; }
-    const r = A.positionSize(cap, risk, su.entry, su.sl);
-    if (!r) { out.replaceChildren(el('p', 'cd-card-note', 'Isi modal dan persentase risiko untuk menghitung. Contoh: modal $500 dengan risiko 1% berarti rugi maksimal $5 bila stop loss tersentuh.')); return; }
-    const qty = r.overCap ? r.capQty : r.qty;
-    const items = [['Rugi maksimal di stop', usd(r.riskUsd)], ['Jumlah koin', (qty < 1 ? qty.toPrecision(4) : qty < 1000 ? qty.toFixed(2) : C.compactN(qty)) + ' ' + P.sym], ['Nilai posisi', usd(qty * su.entry)],
-      ['Untung di TP1', usd(qty * (su.tps[0].p - su.entry))], ['Untung di TP2', su.tps[1] ? usd(qty * (su.tps[1].p - su.entry)) : '—'], ['Untung di TP3', su.tps[2] ? usd(qty * (su.tps[2].p - su.entry)) : '—']];
+    if (!(cap > 0) || !(risk > 0)) { out.replaceChildren(el('p', 'cd-card-note', 'Isi modal dan persentase risiko. Contoh: modal $500 dengan risiko 1% berarti rugi maksimal sekitar $5 bila stop loss tersentuh.')); return; }
+    const fut = PLAN.mode === 'futures';
+    const riskUsd = cap * risk / 100; const per = Math.abs(su.entry - su.sl) + fee * (su.entry + su.sl);
+    let qty = riskUsd / per; let notional = qty * su.entry; let capped = false;
+    const maxNotional = fut ? cap * lev : cap;
+    if (notional > maxNotional) { qty = maxNotional / su.entry; notional = maxNotional; capped = true; }
+    const margin = fut ? notional / lev : notional;
+    const pnl = (tp) => qty * su.side * (tp - su.entry) - fee * qty * (su.entry + tp);
+    const items = [['Rugi di stop loss (termasuk biaya)', usd(qty * per)], ['Jumlah koin', (qty < 1 ? qty.toPrecision(4) : qty < 1000 ? qty.toFixed(2) : C.compactN(qty)) + ' ' + P.sym], ['Nilai posisi (notional)', usd(notional)], [fut ? 'Margin yang dikunci' : 'Modal yang dipakai', usd(margin) + ' (' + (margin / cap * 100).toFixed(0) + '% modal)']];
+    su.tps.forEach((t, i) => items.push(['Untung bersih di TP' + (i + 1), usd(pnl(t.p))]));
+    if (fut) {
+      const liq = T.liqPrice(su.side, su.entry, lev);
+      items.push(['Perkiraan likuidasi pada ' + lev + '×', usd(liq)]);
+      const dv = PLAN.deriv;
+      if (dv && isFinite(dv.funding)) { const f8 = notional * dv.funding * su.side; items.push(['Funding per 8 jam (saat ini)', (f8 > 0 ? 'bayar ' : 'terima ') + usd(Math.abs(f8))]); }
+      const before = su.side > 0 ? liq >= su.sl : liq <= su.sl;
+      if (before) warn.append(el('p', 'cd-card-note cd-warn cd-danger', 'Bahaya: pada leverage ' + lev + '×, perkiraan harga likuidasi (' + usd(liq) + ') tercapai sebelum stop loss (' + usd(su.sl) + '). Posisi bisa dilikuidasi sebelum stop sempat bekerja. Turunkan leverage ke ≤ ' + su.levFinal + '×.'));
+      else if (lev > su.levFinal) warn.append(el('p', 'cd-card-note cd-warn', 'Leverage ' + lev + '× di atas batas wajar ' + su.levFinal + '× untuk skenario ini: likuidasi terlalu dekat dengan stop loss, sehingga lonjakan harga sesaat (wick) bisa melikuidasi posisi.'));
+    }
+    if (capped) warn.append(el('p', 'cd-card-note cd-warn', fut ? 'Ukuran posisi ideal melebihi modal × leverage, jadi dibatasi. Risiko nyata di stop menjadi ' + usd(qty * per) + '.' : 'Ukuran posisi ideal melebihi modal karena jarak stop sangat dekat. Tanpa leverage, posisi dibatasi ke seluruh modal; risiko nyata di stop menjadi ' + usd(qty * per) + '.'));
     out.replaceChildren(...items.map(([a, b]) => { const x = el('div'); x.append(el('dt', null, a), el('dd', null, b)); return x; }));
-    if (r.overCap) out.append(el('p', 'cd-card-note cd-warn', 'Ukuran posisi ideal (' + usd(r.value) + ') melebihi modal karena jarak stop sangat dekat. Tanpa leverage, posisi dibatasi ke seluruh modal, sehingga risiko nyata di stop menjadi ' + usd(r.capQty * (su.entry - su.sl)) + '.'));
   }
   document.querySelectorAll('#plan-seg button').forEach((b) => b.addEventListener('click', () => { PLAN.tf = b.dataset.tf; renderPlan(); }));
-  ['calc-cap', 'calc-risk', 'calc-setup'].forEach((id) => document.getElementById(id).addEventListener('input', calc));
+  document.querySelectorAll('#mode-seg button').forEach((b) => b.addEventListener('click', () => { PLAN.mode = b.dataset.mode; renderPlan(); }));
+  ['calc-cap', 'calc-risk', 'calc-setup', 'calc-lev', 'calc-fee'].forEach((id) => document.getElementById(id).addEventListener('input', calc));
+
+  /* ---------- risk profile ---------- */
+  function renderRisk(r, d, dv) {
+    const chip = document.getElementById('risk-score'), grid = document.getElementById('risk-grid'), body = document.getElementById('risk-body');
+    if (!r) { chip.textContent = 'Data kurang'; grid.replaceChildren(); body.replaceChildren(el('p', 'cd-card-note', 'Lilin harian kurang dari 60, jadi profil risiko belum bisa dihitung.')); return; }
+    chip.textContent = 'Risiko ' + r.label + ' · ' + r.score + '/10'; chip.className = 'cd-chip ' + (r.score <= 3 ? 'up' : r.score <= 5 ? 'flat' : 'down');
+    const items = [['Volatilitas 30 hari (tahunan)', r.vol30.toFixed(0) + '%'], ['Volatilitas 1 tahun', r.vol365.toFixed(0) + '%'], ['Rentang harian rata-rata (ATR)', r.atrPct.toFixed(2) + '%'],
+      ['Drawdown terdalam 1 tahun', r.mdd.toFixed(1) + '%'], ['Hari terburuk 1 tahun', pct(r.worst)], ['Hari terbaik 1 tahun', pct(r.best)],
+      ['VaR 95% (1 hari)', pct(r.var95)], ['Rata-rata 5% hari terburuk (CVaR)', pct(r.cvar95)], ['Beta / korelasi vs BTC (90 hari)', r.beta !== null ? r.beta.toFixed(2) + ' / ' + r.corr.toFixed(2) : '—'],
+      ['Leverage maksimal yang wajar', '≤ ' + r.levCap + '×']];
+    if (dv && isFinite(dv.funding)) items.push(['Funding tahunan (perkiraan)', pct(dv.funding * 3 * 365 * 100)]);
+    grid.replaceChildren(...items.map(([k, v]) => { const x = el('div'); x.append(el('dt', null, k), el('dd', null, v)); return x; }));
+    const ps = [];
+    ps.push(el('p', null, 'Skor ' + r.score + '/10 disusun dari ' + r.why.join(', ') + '.'));
+    ps.push(el('p', null, 'VaR 95% sebesar ' + pct(r.var95) + ' berarti pada 1 dari 20 hari, harga turun lebih dari angka itu. Pada hari-hari buruk tersebut, rata-ratanya ' + pct(r.cvar95) + '. Untuk posisi futures dengan leverage L×, kerugian margin pada hari seperti itu kira-kira L kali angka ini. Misalnya pada 5×, sekitar ' + pct(r.cvar95 * 5) + ' dari margin.'));
+    ps.push(el('p', null, 'Drawdown terdalam setahun terakhir ' + r.mdd.toFixed(1) + '% (dari ' + C.tgl(r.mddFrom.slice(0, 10)) + ' ke ' + C.tgl(r.mddTo.slice(0, 10)) + '). Angka ini menunjukkan seberapa dalam harga bisa jatuh dari puncak; pemegang spot harus siap menahan penurunan sebesar itu.'));
+    ps.push(el('p', null, 'Batas leverage ' + r.levCap + '× diambil dari rentang harian rata-rata: dengan leverage di atasnya, satu hari bergerak normal (sekitar 3 ATR dalam kondisi ramai) sudah bisa menghabiskan sebagian besar margin. Batas di kartu skenario bisa lebih kecil karena mengikuti jarak stop masing-masing.'));
+    if (r.beta !== null && d && d.symbol !== 'BTC') ps.push(el('p', null, 'Beta ' + r.beta.toFixed(2) + ' berarti saat BTC bergerak 1%, koin ini rata-rata bergerak sekitar ' + r.beta.toFixed(2) + '%. ' + (r.corr > 0.7 ? 'Korelasinya tinggi, jadi long koin ini bersamaan dengan long BTC hampir sama dengan menggandakan taruhan pada arah yang sama.' : 'Korelasinya sedang, jadi koin ini kadang bergerak sendiri.')));
+    if (dv && isFinite(dv.funding)) ps.push(el('p', null, 'Funding saat ini ' + (dv.funding * 100).toFixed(4) + '% per 8 jam (' + dv.source + '). ' + (dv.funding > 0.0003 ? 'Positif tinggi: posisi long sedang ramai dan membayar short; long yang ditahan lama terkena biaya, dan likuidasi berantai ke bawah lebih mungkin terjadi.' : dv.funding < -0.0001 ? 'Negatif: posisi short membayar long; pantulan tajam akibat short squeeze lebih mungkin terjadi.' : 'Netral: tidak ada sisi yang terlalu ramai.') + (isFinite(dv.lsr) ? ' Rasio akun long/short ' + dv.lsr.toFixed(2) + '.' : '')));
+    body.replaceChildren(...ps);
+  }
 
   /* ---------- multi-timeframe & advanced technicals ---------- */
   function renderMTF(map) {
@@ -324,29 +439,35 @@
     else { header({ name: P.sym }); }
     let d = m;
     const analystP = C.PORTFOLIO.includes(P.sym) ? C.getJSON('data/levels.json').then((l) => l.filter((x) => x.coin === P.sym)).catch(() => null) : Promise.resolve(null);
+    const derivP = T.derivatives(P.sym).catch(() => null);
     try { const det = await C.fetchCoinDetail(P.id); d = Object.assign({}, m || {}, Object.fromEntries(Object.entries(det).filter(([, v]) => v !== undefined && v !== null))); header(d); stats(d); about(d); }
     catch (e) { if (m) about(m); else document.getElementById('about-body').replaceChildren(el('p', null, 'Profil proyek gagal dimuat dari CoinGecko (batas permintaan mungkin tercapai). Coba lagi sebentar.')); }
     analyst(); news(d || { name: P.sym });
     let btc = null; try { const mk = await C.fetchMarkets(); btc = mk.rows.find((x) => x.symbol === 'BTC'); } catch (e) { /* optional */ }
     renderFund(d || {}, btc);
-    PLAN.ath = d && d.ath; PLAN.analystLv = await analystP;
-    const tfs = ['1week', '1day', '4h', '1h'], lim = { '1week': 200, '1day': 400, '4h': 300, '1h': 300 };
+    PLAN.ath = d && d.ath; PLAN.atl = d && d.atl; PLAN.analystLv = await analystP;
+    const tfs = ['1week', '1day', '4h', '1h'], lim = { '1week': 300, '1day': 1000, '4h': 1000, '1h': 1000 };
     const res = await Promise.allSettled(tfs.map((tf) => C.fetchCandles(P.sym, tf, lim[tf], tf === '1day' ? P.id : undefined)));
     const map = {}; tfs.forEach((tf, i) => { map[tf] = res[i].status === 'fulfilled' ? res[i].value.rows : null; });
-    ['1h', '4h', '1day'].forEach((tf) => { PLAN.rows[tf] = map[tf]; });
-    if (!map['4h'] || map['4h'].length < 40) PLAN.tf = map['1day'] && map['1day'].length >= 40 ? '1day' : PLAN.tf;
+    ['1h', '4h', '1day'].forEach((tf) => { PLAN.rows[tf] = map[tf]; PLAN.htfRows[tf] = map[T.HTF[tf]]; });
+    if (!map['4h'] || map['4h'].length < 60) PLAN.tf = map['1day'] && map['1day'].length >= 60 ? '1day' : PLAN.tf;
     const dRows = map['1day'] || [];
     const dS = dRows.length >= 30 ? C.summarize(C.techCalc(dRows)) : null;
     const hS = map['4h'] && map['4h'].length >= 30 ? C.summarize(C.techCalc(map['4h'])) : null;
     if (dRows.length) spark(dRows);
     const lv = dRows.length ? A.levels(dRows, '1day', PLAN.analystLv) : { supports: [], resistances: [] };
-    PLAN.htf = dRows.length >= 40 ? lv : null;
+    PLAN.htfLevels['1day'] = dRows.length >= 60 ? lv : null;
     const a = analyze(dS, hS, lv, d);
     const mtfTxt = renderMTF(map);
     if (mtfTxt) a.html.splice(1, 0, ['Keselarasan antartimeframe', mtfTxt]);
     renderAnalysis(a);
     renderLevels(lv, dS ? dS.close : (d && d.price));
     renderAdvanced(dRows, map['4h'], dS);
+    PLAN.deriv = await derivP;
+    let btcDaily = null;
+    if (P.sym !== 'BTC') { try { btcDaily = (await C.fetchCandles('BTC', '1day', 1000, 'bitcoin')).rows; } catch (e) { /* optional */ } } else btcDaily = dRows;
+    PLAN.risk = T.riskProfile(dRows, btcDaily, d ? Object.assign({ symbol: P.sym }, d) : { symbol: P.sym }, PLAN.deriv);
+    renderRisk(PLAN.risk, d ? Object.assign({ symbol: P.sym }, d) : { symbol: P.sym }, PLAN.deriv);
     renderPlan();
     const day = res[1];
     if (day.status === 'fulfilled') document.querySelector('.cd-analysis .cd-card-note').textContent += ' Sumber lilin: ' + day.value.source + (day.value.synthetic ? ' (harga penutupan harian saja)' : '') + '.';
