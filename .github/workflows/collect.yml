@@ -1,8 +1,8 @@
-name: Kumpulkan berita & listing
+name: Kumpulkan data pasar, berita & makro
 
 on:
   schedule:
-    - cron: "17 */3 * * *"   # setiap 3 jam (UTC)
+    - cron: "17 * * * *"   # setiap jam (UTC)
   workflow_dispatch: {}
 
 permissions:
@@ -27,7 +27,8 @@ jobs:
         run: |
           git config user.name "crypto-desk-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/news.json data/listings.json data/markets.json 2>/dev/null || true
+          git add data/news.json data/listings.json data/markets.json data/macro_live.json data/calendar.json data/etf_live.json data/global.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "Tidak ada perubahan"; exit 0; fi
-          git commit -m "Perbarui berita dan listing otomatis"
+          git commit -m "Perbarui data otomatis"
+          git pull --rebase -q || true
           git push

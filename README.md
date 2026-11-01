@@ -48,3 +48,10 @@ Edit file di `data/` lalu commit. Tanggal di `data/meta.json` (`updated`) muncul
 ---
 
 Informasi edukatif, bukan nasihat keuangan.
+
+## Versi 8 (November 2026)
+
+- Harga realtime lewat aliran WebSocket publik Binance (cadangan REST tiap 10 detik) di semua halaman, termasuk lilin berjalan di chart.
+- Beranda baru: rezim pasar dengan alasan per faktor, ringkasan pasar global, MTF per koin, kinerja per periode, korelasi, profil risiko, pasar 250 koin dengan sparkline, derivatif live (funding, OI, rasio long/short, taker), makro live dengan korelasi ke BTC, kalender ekonomi AS, rentang harga statistik, dan cek otomatis batas tesis.
+- Detail koin: ringkasan eksekutif, kinerja 1 jam s/d 1 tahun, struktur suplai, bursa & likuiditas (spread dan kedalaman order book).
+- Collector berjalan tiap jam: berita, listing, pasar, makro (Yahoo Finance dengan cadangan FRED), kalender (ForexFactory), arus ETF (Farside, bila tersedia), dan data global CoinGecko.

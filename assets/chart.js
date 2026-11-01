@@ -226,5 +226,16 @@
     if (!lastRows.length) load(true);
   }).catch(() => { if (!P.sym) { P.sym = 'BTC'; P.id = 'bitcoin'; } setHeader(null); if (!lastRows.length) load(true); });
   if (P.sym) load(true);
+  // Realtime: the running candle follows the live trade price between full refreshes.
+  if (window.CDLive) {
+    const L = window.CDLive; L.strip(document.getElementById('strip')); L.statusBadge(document.getElementById('live'));
+    const watchSym = () => { if (P.sym) L.watch([P.sym]); }; watchSym(); setTimeout(watchSym, 3000);
+    L.on((sym, q) => {
+      if (sym !== P.sym || !lastRows.length || !isFinite(q.price)) return;
+      const last = lastRows[lastRows.length - 1]; last.close = q.price; last.high = Math.max(last.high, q.price); last.low = Math.min(last.low, q.price);
+      candles.update({ time: ts(last.time), open: last.open, high: last.high, low: last.low, close: last.close });
+      document.getElementById('last-price').textContent = usd(q.price);
+    });
+  }
   setInterval(() => { if (!document.hidden && P.sym) C.fetchCandles(P.sym, P.tf, 1000, P.id).then((r) => { const keep = main.timeScale().getVisibleLogicalRange(); render(r.rows, false); if (keep) main.timeScale().setVisibleLogicalRange(keep); }).catch(() => {}); }, 60e3);
 })();

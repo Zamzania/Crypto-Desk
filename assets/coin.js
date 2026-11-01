@@ -31,7 +31,7 @@
     const img = document.getElementById('coin-img'); if (d.image && C.safeUrl(d.image)) { img.src = d.image; img.hidden = false; }
     document.getElementById('coin-price').textContent = usd(d.price);
     const chg = document.getElementById('coin-chg');
-    if (isFinite(num(d.percent_change_24h))) { chg.textContent = pct(d.percent_change_24h) + ' 24 jam'; chg.className = 'cd-chip ' + (d.percent_change_24h >= 0 ? 'up' : 'down'); } else chg.hidden = true;
+    if (isFinite(num(d.percent_change_24h))) { const v = el('span', C.sgnCls(d.percent_change_24h), pct(d.percent_change_24h, 2)); v.id = 'coin-chg-v'; chg.replaceChildren(v, ' dalam 24 jam'); chg.className = 'cd-chip'; } else chg.hidden = true;
     const badges = document.getElementById('coin-badges'); badges.replaceChildren();
     if (C.PORTFOLIO.includes(P.sym)) badges.append(el('span', 'cd-chip flat', 'Koin inti · dianalisis mingguan'));
     (d.categories || []).slice(0, 3).forEach((c) => badges.append(el('span', 'cd-chip', c)));
@@ -400,7 +400,7 @@
     const tech = C.techCalc(dRows);
     const pat = A.candlePattern(dRows), pat4 = hRows && hRows.length > 5 ? A.candlePattern(hRows) : null, div = A.divergence(tech), cross = A.maCross(tech), ob = A.obv(dRows);
     const extras = [pat && Object.assign({ label: 'Pola lilin harian terakhir' }, pat), div && Object.assign({ label: 'Divergensi RSI' }, div), cross && Object.assign({ label: 'Persilangan MA50/MA200' }, cross), ob && Object.assign({ label: 'On-Balance Volume' }, ob)];
-    const st = A.signalTable(dS, extras);
+    const st = A.signalTable(dS, extras); EX.sig = st;
     tb.replaceChildren(...st.rows.map((r) => { const tr = el('tr'); tr.append(el('td', null, r.name), el('td', 'num', r.value), el('td', null, r.reading), el('td', 'num ' + (r.sig > 0 ? 'cd-pos' : r.sig < 0 ? 'cd-neg' : ''), r.sig > 0 ? '+' : r.sig < 0 ? '−' : '0')); return tr; }));
     const sc = document.getElementById('sig-score'); sc.textContent = 'Skor sinyal ' + (st.score > 0 ? '+' : '') + st.score + ' dari ' + st.rows.length + ' indikator'; sc.className = 'cd-chip ' + (st.score >= 3 ? 'up' : st.score <= -3 ? 'down' : 'flat');
     const fib = A.fibonacci(dRows, 180); const ftb = document.querySelector('#fib-table tbody');
@@ -419,7 +419,7 @@
     body.replaceChildren(...parts);
   }
   function renderFund(d, btc) {
-    const f = A.fundamentals(d, btc);
+    const f = A.fundamentals(d, btc); EX.fund = f;
     const tb = document.querySelector('#fund-table tbody');
     tb.replaceChildren(...f.rows.map((r) => { const tr = el('tr'); tr.append(el('td', null, r.factor), el('td', 'num', r.value), el('td', null, r.reading), el('td', 'num ' + (r.sig > 0 ? 'cd-pos' : r.sig < 0 ? 'cd-neg' : ''), r.sig > 0 ? '+' : r.sig < 0 ? '−' : '0')); return tr; }));
     const v = document.getElementById('fund-verdict'); v.textContent = f.verdict + ' (skor ' + (f.score > 0 ? '+' : '') + f.score + ')'; v.className = 'cd-chip ' + f.cls;
@@ -432,15 +432,66 @@
     body.replaceChildren(...ps);
   }
 
+
+  /* ---------- v8: realtime, performance, supply, markets, executive summary ---------- */
+  const L = window.CDLive; const EX = {};
+  function liveHooks() {
+    if (!L) return;
+    L.strip(document.getElementById('strip')); L.statusBadge(document.getElementById('live'));
+    const pr = document.getElementById('coin-price'); pr.dataset.live = P.sym;
+    const c = document.getElementById('coin-chg-v'); if (c) { c.dataset.live = P.sym; c.dataset.liveField = 'chg'; }
+    L.watch([P.sym]);
+  }
+  function perf(d) {
+    const dl = document.getElementById('perf-grid'); if (!dl) return;
+    const items = [['1 jam', d.percent_change_1h], ['24 jam', d.percent_change_24h], ['7 hari', d.percent_change_7d], ['14 hari', d.percent_change_14d], ['30 hari', d.percent_change_30d], ['60 hari', d.percent_change_60d], ['200 hari', d.percent_change_200d], ['1 tahun', d.percent_change_1y]];
+    dl.replaceChildren(...items.map(([k, v]) => { const x = el('div'); x.append(el('dt', null, k), el('dd', C.sgnCls(v), pct(v))); return x; }));
+    const box = document.getElementById('supply'); if (!box) return;
+    const max = isFinite(num(d.max)) && d.max > 0 ? d.max : null, tot = isFinite(num(d.total)) && d.total > 0 ? d.total : null, circ = num(d.circ);
+    const base = max || tot; if (!isFinite(circ) || !base) { box.replaceChildren(el('p', 'cd-card-note', 'Data suplai tidak lengkap di CoinGecko.')); return; }
+    const tr = el('div', 'track'); const f = el('div', 'fill'); f.style.width = Math.min(100, circ / base * 100) + '%'; tr.append(f);
+    if (max && tot && tot > circ) { const f2 = el('div', 'fill2'); f2.style.left = (circ / base * 100) + '%'; f2.style.width = Math.max(0, Math.min(100, tot / base * 100) - circ / base * 100) + '%'; tr.append(f2); }
+    const cap = el('div', 'cap'); cap.append(el('span', null, 'Beredar ' + compactN(circ) + ' (' + (circ / base * 100).toFixed(1) + '%)'), el('span', null, tot ? 'Total ' + compactN(tot) : ''), el('span', null, max ? 'Maksimum ' + compactN(max) : 'Tanpa batas maksimum'));
+    const dil = d.fdv && d.market_cap ? d.fdv / d.market_cap : null;
+    box.replaceChildren(tr, cap, el('p', 'cd-card-note', (dil ? 'FDV ' + dil.toFixed(2) + '× kapitalisasi. ' : '') + (dil && dil > 1.5 ? 'Masih banyak token yang belum beredar; rilis token (unlock) bisa menambah tekanan jual.' : dil ? 'Sebagian besar token sudah beredar, jadi risiko dilusi relatif kecil.' : '') + (max ? '' : ' Suplai tidak dibatasi, jadi nilai jangka panjang bergantung pada laju penerbitan dan pembakaran token.')));
+  }
+  async function markets() {
+    const tb = document.querySelector('#mkts-table tbody'); if (!tb || !P.id) return;
+    try {
+      const rows = await C.fetchTickers(P.id); const tot = rows.reduce((a, r) => a + r.vol, 0);
+      document.getElementById('mkts-note').textContent = 'Pasar dengan volume terbesar menurut CoinGecko. Spread = selisih harga beli dan jual; kedalaman ±2% = dana yang dibutuhkan untuk menggerakkan harga 2%. Makin tipis spread dan makin dalam order book, makin kecil slippage.';
+      tb.replaceChildren(...rows.filter((r) => !r.stale).slice(0, 12).map((r) => { const tr = el('tr'); const ex = el('td'); const u = C.safeUrl(r.url); ex.append(u ? C.link(u, null, r.ex, true) : r.ex);
+        const trust = el('td'); trust.append(el('span', 'cd-chip ' + (r.trust === 'green' ? 'up' : r.trust === 'red' ? 'down' : 'flat'), r.trust === 'green' ? 'Baik' : r.trust === 'red' ? 'Lemah' : 'Sedang'));
+        tr.append(ex, el('td', null, r.base + '/' + r.target), el('td', 'num', usd(r.price)), el('td', 'num', compact(r.vol)), el('td', 'num', tot ? (r.vol / tot * 100).toFixed(1) + '%' : '—'), el('td', 'num', isFinite(num(r.spread)) ? num(r.spread).toFixed(3) + '%' : '—'), el('td', 'num cd-hide-sm', compact(r.up2) + ' / ' + compact(r.down2)), trust); return tr; }));
+    } catch (e) { tb.replaceChildren(); document.getElementById('mkts-note').textContent = 'Daftar bursa belum bisa dimuat dari CoinGecko (batas permintaan mungkin tercapai). Coba muat ulang sebentar lagi.'; }
+  }
+  function execSummary() {
+    const box = document.getElementById('exec'); if (!box) return;
+    const items = []; let score = 0; const add = (pts, txt) => { score += pts; items.push([pts, txt]); };
+    if (EX.dS) add(EX.dS.trend === 'Naik' ? 2 : EX.dS.trend === 'Turun' ? -2 : 0, 'Tren harian ' + EX.dS.trend.toLowerCase() + (EX.hS ? ', tren 4 jam ' + EX.hS.trend.toLowerCase() : '') + '. RSI harian ' + f1(EX.dS.rsi14) + '.');
+    if (EX.sig) add(EX.sig.score >= 3 ? 1 : EX.sig.score <= -3 ? -1 : 0, 'Tabel sinyal teknikal: skor ' + (EX.sig.score > 0 ? '+' : '') + EX.sig.score + ' dari ' + EX.sig.rows.length + ' indikator.');
+    if (EX.fund) add(EX.fund.score >= 2 ? 1 : EX.fund.score <= -2 ? -1 : 0, EX.fund.verdict + ' (skor ' + (EX.fund.score > 0 ? '+' : '') + EX.fund.score + ').');
+    if (PLAN.risk) add(PLAN.risk.score >= 8 ? -1 : 0, 'Risiko ' + PLAN.risk.label.toLowerCase() + ' (' + PLAN.risk.score + '/10): volatilitas 30 hari ' + PLAN.risk.vol30.toFixed(0) + '% per tahun, VaR 95% ' + pct(PLAN.risk.var95) + ' per hari, leverage wajar ≤ ' + PLAN.risk.levCap + '×.');
+    if (PLAN.deriv && isFinite(PLAN.deriv.funding)) { const fr = PLAN.deriv.funding * 100; add(fr > 0.03 ? -1 : fr < -0.01 ? 1 : 0, 'Funding ' + pct(fr, 4) + ' per 8 jam' + (fr > 0.03 ? ': long terlalu ramai.' : fr < -0.01 ? ': short ramai, rawan short squeeze.' : ': wajar.')); }
+    if (EX.lv) { const s1 = EX.lv.supports[0], r1 = EX.lv.resistances[0]; items.push([null, 'Support terdekat ' + (s1 ? usd(s1.lo) + '–' + usd(s1.hi) : '—') + ', resistance terdekat ' + (r1 ? usd(r1.lo) + '–' + usd(r1.hi) : '—') + '.']); }
+    const b = PLAN.current && PLAN.current.best; if (b) items.push([null, 'Skenario ' + ({ '1h': '1 jam', '4h': '4 jam', '1day': 'harian' }[PLAN.tf] || '') + ' terkuat: ' + (b.side > 0 ? 'long' : 'short') + ' (' + b.name.toLowerCase() + '), konfluensi ' + b.conf.score + '/100, entry ' + usd(b.entry) + ', stop ' + usd(b.sl) + '.']);
+    if (items.length < 3) { box.hidden = true; return; }
+    const label = score >= 3 ? 'Kondisi mendukung kenaikan' : score <= -3 ? 'Kondisi menekan harga' : score > 0 ? 'Campuran, condong positif' : score < 0 ? 'Campuran, condong negatif' : 'Netral';
+    box.hidden = false; box.className = 'cd-verdict ' + (score >= 3 ? '' : score <= -3 ? 'bear' : 'flat');
+    const ul = el('ul'); items.forEach(([p, t]) => { const li = el('li'); if (p !== null) li.append(el('b', p > 0 ? 'cd-pos' : p < 0 ? 'cd-neg' : null, (p > 0 ? '+' : p < 0 ? '−' : '±') + Math.abs(p) + ' ')); li.append(t); ul.append(li); });
+    box.replaceChildren(el('span', 'lbl', 'Ringkasan eksekutif'), el('h3', null, label + ' · skor ' + (score > 0 ? '+' : '') + score), el('p', null, 'Gabungan tren, sinyal teknikal, fundamental, risiko, dan posisi derivatif. Rincian tiap bagian ada di bawah. Ini pembacaan otomatis, bukan rekomendasi.'), ul);
+  }
+
   /* ---------- boot ---------- */
   (async () => {
     const m = await resolve();
-    if (m) { header(m); stats(m); }
+    if (m) { header(m); stats(m); perf(m); }
     else { header({ name: P.sym }); }
+    liveHooks(); markets();
     let d = m;
     const analystP = C.PORTFOLIO.includes(P.sym) ? C.getJSON('data/levels.json').then((l) => l.filter((x) => x.coin === P.sym)).catch(() => null) : Promise.resolve(null);
     const derivP = T.derivatives(P.sym).catch(() => null);
-    try { const det = await C.fetchCoinDetail(P.id); d = Object.assign({}, m || {}, Object.fromEntries(Object.entries(det).filter(([, v]) => v !== undefined && v !== null))); header(d); stats(d); about(d); }
+    try { const det = await C.fetchCoinDetail(P.id); d = Object.assign({}, m || {}, Object.fromEntries(Object.entries(det).filter(([, v]) => v !== undefined && v !== null))); header(d); stats(d); perf(d); about(d); liveHooks(); }
     catch (e) { if (m) about(m); else document.getElementById('about-body').replaceChildren(el('p', null, 'Profil proyek gagal dimuat dari CoinGecko (batas permintaan mungkin tercapai). Coba lagi sebentar.')); }
     analyst(); news(d || { name: P.sym });
     let btc = null; try { const mk = await C.fetchMarkets(); btc = mk.rows.find((x) => x.symbol === 'BTC'); } catch (e) { /* optional */ }
@@ -469,6 +520,7 @@
     PLAN.risk = T.riskProfile(dRows, btcDaily, d ? Object.assign({ symbol: P.sym }, d) : { symbol: P.sym }, PLAN.deriv);
     renderRisk(PLAN.risk, d ? Object.assign({ symbol: P.sym }, d) : { symbol: P.sym }, PLAN.deriv);
     renderPlan();
+    EX.dS = dS; EX.hS = hS; EX.lv = lv; execSummary();
     const day = res[1];
     if (day.status === 'fulfilled') document.querySelector('.cd-analysis .cd-card-note').textContent += ' Sumber lilin: ' + day.value.source + (day.value.synthetic ? ' (harga penutupan harian saja)' : '') + '.';
   })();

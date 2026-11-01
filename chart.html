@@ -5,47 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chart · Crypto Desk</title>
 <meta name="description" content="Chart candlestick live untuk koin kripto populer: 15 menit, 1 jam, 4 jam, 1 hari, 1 minggu, dengan MA, volume, RSI, dan zona kunci.">
-<meta name="theme-color" content="#EFEADF" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#111612" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#18301F">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=7">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=8">
 <script>try { const t = localStorage.getItem('cd-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 </head>
 <body>
 <div class="cd" id="crypto-desk">
-  <div class="cd-wrap cd-wrap-wide">
-    <nav class="cd-crumbs" aria-label="Navigasi">
-      <a href="index.html">← Crypto Desk</a>
-      <span aria-hidden="true">/</span>
-      <a href="index.html#pasar">Pasar</a>
-      <span aria-hidden="true">/</span>
-      <a id="crumb-coin" href="#">Detail koin</a>
-      <button class="cd-theme" id="theme-btn" type="button" aria-label="Ganti tema terang atau gelap">Tema</button>
-    </nav>
-
-    <header class="cd-chart-head">
-      <div class="cd-chart-id">
-        <img id="coin-img" class="cd-coin-logo" alt="" width="40" height="40" hidden>
-        <div>
-          <p class="cd-eyebrow" id="coin-sym">—</p>
-          <h1 class="cd-title cd-title-sm" id="coin-name">Chart</h1>
+  <header class="cd-band cd-band-wide">
+    <svg class="cd-guilloche"></svg>
+    <div class="cd-band-hero">
+      <nav class="cd-crumbs" aria-label="Navigasi">
+        <a href="index.html">Crypto Desk</a><span aria-hidden="true">/</span><a href="index.html#pasar">Pasar</a><span aria-hidden="true">/</span><a id="crumb-coin" href="#">Detail koin</a>
+        <span class="cd-live wait" id="live" style="margin-left:auto"><i></i><span>Menyambung</span></span>
+        <button class="cd-theme" id="theme-btn" type="button" aria-label="Ganti tema terang atau gelap">Tema</button>
+      </nav>
+      <div class="cd-chart-head">
+        <div class="cd-chart-id">
+          <img id="coin-img" class="cd-coin-logo" alt="" width="42" height="42" hidden>
+          <div>
+            <p class="cd-eyebrow" id="coin-sym">—</p>
+            <h1 class="cd-title cd-title-sm" id="coin-name">Chart</h1>
+          </div>
         </div>
+        <div class="cd-chart-price">
+          <strong id="last-price">—</strong>
+          <span id="last-chg" class="cd-chip">—</span>
+        </div>
+        <form class="cd-search" id="coin-form" role="search" autocomplete="off">
+          <label for="coin-input" class="cd-sr">Cari koin</label>
+          <input id="coin-input" list="coin-list" placeholder="Cari koin, mis. DOGE atau Avalanche" spellcheck="false">
+          <datalist id="coin-list"></datalist>
+          <button type="submit">Buka</button>
+        </form>
       </div>
-      <div class="cd-chart-price">
-        <strong id="last-price">—</strong>
-        <span id="last-chg" class="cd-chip">—</span>
-      </div>
-      <form class="cd-search" id="coin-form" role="search" autocomplete="off">
-        <label for="coin-input" class="cd-sr">Cari koin</label>
-        <input id="coin-input" list="coin-list" placeholder="Cari koin, mis. DOGE atau Avalanche" spellcheck="false">
-        <datalist id="coin-list"></datalist>
-        <button type="submit">Buka</button>
-      </form>
-    </header>
-
+    </div>
+    <div class="cd-strip" id="strip" aria-label="Harga realtime"></div>
+  </header>
+  <div class="cd-wrap cd-wrap-wide">
     <div class="cd-controls">
       <div class="cd-seg" id="tf-seg" role="group" aria-label="Timeframe">
         <button data-tf="15m" aria-pressed="false">15 menit</button><button data-tf="1h" aria-pressed="false">1 jam</button><button data-tf="4h" aria-pressed="true">4 jam</button><button data-tf="1day" aria-pressed="false">1 hari</button><button data-tf="1week" aria-pressed="false">1 minggu</button>
@@ -85,9 +85,10 @@
   </div>
 </div>
 <script src="assets/vendor/lightweight-charts.standalone.production.js"></script>
-<script src="assets/core.js?v=7"></script>
-<script src="assets/analysis.js?v=7"></script>
-<script src="assets/trade.js?v=7"></script>
-<script src="assets/chart.js?v=7"></script>
+<script src="assets/core.js?v=8"></script>
+<script src="assets/analysis.js?v=8"></script>
+<script src="assets/trade.js?v=8"></script>
+<script src="assets/live.js?v=8"></script>
+<script src="assets/chart.js?v=8"></script>
 </body>
 </html>

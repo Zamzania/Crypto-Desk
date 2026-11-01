@@ -184,7 +184,7 @@
     });
   }
   async function fetchCoinDetail(id) {
-    return cached('coin2:' + id, 600e3, async () => {
+    return cached('coin3:' + id, 600e3, async () => {
       const j = await getJSON(`https://api.coingecko.com/api/v3/coins/${encodeURIComponent(id)}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false`, 12000);
       const m = j.market_data || {};
       return {
@@ -195,11 +195,20 @@
         price: m.current_price && m.current_price.usd, market_cap: m.market_cap && m.market_cap.usd, fdv: m.fully_diluted_valuation && m.fully_diluted_valuation.usd, volume: m.total_volume && m.total_volume.usd,
         circ: m.circulating_supply, total: m.total_supply, max: m.max_supply, ath: m.ath && m.ath.usd, ath_date: m.ath_date && m.ath_date.usd, dd_ath: m.ath_change_percentage && m.ath_change_percentage.usd,
         atl: m.atl && m.atl.usd, atl_date: m.atl_date && m.atl_date.usd, high_24h: m.high_24h && m.high_24h.usd, low_24h: m.low_24h && m.low_24h.usd,
+        percent_change_1h: m.price_change_percentage_1h_in_currency && m.price_change_percentage_1h_in_currency.usd, percent_change_14d: m.price_change_percentage_14d, percent_change_60d: m.price_change_percentage_60d, percent_change_200d: m.price_change_percentage_200d,
         percent_change_24h: m.price_change_percentage_24h, percent_change_7d: m.price_change_percentage_7d, percent_change_30d: m.price_change_percentage_30d, percent_change_1y: m.price_change_percentage_1y,
         last_updated_time: m.last_updated || j.last_updated,
-        sentiment_up: j.sentiment_votes_up_percentage, watchlist: j.watchlist_portfolio_users,
+        sentiment_up: j.sentiment_votes_up_percentage, watchlist: j.watchlist_portfolio_users, mcap_change_24h: m.market_cap_change_percentage_24h, links: { twitter: j.links && j.links.twitter_screen_name, reddit: j.links && j.links.subreddit_url, github: j.links && j.links.repos_url && (j.links.repos_url.github || [])[0] },
         dev: j.developer_data ? { commits4w: j.developer_data.commit_count_4_weeks, stars: j.developer_data.stars, forks: j.developer_data.forks, contributors: j.developer_data.pull_request_contributors, prs: j.developer_data.pull_requests_merged } : null,
       };
+    });
+  }
+
+
+  async function fetchTickers(id) {
+    return cached('tick:' + id, 600e3, async () => {
+      const j = await getJSON('https://api.coingecko.com/api/v3/coins/' + encodeURIComponent(id) + '/tickers?order=volume_desc&depth=true', 12000);
+      return (j.tickers || []).filter((t) => t.converted_volume && t.converted_volume.usd > 0).slice(0, 40).map((t) => ({ ex: t.market && t.market.name, base: t.base, target: t.target, price: t.converted_last && t.converted_last.usd, vol: t.converted_volume.usd, spread: t.bid_ask_spread_percentage, up2: t.cost_to_move_up_usd, down2: t.cost_to_move_down_usd, trust: t.trust_score, url: t.trade_url, stale: t.is_stale || t.is_anomaly }));
     });
   }
 
@@ -267,6 +276,25 @@
   }
   const cssVar = (name) => getComputedStyle(document.querySelector('.cd') || document.documentElement).getPropertyValue(name).trim();
 
+
+  /* ---------- engraved guilloché rosette for the letterhead ---------- */
+  function guilloche(svg) {
+    const NS = 'http://www.w3.org/2000/svg'; svg.setAttribute('viewBox', '-310 -310 620 620'); svg.setAttribute('aria-hidden', 'true');
+    const ring = (R, r, d, turns, w) => {
+      let path = ''; const steps = 1400;
+      for (let i = 0; i <= steps; i++) {
+        const t = (i / steps) * Math.PI * 2 * turns;
+        const x = (R - r) * Math.cos(t) + d * Math.cos(((R - r) / r) * t), y = (R - r) * Math.sin(t) - d * Math.sin(((R - r) / r) * t);
+        path += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+      }
+      const p = document.createElementNS(NS, 'path'); p.setAttribute('d', path); p.setAttribute('fill', 'none'); p.setAttribute('stroke', 'currentColor'); p.setAttribute('stroke-width', w); svg.appendChild(p);
+    };
+    ring(300, 22, 70, 11, 0.55); ring(250, 30, 64, 15, 0.5); ring(196, 14, 52, 7, 0.5); ring(130, 26, 40, 13, 0.45);
+    [304, 292, 120].forEach((r) => { const c = document.createElementNS(NS, 'circle'); c.setAttribute('r', r); c.setAttribute('fill', 'none'); c.setAttribute('stroke', 'currentColor'); c.setAttribute('stroke-width', 0.6); svg.appendChild(c); });
+  }
+  const initDecor = () => document.querySelectorAll('svg.cd-guilloche:not([data-done])').forEach((s) => { s.dataset.done = '1'; guilloche(s); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDecor); else initDecor();
+
   global.CDCore = { BLN, PORTFOLIO, PORTFOLIO_ID, isAsset, num, fmtP, usd, pct, compact, compactN, sgnCls, tgl, witaTime, ago, el, link, safeUrl, stripHtml,
-    getJSON, firstOk, cache, cached, fetchCandles, techCalc, summarize, keyLevels, fetchMarkets, mapCG, fetchTrending, fetchCoinDetail, searchCoin, fetchNews, tagCoins, newsCard, themeButton, cssVar };
+    getJSON, firstOk, cache, cached, fetchCandles, techCalc, summarize, keyLevels, fetchMarkets, mapCG, fetchTrending, fetchCoinDetail, fetchTickers, searchCoin, fetchNews, tagCoins, newsCard, themeButton, cssVar, guilloche };
 })(window);

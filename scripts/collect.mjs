@@ -134,6 +134,91 @@ async function listings() {
   };
 }
 
+
+/* ---------------- macro (Yahoo Finance, fallback FRED) ---------------- */
+// Each series: daily closes for ~1 year so the site can show level, changes, sparkline and correlation with BTC.
+const MACRO = [
+  { key: 'dxy', label: 'Indeks dolar AS (DXY)', unit: 'indeks', yahoo: 'DX-Y.NYB', fred: 'DTWEXBGS', fredLabel: 'Indeks dolar luas (Fed)' },
+  { key: 'us10y', label: 'Yield obligasi AS 10 tahun', unit: '%', yahoo: '^TNX', fred: 'DGS10', yScale: 1 },
+  { key: 'us2y', label: 'Yield obligasi AS 2 tahun', unit: '%', fred: 'DGS2' },
+  { key: 'wti', label: 'Minyak WTI', unit: 'USD/barel', yahoo: 'CL=F', fred: 'DCOILWTICO' },
+  { key: 'brent', label: 'Minyak Brent', unit: 'USD/barel', yahoo: 'BZ=F', fred: 'DCOILBRENTEU' },
+  { key: 'gold', label: 'Emas', unit: 'USD/troy oz', yahoo: 'GC=F' },
+  { key: 'spx', label: 'S&P 500', unit: 'indeks', yahoo: '^GSPC', fred: 'SP500' },
+  { key: 'ndx', label: 'Nasdaq Composite', unit: 'indeks', yahoo: '^IXIC', fred: 'NASDAQCOM' },
+  { key: 'vix', label: 'VIX (ketakutan pasar saham)', unit: 'indeks', yahoo: '^VIX', fred: 'VIXCLS' },
+];
+const MONTHLY = [
+  { key: 'fedfunds', label: 'Suku bunga efektif Fed', unit: '%', fred: 'DFF', daily: true },
+  { key: 'cpi', label: 'Inflasi CPI AS (tahunan)', unit: '%', fred: 'CPIAUCSL', yoy: true },
+  { key: 'core_cpi', label: 'Inflasi inti CPI AS (tahunan)', unit: '%', fred: 'CPILFESL', yoy: true },
+  { key: 'unrate', label: 'Tingkat pengangguran AS', unit: '%', fred: 'UNRATE' },
+  { key: 'spread', label: 'Selisih yield 10 th − 2 th', unit: 'poin %', fred: 'T10Y2Y', daily: true },
+];
+async function yahoo(sym) {
+  const j = await tryGet('Yahoo ' + sym, 'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?range=1y&interval=1d&includePrePost=false');
+  const r = j && j.chart && j.chart.result && j.chart.result[0]; if (!r || !r.timestamp) return null;
+  const c = (r.indicators.quote[0] || {}).close || [];
+  const pts = r.timestamp.map((t, i) => [new Date(t * 1000).toISOString().slice(0, 10), c[i]]).filter((p) => Number.isFinite(p[1]));
+  const live = r.meta && Number.isFinite(r.meta.regularMarketPrice) ? { price: r.meta.regularMarketPrice, time: new Date((r.meta.regularMarketTime || 0) * 1000).toISOString() } : null;
+  return pts.length > 20 ? { pts, live, source: 'Yahoo Finance' } : null;
+}
+async function fred(id) {
+  const t = await tryGet('FRED ' + id, 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=' + id, { json: false });
+  if (!t) return null;
+  const pts = t.trim().split(/\r?\n/).slice(1).map((l) => l.split(',')).map(([d, v]) => [d, Number(v)]).filter((p) => /^\d{4}-\d\d-\d\d$/.test(p[0]) && Number.isFinite(p[1]));
+  return pts.length ? { pts, source: 'FRED (St. Louis Fed)' } : null;
+}
+async function macro() {
+  const series = [];
+  for (const m of MACRO) {
+    let r = m.yahoo ? await yahoo(m.yahoo) : null; let label = m.label;
+    if (!r && m.fred) { r = await fred(m.fred); if (r) { r.pts = r.pts.slice(-260); if (m.fredLabel) label = m.fredLabel; } }
+    if (!r) continue;
+    series.push({ key: m.key, label, unit: m.unit, source: r.source, pts: r.pts.slice(-260), live: r.live || null });
+  }
+  const monthly = [];
+  for (const m of MONTHLY) {
+    const r = await fred(m.fred); if (!r) continue;
+    let pts = r.pts;
+    if (m.yoy) pts = pts.map((p, i) => (i >= 12 ? [p[0], (p[1] / pts[i - 12][1] - 1) * 100] : null)).filter(Boolean);
+    pts = pts.slice(m.daily ? -260 : -36);
+    monthly.push({ key: m.key, label: m.label, unit: m.unit, source: r.source, pts, daily: !!m.daily });
+  }
+  return { series, monthly };
+}
+
+/* ---------------- economic calendar (ForexFactory weekly feed) ---------------- */
+async function calendar() {
+  const weeks = await Promise.all(['thisweek', 'nextweek'].map((w) => tryGet('Kalender ' + w, 'https://nfs.faireconomy.media/ff_calendar_' + w + '.json')));
+  const rows = weeks.filter(Array.isArray).flat()
+    .filter((e) => e && e.country === 'USD' && /high|medium/i.test(e.impact || ''))
+    .map((e) => ({ title: e.title, date: new Date(e.date).toISOString(), impact: /high/i.test(e.impact) ? 'Tinggi' : 'Sedang', forecast: e.forecast || '', previous: e.previous || '', actual: e.actual || '' }))
+    .filter((e) => Number.isFinite(Date.parse(e.date)));
+  const seen = new Set();
+  return rows.sort((a, b) => (a.date < b.date ? -1 : 1)).filter((e) => { const k = e.title + e.date; if (seen.has(k)) return false; seen.add(k); return true; });
+}
+
+/* ---------------- spot ETF flows (Farside, best effort) ---------------- */
+async function etfFlows() {
+  const pages = [['BTC', 'https://farside.co.uk/bitcoin-etf-flow-all-data/'], ['ETH', 'https://farside.co.uk/ethereum-etf-flow-all-data/'], ['SOL', 'https://farside.co.uk/sol/']];
+  const out = [];
+  for (const [asset, url] of pages) {
+    const html = await tryGet('Farside ' + asset, url, { json: false });
+    if (!html) continue;
+    const rows = [];
+    for (const tr of html.match(/<tr[\s\S]*?<\/tr>/gi) || []) {
+      const cells = (tr.match(/<t[dh][\s\S]*?<\/t[dh]>/gi) || []).map((c) => strip(c));
+      const dm = String(cells[0] || '').match(/^(\d{1,2}) ([A-Za-z]{3}) (\d{4})$/); if (!dm || cells.length < 3) continue;
+      const d = Date.UTC(+dm[3], 'JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(dm[2]) / 3, +dm[1]); if (!Number.isFinite(d)) continue;
+      const raw = cells[cells.length - 1].replace(/,/g, ''); const neg = /^\(.*\)$/.test(raw); const v = Number(raw.replace(/[()]/g, ''));
+      if (Number.isFinite(v)) rows.push({ date: new Date(d).toISOString().slice(0, 10), flow_musd: neg ? -v : v });
+    }
+    if (rows.length > 5) out.push({ asset, source: 'Farside Investors', rows: rows.slice(-120) });
+  }
+  return out;
+}
+
 /* ---------------- main ---------------- */
 const now = new Date().toISOString();
 const prevMarkets = await readJSON('data/markets.json');
@@ -162,3 +247,16 @@ const lst = await listings();
 if (lst.upcoming.length + lst.new.length + lst.aggregator_new.length > 0) await writeFile('data/listings.json', JSON.stringify(Object.assign({ updated: now }, lst)));
 else log('listings: nothing collected, keeping previous file');
 log('done: news', items.length, 'upcoming', lst.upcoming.length, 'new', lst.new.length, 'aggregator_new', lst.aggregator_new.length);
+
+const mac = await macro();
+if (mac.series.length + mac.monthly.length >= 3) await writeFile('data/macro_live.json', JSON.stringify(Object.assign({ updated: now }, mac)));
+else log('macro: too few series, keeping previous file');
+const cal = await calendar();
+if (cal.length) await writeFile('data/calendar.json', JSON.stringify({ updated: now, source: 'ForexFactory (USD, dampak sedang & tinggi)', rows: cal }));
+else log('calendar: empty, keeping previous file');
+const etf = await etfFlows();
+if (etf.length) await writeFile('data/etf_live.json', JSON.stringify({ updated: now, assets: etf }));
+else log('etf: farside unavailable, keeping previous file');
+const glob = await tryGet('CoinGecko global', 'https://api.coingecko.com/api/v3/global');
+if (glob && glob.data) await writeFile('data/global.json', JSON.stringify({ updated: now, data: glob.data }));
+log('done: macro', mac.series.length, '+', mac.monthly.length, 'calendar', cal.length, 'etf', etf.length);
