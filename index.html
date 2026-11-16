@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=8">
+<link rel="stylesheet" href="assets/style.css?v=9">
 <script>try { const t = localStorage.getItem('cd-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 </head>
 <body>
@@ -69,6 +69,11 @@
       </div>
       <div class="cd-ledger" id="ledger"><div><span class="lbl">Memuat</span><span class="v dash-skeleton">—</span></div></div>
       <div class="cd-verdict flat" id="verdict-box" hidden></div>
+      <div class="cd-card">
+        <h2 class="cd-card-title">Sinyal entry<span class="cd-stamp" id="sig-stamp"></span></h2>
+        <p class="cd-card-note">Dipantau otomatis setiap 5 menit untuk BTC, ETH, XRP, SOL, dan BNB di timeframe 1 jam, 4 jam, dan harian. Sinyal muncul saat harga masuk zona entry pada skenario dengan konfluensi minimal 60/100 dan hasil uji historis yang tidak rugi. Notifikasi yang sama dikirim ke HP lewat aplikasi ntfy, lalu posisinya diikuti sampai TP atau stop loss.</p>
+        <div class="cd-table-box"><table class="cd-table" id="sig-table"><thead><tr><th>Waktu</th><th>Koin</th><th>Skenario</th><th class="num">Entry</th><th class="num">Stop loss</th><th class="num">TP1 / TP2</th><th class="num">Trailing</th><th class="num">Konfluensi</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+      </div>
 
       <div class="cd-section-head">
         <div>
@@ -324,6 +329,7 @@
           <p>Semua indikator teknikal (MA, EMA, RSI, Stochastic RSI, MACD, ADX, ATR, Bollinger, OBV) dihitung ulang di browser dari lilin mentah bursa, bukan dikutip dari situs lain. Zona support dan resistance dikelompokkan dari titik balik harga; makin sering harga berbalik di satu zona, makin kuat zonanya.</p>
           <p>Rezim pasar adalah jumlah skor dari tren BTC harian dan 4 jam, keluasan pasar, Fear &amp; Greed, funding, perubahan dolar AS, VIX, dan arus ETF. Setiap faktor bernilai −2 sampai +2 dan alasannya ditampilkan, jadi kamu bisa menilai sendiri bobotnya.</p>
           <p>Rencana trading memakai aturan yang sama untuk semua koin dan diuji ke data historis koin itu sendiri tanpa melihat masa depan. Hasil uji, leverage wajar, dan perkiraan likuidasi ada di halaman analisis tiap koin. Rentang harga statistik memakai model lognormal dari volatilitas setahun; model ini meremehkan gerakan ekstrem, jadi perlakukan sebagai batas bawah ketidakpastian.</p>
+          <p>Smart Money Concept (BOS, CHoCH, order block, fair value gap, likuiditas, premium/discount) dihitung dari lilin mentah dengan swing yang baru dianggap sah tiga lilin kemudian, jadi tidak memakai data masa depan. Sinyal entry dipantau tiap 5 menit oleh skrip yang memakai aturan yang sama dengan halaman ini, lalu dikirim ke HP lewat ntfy dan diikuti sampai TP atau stop loss.</p>
           <p>Tesis dan skenario naratif ditulis manual dan menampilkan tanggal penulisannya. Bagian lain diperbarui otomatis.</p>
         </div>
       </div>
@@ -342,11 +348,12 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script src="assets/vendor/lightweight-charts.standalone.production.js"></script>
-<script src="assets/core.js?v=8"></script>
-<script src="assets/analysis.js?v=8"></script>
-<script src="assets/trade.js?v=8"></script>
-<script src="assets/live.js?v=8"></script>
-<script src="assets/home.js?v=8"></script>
-<script src="assets/home2.js?v=8"></script>
+<script src="assets/core.js?v=9"></script>
+<script src="assets/analysis.js?v=9"></script>
+<script src="assets/smc.js?v=9"></script>
+<script src="assets/trade.js?v=9"></script>
+<script src="assets/live.js?v=9"></script>
+<script src="assets/home.js?v=9"></script>
+<script src="assets/home2.js?v=9"></script>
 </body>
 </html>

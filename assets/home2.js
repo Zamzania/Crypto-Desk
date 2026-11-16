@@ -342,6 +342,24 @@
     fs.querySelector('tbody').replaceChildren(...rows.map((r) => { const tr = el('tr'); r.forEach((c, i) => tr.append(H.td(c, i === 0 ? 'sym' : null))); return tr; }));
   };
 
+
+  /* ================= entry signals (written by scripts/alerts.mjs) ================= */
+  const STG = { open: ['Aktif, menunggu TP1', 'flat'], tp1: ['TP1 kena, SL di entry', 'up'], tp2: ['TP2 kena', 'up'], sl: ['Stop loss kena', 'down'], be: ['Keluar di break-even', 'flat'], expired: ['Kedaluwarsa', 'flat'], expired_tp1: ['Selesai setelah TP1', 'up'] };
+  H.draw.signals = function () {
+    const tb = document.querySelector('#sig-table tbody'); if (!tb || S.page !== 'ringkasan') return;
+    const j = S.files.alerts; const st = document.getElementById('sig-stamp');
+    const rows = j ? [].concat(j.active || [], (j.history || []).slice(0, 12)) : [];
+    st.textContent = j && j.updated ? 'sinyal terakhir ' + C.ago(j.updated) : '';
+    if (!rows.length) { const tr = el('tr'); const td = el('td', 'cd-empty', j === undefined ? 'Memuat…' : 'Belum ada sinyal. Pemantau mengirim sinyal hanya saat harga benar-benar masuk zona entry yang memenuhi syarat.'); td.colSpan = 9; tr.append(td); tb.replaceChildren(tr); return; }
+    tb.replaceChildren(...rows.map((a) => { const tr = el('tr'); const [lab, cls] = STG[a.stage] || [a.stage, 'flat'];
+      const nm = el('td'); nm.append(el('span', 'cd-side ' + (a.side > 0 ? 'long' : 'short'), a.side > 0 ? 'LONG' : 'SHORT'), ' ' + a.name + ' · ' + ({ '1h': '1 jam', '4h': '4 jam', '1day': '1 hari' }[a.tf] || a.tf));
+      const stc = el('td'); stc.append(el('span', 'cd-chip ' + cls, lab));
+      const sym = el('td', 'sym'); sym.append(C.link(a.url || H.coinHref(C.PORTFOLIO_ID[a.sym], a.sym), null, a.sym));
+      tr.append(H.td(witaTime(a.at)), sym, nm, H.td(a.entryLo !== a.entryHi ? usd(a.entryLo) + '–' + usd(a.entryHi) : usd(a.entry), 'num'), H.td(usd(a.sl), 'num cd-neg'),
+        H.td(usd(a.tps[0].p) + (a.tps[1] ? ' / ' + usd(a.tps[1].p) : ''), 'num cd-pos'), H.td(a.trail ? a.trail.callback.toFixed(1) + '% dari ' + usd(a.trail.activation) : '—', 'num'), H.td(a.conf + '/100', 'num'), stc);
+      return tr; }));
+  };
+
   /* ================= router & boot ================= */
   const tabs = Array.from(document.querySelectorAll('.cd-tab')); const pages = Array.from(document.querySelectorAll('.cd-page'));
   function show(id) {
@@ -375,6 +393,7 @@
   const ld = H.loaders;
   ld.loadMarkets(); ld.loadGlobal(); ld.loadFng();
   ['theses', 'scenarios', 'events', 'etf', 'meta', 'analysis_log', 'macro', 'macro_live', 'calendar', 'etf_live', 'listings'].forEach((f) => H.loadFile(f));
+  H.loadFile('alerts', 60e3); setInterval(() => H.loadFile('alerts', 60e3), 120e3);
   // Portfolio coins load one after another so the exchanges are not hit with twenty requests at once.
   (async () => { for (const s of COINS) { await ld.loadCoin(s); } COINS.forEach((s) => H.deriveCoin(s)); H.redraw(); })();
   COINS.forEach((s) => ld.loadDeriv(s));

@@ -55,3 +55,18 @@ Informasi edukatif, bukan nasihat keuangan.
 - Beranda baru: rezim pasar dengan alasan per faktor, ringkasan pasar global, MTF per koin, kinerja per periode, korelasi, profil risiko, pasar 250 koin dengan sparkline, derivatif live (funding, OI, rasio long/short, taker), makro live dengan korelasi ke BTC, kalender ekonomi AS, rentang harga statistik, dan cek otomatis batas tesis.
 - Detail koin: ringkasan eksekutif, kinerja 1 jam s/d 1 tahun, struktur suplai, bursa & likuiditas (spread dan kedalaman order book).
 - Collector berjalan tiap jam: berita, listing, pasar, makro (Yahoo Finance dengan cadangan FRED), kalender (ForexFactory), arus ETF (Farside, bila tersedia), dan data global CoinGecko.
+
+## Versi 9: Smart Money Concept & notifikasi entry
+
+- Halaman koin: bagian Smart Money Concept (BOS/CHoCH, order block, fair value gap, likuiditas equal highs/lows, PDH/PDL/PWH/PWL, sweep, premium/discount, OTE) untuk 1 jam, 4 jam, dan harian; sintesis teknikal + fundamental; rencana trading dipindah ke akhir, setelah semua analisis, lengkap dengan konfirmasi SMC dan trailing stop Binance.
+- `scripts/alerts.mjs` memakai modul analisis yang sama dengan situs, mengirim notifikasi ntfy saat harga masuk zona entry (konfluensi ≥ 60, ekspektasi historis tidak negatif), lalu mengikuti posisinya: TP1 (SL ke entry + trailing), TP2, SL, break-even, kedaluwarsa. Status disimpan di `data/alerts.json` dan tampil di beranda.
+
+### Menyalakan notifikasi
+
+1. Pasang aplikasi **ntfy** (Play Store / App Store), tekan +, isi nama topik rahasia, server `ntfy.sh`.
+2. Repo ini → Settings → Secrets and variables → Actions → New repository secret: nama `NTFY_TOPIC`, isi nama topik yang sama.
+3. Pemicu tiap 5 menit (jadwal bawaan GitHub sering telat berjam-jam): buat fine-grained token GitHub khusus repo ini dengan izin *Actions: Read and write*, lalu di cron-job.org buat job setiap 5 menit:
+   - URL `https://api.github.com/repos/Zamzania/Crypto-Desk/actions/workflows/alerts.yml/dispatches`, metode POST
+   - Header `Authorization: Bearer <token>`, `Accept: application/vnd.github+json`
+   - Body `{"ref":"main"}`
+4. Opsional: variable `ALERT_MIN_CONF` untuk mengubah ambang konfluensi (bawaan 60).

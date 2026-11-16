@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=8">
+<link rel="stylesheet" href="assets/style.css?v=9">
 <script>try { const t = localStorage.getItem('cd-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 </head>
 <body>
@@ -44,7 +44,7 @@
   </header>
   <nav class="cd-nav" aria-label="Bagian halaman">
     <div class="cd-nav-in cd-toc">
-      <a href="#exec">Ringkasan</a><a href="#stats-title">Pasar</a><a href="#plan-title">Rencana trading</a><a href="#risk-title">Risiko</a><a href="#auto-title">Analisis</a><a href="#adv-title">Teknikal lanjutan</a><a href="#fund-title">Fundamental</a><a href="#mkts-title">Bursa</a><a href="#about-title">Proyek</a><a href="#news-title">Berita</a>
+      <a href="#exec">Ringkasan</a><a href="#stats-title">Pasar</a><a href="#auto-title">Tren &amp; level</a><a href="#smc-title">SMC</a><a href="#adv-title">Indikator &amp; Fibonacci</a><a href="#fund-title">Fundamental</a><a href="#risk-title">Risiko</a><a href="#syn-title">Sintesis</a><a href="#plan-title">Rencana trading</a><a href="#mkts-title">Bursa</a><a href="#about-title">Proyek</a><a href="#news-title">Berita</a>
     </div>
   </nav>
   <div class="cd-wrap">
@@ -59,6 +59,98 @@
       <dl class="cd-ind" id="perf-grid"></dl>
       <h3 class="cd-sub">Struktur suplai</h3>
       <div class="cd-supply" id="supply"></div>
+    </section>
+
+    
+
+    
+
+    <section class="cd-card cd-analysis" aria-labelledby="auto-title">
+      <div class="cd-coin-head">
+        <h2 class="cd-card-title" id="auto-title">Analisis otomatis</h2>
+        <span class="cd-chip flat" id="verdict">Menghitung…</span>
+      </div>
+      <p class="cd-card-note">Disusun otomatis dari lilin harian dan 4 jam memakai aturan yang sama untuk semua koin, dihitung ulang setiap halaman dibuka. Ini pembacaan data, bukan penilaian analis dan bukan nasihat keuangan.</p>
+      <h3 class="cd-sub">Ringkasan multi-timeframe</h3>
+      <div class="cd-table-box">
+        <table class="cd-table" id="mtf-table">
+          <thead><tr><th>Timeframe</th><th>Tren</th><th>Jangka pendek</th><th class="num">RSI</th><th>MACD</th><th class="num">vs MA50</th><th class="num">vs MA200</th><th class="num">ADX</th></tr></thead><tbody></tbody>
+        </table>
+      </div>
+      <div id="auto-body" class="cd-prose"><p class="dash-skeleton">Memuat data lilin untuk analisis.</p></div>
+      <h3 class="cd-sub">Level kunci otomatis</h3>
+      <div class="cd-table-box">
+        <table class="cd-table" id="lvl-table">
+          <thead><tr><th>Jenis</th><th class="num">Zona</th><th class="num">Jarak dari harga</th><th class="num">Sentuhan</th><th>Terakhir disentuh</th></tr></thead><tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="cd-card" aria-labelledby="smc-title">
+      <div class="cd-coin-head cd-wrap-row">
+        <h2 class="cd-card-title" id="smc-title">Smart Money Concept</h2>
+        <div class="cd-seg cd-seg-sm" id="smc-seg" role="group" aria-label="Timeframe SMC"><button data-tf="1h" aria-pressed="false">1 jam</button><button data-tf="4h" aria-pressed="true">4 jam</button><button data-tf="1day" aria-pressed="false">1 hari</button></div>
+      </div>
+      <p class="cd-card-note">Membaca jejak pemain besar dari lilin mentah. BOS (break of structure) = harga menutup lilin melewati swing terakhir searah tren; CHoCH (change of character) = penembusan pertama melawan tren, tanda awal pembalikan. Order block = lilin terakhir berlawanan arah sebelum dorongan yang memecah struktur. FVG (fair value gap) = celah tiga lilin yang sering diisi kembali. Likuiditas = kumpulan stop di atas equal highs dan di bawah equal lows. Swing baru dianggap sah setelah 3 lilin berikutnya, jadi tidak ada data masa depan yang dipakai.</p>
+      <div class="cd-plan-ctx" id="smc-ctx"></div>
+      <div id="smc-body" class="cd-prose"></div>
+      <div class="cd-grid cd-grid-tight">
+        <div><h3 class="cd-sub">Peristiwa struktur terakhir</h3><div class="cd-table-box"><table class="cd-table" id="smc-ev"><thead><tr><th>Waktu</th><th>Peristiwa</th><th class="num">Level</th></tr></thead><tbody></tbody></table></div></div>
+        <div><h3 class="cd-sub">Order block &amp; fair value gap</h3><div class="cd-table-box"><table class="cd-table" id="smc-zones"><thead><tr><th>Zona</th><th class="num">Rentang</th><th class="num">Jarak</th><th>Status</th></tr></thead><tbody></tbody></table></div></div>
+      </div>
+      <h3 class="cd-sub">Peta likuiditas</h3>
+      <div class="cd-table-box"><table class="cd-table" id="smc-liq"><thead><tr><th>Likuiditas</th><th class="num">Level</th><th class="num">Jarak</th><th>Keterangan</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="cd-card" aria-labelledby="adv-title">
+      <div class="cd-coin-head">
+        <h2 class="cd-card-title" id="adv-title">Teknikal lanjutan (harian)</h2>
+        <span class="cd-chip flat" id="sig-score">—</span>
+      </div>
+      <p class="cd-card-note">Tabel sinyal merangkum indikator utama: tanda + mendukung kenaikan, − mendukung penurunan, 0 netral. Skor adalah jumlahnya; makin jauh dari nol, makin searah sinyalnya.</p>
+      <div class="cd-table-box">
+        <table class="cd-table" id="sig-table"><thead><tr><th>Indikator</th><th class="num">Nilai</th><th>Bacaan</th><th class="num">Sinyal</th></tr></thead><tbody></tbody></table>
+      </div>
+      <div class="cd-grid cd-grid-tight">
+        <div>
+          <h3 class="cd-sub">Fibonacci retracement</h3>
+          <p class="cd-card-note" id="fib-note">—</p>
+          <div class="cd-table-box"><table class="cd-table" id="fib-table"><thead><tr><th>Level</th><th class="num">Harga</th><th class="num">Jarak</th></tr></thead><tbody></tbody></table></div>
+        </div>
+        <div id="adv-body" class="cd-prose"></div>
+      </div>
+    </section>
+
+    <section class="cd-card" aria-labelledby="fund-title">
+      <div class="cd-coin-head">
+        <h2 class="cd-card-title" id="fund-title">Analisis fundamental</h2>
+        <span class="cd-chip flat" id="fund-verdict">—</span>
+      </div>
+      <p class="cd-card-note">Faktor pasar dan tokenomik dari CoinGecko. Ini mengukur kesehatan aset sebagai instrumen yang diperdagangkan (ukuran, likuiditas, dilusi, umur, aktivitas pengembang), bukan menilai teknologi atau tim secara mendalam.</p>
+      <div class="cd-table-box">
+        <table class="cd-table" id="fund-table"><thead><tr><th>Faktor</th><th class="num">Nilai</th><th>Bacaan</th><th class="num">Sinyal</th></tr></thead><tbody></tbody></table>
+      </div>
+      <div id="fund-body" class="cd-prose"></div>
+    </section>
+
+    <section class="cd-card" aria-labelledby="risk-title">
+      <div class="cd-coin-head">
+        <h2 class="cd-card-title" id="risk-title">Profil risiko</h2>
+        <span class="cd-chip flat" id="risk-score">Menghitung…</span>
+      </div>
+      <p class="cd-card-note">Mengukur seberapa liar koin ini bergerak dan seberapa besar kerugian yang realistis terjadi, dari data harian setahun terakhir. Skor 1 (rendah) sampai 10 (sangat tinggi).</p>
+      <dl class="cd-ind" id="risk-grid"></dl>
+      <div id="risk-body" class="cd-prose"></div>
+    </section>
+
+    <section class="cd-card" aria-labelledby="syn-title">
+      <div class="cd-coin-head">
+        <h2 class="cd-card-title" id="syn-title">Sintesis teknikal &amp; fundamental</h2>
+        <span class="cd-chip flat" id="syn-score">Menghitung…</span>
+      </div>
+      <p class="cd-card-note">Semua lapisan analisis di atas diringkas jadi satu arah. Teknikal menjawab kapan, fundamental menjawab layak dipegang atau tidak, risiko menjawab seberapa besar. Rencana trading di bawah sebaiknya dibaca setelah bagian ini.</p>
+      <div class="cd-table-box"><table class="cd-table" id="syn-table"><thead><tr><th>Lapisan</th><th>Bacaan</th><th class="num">Arah</th></tr></thead><tbody></tbody></table></div>
+      <div id="syn-body" class="cd-prose" style="margin-top:12px"></div>
     </section>
 
     <section class="cd-card cd-plan" aria-labelledby="plan-title">
@@ -92,68 +184,6 @@
         <dl class="cd-ind" id="calc-out"></dl>
         <div id="calc-warn"></div>
       </details>
-    </section>
-
-    <section class="cd-card" aria-labelledby="risk-title">
-      <div class="cd-coin-head">
-        <h2 class="cd-card-title" id="risk-title">Profil risiko</h2>
-        <span class="cd-chip flat" id="risk-score">Menghitung…</span>
-      </div>
-      <p class="cd-card-note">Mengukur seberapa liar koin ini bergerak dan seberapa besar kerugian yang realistis terjadi, dari data harian setahun terakhir. Skor 1 (rendah) sampai 10 (sangat tinggi).</p>
-      <dl class="cd-ind" id="risk-grid"></dl>
-      <div id="risk-body" class="cd-prose"></div>
-    </section>
-
-    <section class="cd-card cd-analysis" aria-labelledby="auto-title">
-      <div class="cd-coin-head">
-        <h2 class="cd-card-title" id="auto-title">Analisis otomatis</h2>
-        <span class="cd-chip flat" id="verdict">Menghitung…</span>
-      </div>
-      <p class="cd-card-note">Disusun otomatis dari lilin harian dan 4 jam memakai aturan yang sama untuk semua koin, dihitung ulang setiap halaman dibuka. Ini pembacaan data, bukan penilaian analis dan bukan nasihat keuangan.</p>
-      <h3 class="cd-sub">Ringkasan multi-timeframe</h3>
-      <div class="cd-table-box">
-        <table class="cd-table" id="mtf-table">
-          <thead><tr><th>Timeframe</th><th>Tren</th><th>Jangka pendek</th><th class="num">RSI</th><th>MACD</th><th class="num">vs MA50</th><th class="num">vs MA200</th><th class="num">ADX</th></tr></thead><tbody></tbody>
-        </table>
-      </div>
-      <div id="auto-body" class="cd-prose"><p class="dash-skeleton">Memuat data lilin untuk analisis.</p></div>
-      <h3 class="cd-sub">Level kunci otomatis</h3>
-      <div class="cd-table-box">
-        <table class="cd-table" id="lvl-table">
-          <thead><tr><th>Jenis</th><th class="num">Zona</th><th class="num">Jarak dari harga</th><th class="num">Sentuhan</th><th>Terakhir disentuh</th></tr></thead><tbody></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="cd-card" aria-labelledby="adv-title">
-      <div class="cd-coin-head">
-        <h2 class="cd-card-title" id="adv-title">Teknikal lanjutan (harian)</h2>
-        <span class="cd-chip flat" id="sig-score">—</span>
-      </div>
-      <p class="cd-card-note">Tabel sinyal merangkum indikator utama: tanda + mendukung kenaikan, − mendukung penurunan, 0 netral. Skor adalah jumlahnya; makin jauh dari nol, makin searah sinyalnya.</p>
-      <div class="cd-table-box">
-        <table class="cd-table" id="sig-table"><thead><tr><th>Indikator</th><th class="num">Nilai</th><th>Bacaan</th><th class="num">Sinyal</th></tr></thead><tbody></tbody></table>
-      </div>
-      <div class="cd-grid cd-grid-tight">
-        <div>
-          <h3 class="cd-sub">Fibonacci retracement</h3>
-          <p class="cd-card-note" id="fib-note">—</p>
-          <div class="cd-table-box"><table class="cd-table" id="fib-table"><thead><tr><th>Level</th><th class="num">Harga</th><th class="num">Jarak</th></tr></thead><tbody></tbody></table></div>
-        </div>
-        <div id="adv-body" class="cd-prose"></div>
-      </div>
-    </section>
-
-    <section class="cd-card" aria-labelledby="fund-title">
-      <div class="cd-coin-head">
-        <h2 class="cd-card-title" id="fund-title">Analisis fundamental</h2>
-        <span class="cd-chip flat" id="fund-verdict">—</span>
-      </div>
-      <p class="cd-card-note">Faktor pasar dan tokenomik dari CoinGecko. Ini mengukur kesehatan aset sebagai instrumen yang diperdagangkan (ukuran, likuiditas, dilusi, umur, aktivitas pengembang), bukan menilai teknologi atau tim secara mendalam.</p>
-      <div class="cd-table-box">
-        <table class="cd-table" id="fund-table"><thead><tr><th>Faktor</th><th class="num">Nilai</th><th>Bacaan</th><th class="num">Sinyal</th></tr></thead><tbody></tbody></table>
-      </div>
-      <div id="fund-body" class="cd-prose"></div>
     </section>
 
     <section class="cd-card" id="analyst-card" hidden aria-labelledby="analyst-title">
@@ -190,10 +220,11 @@
     </footer>
   </div>
 </div>
-<script src="assets/core.js?v=8"></script>
-<script src="assets/analysis.js?v=8"></script>
-<script src="assets/trade.js?v=8"></script>
-<script src="assets/live.js?v=8"></script>
-<script src="assets/coin.js?v=8"></script>
+<script src="assets/core.js?v=9"></script>
+<script src="assets/analysis.js?v=9"></script>
+<script src="assets/smc.js?v=9"></script>
+<script src="assets/trade.js?v=9"></script>
+<script src="assets/live.js?v=9"></script>
+<script src="assets/coin.js?v=9"></script>
 </body>
 </html>

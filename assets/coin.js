@@ -252,6 +252,17 @@
     card.append(btBlock(su));
     const det = el('details', 'cd-conf'); det.append(el('summary', null, 'Rincian konfluensi (' + su.conf.label.toLowerCase() + ')'));
     const ul = el('ul'); su.conf.factors.forEach((f) => { const li = el('li', f.ok ? 'ok' : 'no'); li.append(el('span', 'mk', f.ok ? '✓' : '✗'), f.label, el('span', 'pt', f.pts + '/' + f.max)); ul.append(li); }); det.append(ul); card.append(det);
+    const smc = SM.get(plan.tf);
+    if (smc && window.CDSMC) {
+      const ck = window.CDSMC.check(su, smc); const okN = ck.filter((x) => x.ok).length;
+      const sd = el('details', 'cd-conf'); sd.append(el('summary', null, 'Konfirmasi Smart Money Concept: ' + okN + ' dari ' + ck.length));
+      const sl = el('ul'); ck.forEach((x) => { const li = el('li', x.ok ? 'ok' : 'no'); li.append(el('span', 'mk', x.ok ? '✓' : '✗'), x.label, el('span', 'pt', '')); sl.append(li); }); sd.append(sl); card.append(sd);
+    }
+    if (PLAN.mode === 'futures' && plan.atr) {
+      const tr = T.trailing(su, plan.atr); const tp = el('p', 'cd-card-note');
+      tp.append(el('span', 'lbl', 'Trailing stop di Binance Futures'), 'Setelah TP1 kena, geser stop loss ke harga entry (' + usd(su.entry) + '). Untuk sisa posisi pasang order Trailing Stop: harga aktivasi ' + usd(tr.activation) + ', callback rate ' + tr.callback.toFixed(1) + '%. Stop akan mengikuti harga dan menutup posisi saat harga berbalik sebesar callback dari titik terbaiknya.');
+      card.append(tp);
+    }
     const d = el('div', 'cd-prose cd-setup-why');
     d.append(el('p', null, su.logic));
     const tpb = el('p'); tpb.append(el('span', 'lbl', 'Dasar target'), su.tps.map((t, i) => 'TP' + (i + 1) + ': ' + t.basis).join(' · ')); d.append(tpb);
@@ -403,7 +414,7 @@
     const st = A.signalTable(dS, extras); EX.sig = st;
     tb.replaceChildren(...st.rows.map((r) => { const tr = el('tr'); tr.append(el('td', null, r.name), el('td', 'num', r.value), el('td', null, r.reading), el('td', 'num ' + (r.sig > 0 ? 'cd-pos' : r.sig < 0 ? 'cd-neg' : ''), r.sig > 0 ? '+' : r.sig < 0 ? '−' : '0')); return tr; }));
     const sc = document.getElementById('sig-score'); sc.textContent = 'Skor sinyal ' + (st.score > 0 ? '+' : '') + st.score + ' dari ' + st.rows.length + ' indikator'; sc.className = 'cd-chip ' + (st.score >= 3 ? 'up' : st.score <= -3 ? 'down' : 'flat');
-    const fib = A.fibonacci(dRows, 180); const ftb = document.querySelector('#fib-table tbody');
+    const fib = A.fibonacci(dRows, 180); EX.fib = fib; const ftb = document.querySelector('#fib-table tbody');
     if (fib) {
       document.getElementById('fib-note').textContent = 'Dari swing ' + (fib.up ? 'terendah ' + usd(fib.lo) + ' (' + C.tgl(fib.loT.slice(0, 10)) + ') ke tertinggi ' + usd(fib.hi) + ' (' + C.tgl(fib.hiT.slice(0, 10)) + ')' : 'tertinggi ' + usd(fib.hi) + ' (' + C.tgl(fib.hiT.slice(0, 10)) + ') ke terendah ' + usd(fib.lo) + ' (' + C.tgl(fib.loT.slice(0, 10)) + ')') + ' dalam 180 hari. Level 38,2%, 50%, dan 61,8% paling sering diperhatikan pasar; level 127,2% dan 161,8% adalah perpanjangan untuk target.';
       ftb.replaceChildren(...fib.levels.map((l) => { const tr = el('tr', fib.nearest === l ? 'cd-row-near' : null); tr.append(el('td', null, (l.ext ? 'Ext ' : '') + (l.r * 100).toFixed(1).replace('.0', '') + '%'), el('td', 'num', usd(l.p)), el('td', 'num ' + C.sgnCls(dist(l.p, fib.price)), pct(dist(l.p, fib.price)))); return tr; }));
@@ -482,6 +493,79 @@
     box.replaceChildren(el('span', 'lbl', 'Ringkasan eksekutif'), el('h3', null, label + ' · skor ' + (score > 0 ? '+' : '') + score), el('p', null, 'Gabungan tren, sinyal teknikal, fundamental, risiko, dan posisi derivatif. Rincian tiap bagian ada di bawah. Ini pembacaan otomatis, bukan rekomendasi.'), ul);
   }
 
+
+  /* ---------- Smart Money Concept ---------- */
+  const SM = { tf: '4h', rows: {}, cache: {}, get(tf) {
+    if (!window.CDSMC) return null;
+    if (this.cache[tf] === undefined) { const r = this.rows[tf]; this.cache[tf] = r && r.length >= 60 ? window.CDSMC.analyze(r, tf, { daily: this.rows['1day'], weekly: this.rows['1week'] }) : null; }
+    return this.cache[tf];
+  } };
+  const TFN = { '1h': '1 jam', '4h': '4 jam', '1day': '1 hari' };
+  function renderSMC() {
+    const s = SM.get(SM.tf); const ctx = document.getElementById('smc-ctx'); const body = document.getElementById('smc-body');
+    document.querySelectorAll('#smc-seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tf === SM.tf)));
+    if (!s) { ctx.replaceChildren(); body.replaceChildren(el('p', 'cd-card-note', 'Lilin ' + TFN[SM.tf] + ' belum cukup untuk membaca struktur.')); return; }
+    const c = s.price; const d = (p) => pct(dist(p, c)); const zn = (z) => usd(z.lo) + '–' + usd(z.hi);
+    const box = (k, v, sub) => { const x = el('div'); x.append(el('span', 'lbl', k), el('strong', null, v)); if (sub) x.append(el('span', 'cd-muted', sub)); return x; };
+    const tr = s.trend > 0 ? 'Bullish' : s.trend < 0 ? 'Bearish' : 'Belum jelas';
+    ctx.replaceChildren(box('Struktur ' + TFN[SM.tf], tr, s.last ? s.last.kind + ' ' + (s.last.dir > 0 ? 'naik' : 'turun') + ' ' + C.ago(s.last.time) : ''),
+      box('Posisi di range', s.pd ? (s.pd.zone === 'premium' ? 'Premium' : s.pd.zone === 'discount' ? 'Discount' : 'Ekuilibrium') : '—', s.pd ? s.pd.pos.toFixed(0) + '% dari ' + usd(s.pd.lo) + ' ke ' + usd(s.pd.hi) : ''),
+      box('Ekuilibrium (50%)', s.pd ? usd(s.pd.eq) : '—', s.pd ? d(s.pd.eq) + ' dari harga' : ''),
+      box('Likuiditas di atas', s.bsl[0] ? usd(s.bsl[0].p) : 'Belum jelas', s.bsl[0] ? 'equal highs ' + d(s.bsl[0].p) : 'tidak ada equal highs'), box('Likuiditas di bawah', s.ssl[0] ? usd(s.ssl[0].p) : 'Belum jelas', s.ssl[0] ? 'equal lows ' + d(s.ssl[0].p) : 'tidak ada equal lows'));
+    // narrative
+    const ps = []; const p = (t) => ps.push(el('p', null, t));
+    if (s.last) p('Struktur ' + TFN[SM.tf] + ' saat ini ' + tr.toLowerCase() + '. Peristiwa terakhir adalah ' + s.last.kind + (s.last.dir > 0 ? ' ke atas' : ' ke bawah') + ' di ' + usd(s.last.level) + ' (' + C.ago(s.last.time) + '). ' + (s.last.kind === 'CHoCH' ? 'CHoCH berarti karakter pasar baru berubah; konfirmasinya adalah BOS searah berikutnya. Sebelum itu, perlakukan arah baru dengan hati-hati.' : 'BOS searah tren berarti tren masih berjalan; selama swing ' + (s.trend > 0 ? 'low' : 'high') + ' terakhir tidak ditembus, bias tetap ' + tr.toLowerCase() + '.'));
+    else p('Belum ada penembusan struktur yang jelas di timeframe ini; pasar cenderung bergerak menyamping.');
+    if (s.pd) p('Dalam range ' + usd(s.pd.lo) + '–' + usd(s.pd.hi) + ', harga berada di area ' + s.pd.zone + ' (' + s.pd.pos.toFixed(0) + '%). Prinsip SMC: beli di discount, jual di premium. Zona OTE (Optimal Trade Entry, retracement 62–79%) untuk long ada di ' + usd(s.pd.oteLong[0]) + '–' + usd(s.pd.oteLong[1]) + ', untuk short di ' + usd(s.pd.oteShort[0]) + '–' + usd(s.pd.oteShort[1]) + '.');
+    const bo = s.obBull.find((o) => o.hi < c), be = s.obBear.find((o) => o.lo > c);
+    if (bo || be) p((bo ? 'Order block bullish terdekat di ' + zn(bo) + ' (' + d((bo.lo + bo.hi) / 2) + '), ' + (bo.touched ? 'sudah pernah disentuh tapi masih bertahan' : 'belum pernah disentuh, jadi biasanya lebih kuat') + '. ' : '') + (be ? 'Order block bearish terdekat di ' + zn(be) + ' (' + d((be.lo + be.hi) / 2) + '), ' + (be.touched ? 'sudah pernah disentuh' : 'belum disentuh') + '.' : ''));
+    if (s.sweeps.length) { const w = s.sweeps[s.sweeps.length - 1]; p('Sweep likuiditas terbaru: harga sempat menembus ' + (w.dir > 0 ? 'swing low ' : 'swing high ') + usd(w.level) + ' lalu menutup kembali di ' + (w.dir > 0 ? 'atasnya' : 'bawahnya') + ' (' + w.ago + ' lilin lalu). Pola ini sering menandai stop pemain kecil yang diambil sebelum harga berbalik ' + (w.dir > 0 ? 'naik.' : 'turun.')); }
+    p('Magnet harga berikutnya: ' + (s.bsl[0] ? 'buy-side liquidity (equal highs) di ' + usd(s.bsl[0].p) + ' (' + d(s.bsl[0].p) + ')' : 'tidak ada equal highs yang jelas di atas') + ' dan ' + (s.ssl[0] ? 'sell-side liquidity (equal lows) di ' + usd(s.ssl[0].p) + ' (' + d(s.ssl[0].p) + ').' : 'tidak ada equal lows yang jelas di bawah.'));
+    body.replaceChildren(...ps);
+    const row = (cells) => { const t = el('tr'); cells.forEach(([v, cls]) => t.append(el('td', cls || null, v))); return t; };
+    document.querySelector('#smc-ev tbody').replaceChildren(...s.events.slice().reverse().slice(0, 6).map((e) => row([[witaTime(e.time)], [e.kind + (e.dir > 0 ? ' bullish' : ' bearish'), e.dir > 0 ? 'cd-pos' : 'cd-neg'], [usd(e.level), 'num']])));
+    const zr = [].concat(s.obBear.map((z) => ['OB bearish', z, z.touched ? 'Sudah disentuh' : 'Belum disentuh']), s.fvgBear.map((z) => ['FVG bearish', z, 'Terisi ' + z.fill.toFixed(0) + '%']), s.fvgBull.map((z) => ['FVG bullish', z, 'Terisi ' + z.fill.toFixed(0) + '%']), s.obBull.map((z) => ['OB bullish', z, z.touched ? 'Sudah disentuh' : 'Belum disentuh'])).sort((a, b) => b[1].hi - a[1].hi);
+    document.querySelector('#smc-zones tbody').replaceChildren(...zr.map(([k, z, st]) => row([[k, /bull/.test(k) ? 'cd-pos' : 'cd-neg'], [zn(z), 'num'], [d((z.lo + z.hi) / 2), 'num'], [st]])));
+    const lq = [].concat(s.bsl.map((x) => ['Buy-side (equal highs)', x.p, x.n + ' swing high sejajar, belum disapu']), s.ssl.map((x) => ['Sell-side (equal lows)', x.p, x.n + ' swing low sejajar, belum disapu']), s.levels.map((x) => [x.name, x.p, '']), s.sweeps.map((w) => ['Sweep ' + (w.dir > 0 ? 'sell-side' : 'buy-side'), w.level, w.ago + ' lilin lalu'])).sort((a, b) => b[1] - a[1]);
+    document.querySelector('#smc-liq tbody').replaceChildren(...lq.map(([k, v, t]) => row([[k], [usd(v), 'num'], [d(v), 'num ' + C.sgnCls(v - c)], [t]])));
+  }
+  document.querySelectorAll('#smc-seg button').forEach((b) => b.addEventListener('click', () => { SM.tf = b.dataset.tf; renderSMC(); }));
+
+  /* ---------- synthesis of every layer ---------- */
+  function renderSynthesis() {
+    const tb = document.querySelector('#syn-table tbody'); if (!tb) return;
+    const rows = []; const add = (layer, txt, dir, tech) => rows.push({ layer, txt, dir, tech });
+    const tsc = (t) => (/^Naik/.test(t || '') ? 1 : /^Turun/.test(t || '') ? -1 : 0);
+    if (EX.dS) add('Tren multi-timeframe', 'Harian ' + EX.dS.trend.toLowerCase() + (EX.hS ? ', 4 jam ' + EX.hS.trend.toLowerCase() : '') + '; harga ' + (EX.dS.close > EX.dS.sma200 ? 'di atas' : 'di bawah') + ' MA200 harian.', Math.sign(tsc(EX.dS.trend) * 2 + (EX.hS ? tsc(EX.hS.trend) : 0)), true);
+    if (EX.sig) add('Indikator (RSI, MACD, ADX, MA, volume, pola)', 'Skor ' + (EX.sig.score > 0 ? '+' : '') + EX.sig.score + ' dari ' + EX.sig.rows.length + ' indikator.', EX.sig.score >= 2 ? 1 : EX.sig.score <= -2 ? -1 : 0, true);
+    const s4 = SM.get('4h'), s1 = SM.get('1day');
+    if (s4 || s1) { const tr = (x) => (x ? (x.trend > 0 ? 'bullish' : x.trend < 0 ? 'bearish' : 'netral') : '—'); const sc = (s1 ? s1.trend : 0) + (s4 ? s4.trend : 0); add('Smart Money Concept', 'Struktur harian ' + tr(s1) + ', 4 jam ' + tr(s4) + (s4 && s4.pd ? '; harga di area ' + s4.pd.zone + ' range 4 jam.' : '.'), Math.sign(sc), true); }
+    if (EX.fib) { const above = EX.fib.price > EX.fib.levels[4].p; add('Fibonacci 180 hari', 'Harga ' + (above ? 'di atas' : 'di bawah') + ' level 61,8% (' + usd(EX.fib.levels[4].p) + ') dari swing ' + (EX.fib.up ? 'naik' : 'turun') + ' terakhir.', EX.fib.up ? (above ? 1 : -1) : (above ? 1 : -1), true); }
+    if (EX.lv && EX.dS) { const s1v = EX.lv.supports[0], r1v = EX.lv.resistances[0]; const ds = s1v ? dist(EX.dS.close, s1v.hi) : NaN, dr = r1v ? dist(r1v.lo, EX.dS.close) : NaN; add('Support & resistance', 'Support terdekat ' + (s1v ? pct(-ds) : '—') + ', resistance terdekat ' + (r1v ? pct(dr) : '—') + ' dari harga.', isFinite(ds) && isFinite(dr) ? (ds < dr * 0.6 ? 1 : dr < ds * 0.6 ? -1 : 0) : 0, true); }
+    if (PLAN.deriv && isFinite(PLAN.deriv.funding)) { const fr = PLAN.deriv.funding * 100; add('Derivatif', 'Funding ' + pct(fr, 4) + ' per 8 jam' + (isFinite(PLAN.deriv.lsr) ? ', rasio long/short ' + PLAN.deriv.lsr.toFixed(2) : '') + '.', fr > 0.03 ? -1 : fr < -0.01 ? 1 : 0, true); }
+    if (EX.fund) add('Fundamental', EX.fund.verdict + ' (skor ' + (EX.fund.score > 0 ? '+' : '') + EX.fund.score + ').', EX.fund.score >= 3 ? 1 : EX.fund.score <= -2 ? -1 : 0, false); // same cut-offs as the fundamental verdict
+    if (PLAN.risk) add('Risiko', 'Skor ' + PLAN.risk.score + '/10 (' + PLAN.risk.label.toLowerCase() + '), leverage wajar maksimal ' + PLAN.risk.levCap + '×.', 0, false);
+    if (rows.length < 3) return;
+    tb.replaceChildren(...rows.map((r) => { const t = el('tr'); t.append(el('td', 'sym', r.layer), el('td', null, r.txt), el('td', 'num ' + (r.dir > 0 ? 'cd-pos' : r.dir < 0 ? 'cd-neg' : ''), r.dir > 0 ? 'Naik' : r.dir < 0 ? 'Turun' : 'Netral')); return t; }));
+    const T_ = rows.filter((r) => r.tech).reduce((a, r) => a + r.dir, 0), nT = rows.filter((r) => r.tech).length; const F = EX.fund ? EX.fund.score : 0;
+    const chip = document.getElementById('syn-score'); chip.textContent = 'Teknikal ' + (T_ > 0 ? '+' : '') + T_ + ' dari ' + nT + ' · fundamental ' + (F > 0 ? '+' : '') + F; chip.className = 'cd-chip ' + (T_ >= 2 ? 'up' : T_ <= -2 ? 'down' : 'flat');
+    const tb2 = T_ >= 2 ? 1 : T_ <= -2 ? -1 : 0, fb = F >= 3 ? 1 : F <= -2 ? -1 : 0;
+    const M = {
+      '1,1': ['Teknikal dan fundamental selaras naik.', 'Spot: akumulasi bertahap di support atau area discount, bukan mengejar harga. Futures: prioritaskan skenario long di pullback; short hanya untuk scalping dengan target dekat.'],
+      '1,0': ['Teknikal naik, fundamental campuran.', 'Spot: boleh ikut tren dengan porsi sedang dan stop yang jelas. Futures: long di pullback lebih masuk akal daripada short, tapi ambil profit sebagian di TP1.'],
+      '1,-1': ['Teknikal naik, fundamental lemah.', 'Perlakukan sebagai trading jangka pendek: ukuran kecil, ambil profit lebih cepat, jangan dijadikan pegangan jangka panjang.'],
+      '0,1': ['Teknikal belum memberi arah, fundamental kuat.', 'Spot: cicil beli hanya di support kuat atau area discount. Futures: pasar cenderung ranging, jadi main di tepi range dan hindari breakout yang belum terkonfirmasi.'],
+      '0,0': ['Sinyal campuran di semua lapisan.', 'Paling aman menunggu: biarkan harga memilih arah (BOS atau CHoCH di 4 jam/harian) sebelum membuka posisi besar.'],
+      '0,-1': ['Teknikal datar, fundamental lemah.', 'Hindari posisi spot jangka panjang. Kalau trading, gunakan ukuran kecil dan target dekat.'],
+      '-1,1': ['Teknikal turun, fundamental kuat.', 'Spot: tunggu tanda pembalikan (CHoCH bullish di 4 jam atau harian, atau harga kembali di atas MA200) sebelum akumulasi. Futures: short hanya jangka pendek di rally ke resistance atau premium, target dekat.'],
+      '-1,0': ['Teknikal turun, fundamental campuran.', 'Spot: tahan diri dulu. Futures: skenario short di rally ke resistance atau order block bearish lebih selaras dengan arah pasar.'],
+      '-1,-1': ['Teknikal dan fundamental selaras turun.', 'Hindari spot. Futures: prioritaskan short di rally ke premium atau resistance; long hanya untuk pantulan singkat.'],
+    }[tb2 + ',' + fb];
+    const ps = [el('p', null, M[0] + ' ' + M[1])];
+    if (PLAN.risk) ps.push(el('p', null, 'Ukuran posisi: dengan skor risiko ' + PLAN.risk.score + '/10, rugi satu hari terburuk yang realistis (VaR 95%) sekitar ' + pct(PLAN.risk.var95) + '. Di leverage ' + PLAN.risk.levCap + '× itu setara ' + pct(PLAN.risk.var95 * PLAN.risk.levCap) + ' margin, jadi batasi risiko per transaksi 0,5–1% modal.'));
+    document.getElementById('syn-body').replaceChildren(...ps);
+  }
+
   /* ---------- boot ---------- */
   (async () => {
     const m = await resolve();
@@ -501,6 +585,7 @@
     const res = await Promise.allSettled(tfs.map((tf) => C.fetchCandles(P.sym, tf, lim[tf], tf === '1day' ? P.id : undefined)));
     const map = {}; tfs.forEach((tf, i) => { map[tf] = res[i].status === 'fulfilled' ? res[i].value.rows : null; });
     ['1h', '4h', '1day'].forEach((tf) => { PLAN.rows[tf] = map[tf]; PLAN.htfRows[tf] = map[T.HTF[tf]]; });
+    SM.rows = map; SM.cache = {};
     if (!map['4h'] || map['4h'].length < 60) PLAN.tf = map['1day'] && map['1day'].length >= 60 ? '1day' : PLAN.tf;
     const dRows = map['1day'] || [];
     const dS = dRows.length >= 30 ? C.summarize(C.techCalc(dRows)) : null;
@@ -514,13 +599,14 @@
     renderAnalysis(a);
     renderLevels(lv, dS ? dS.close : (d && d.price));
     renderAdvanced(dRows, map['4h'], dS);
+    try { renderSMC(); } catch (e) { console.warn('smc', e); }
     PLAN.deriv = await derivP;
     let btcDaily = null;
     if (P.sym !== 'BTC') { try { btcDaily = (await C.fetchCandles('BTC', '1day', 1000, 'bitcoin')).rows; } catch (e) { /* optional */ } } else btcDaily = dRows;
     PLAN.risk = T.riskProfile(dRows, btcDaily, d ? Object.assign({ symbol: P.sym }, d) : { symbol: P.sym }, PLAN.deriv);
     renderRisk(PLAN.risk, d ? Object.assign({ symbol: P.sym }, d) : { symbol: P.sym }, PLAN.deriv);
     renderPlan();
-    EX.dS = dS; EX.hS = hS; EX.lv = lv; execSummary();
+    EX.dS = dS; EX.hS = hS; EX.lv = lv; execSummary(); renderSynthesis();
     const day = res[1];
     if (day.status === 'fulfilled') document.querySelector('.cd-analysis .cd-card-note').textContent += ' Sumber lilin: ' + day.value.source + (day.value.synthetic ? ' (harga penutupan harian saja)' : '') + '.';
   })();

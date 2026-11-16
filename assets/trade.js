@@ -339,5 +339,11 @@
     return { vol30, vol365, volPct, mdd: mdd * 100, mddFrom: mddPeakT, mddTo: mddT, var95: var95 * 100, var99: var99 * 100, cvar95: cvar95 * 100, worst: worst * 100, best: best * 100, atrPct, beta, corr, score, label, why, levCap, n: r365.length };
   }
 
-  global.CDTrade = { KEYS, META, TFL, HTF, MMR, levelsFrom, build, plan, backtest, stats, derivatives, riskProfile, maxLeverage, liqPrice, rrOf };
+  // Binance Futures trailing stop: activate at TP1, callback about 1.5 ATR of this timeframe.
+  // shortcut: callback capped at 5% because older Binance limits stop there; widen if Binance accepts more.
+  function trailing(su, atr) {
+    const cb = Math.min(5, Math.max(0.1, Math.round((1.5 * atr / su.entry) * 1000) / 10));
+    return { activation: su.tps[0] ? su.tps[0].p : su.entry, callback: cb, beAfterTp1: su.entry };
+  }
+  global.CDTrade = { trailing, KEYS, META, TFL, HTF, MMR, levelsFrom, build, plan, backtest, stats, derivatives, riskProfile, maxLeverage, liqPrice, rrOf };
 })(window);
