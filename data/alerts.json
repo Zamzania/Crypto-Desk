@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-16T21:30:48.939Z",
+ "updated": "2026-11-16T21:50:36.847Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1h|short_breakdown|71.84",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 71.84054014093066,
+   "entryLo": 71.84054014093066,
+   "entryHi": 71.84054014093066,
+   "trigger": 72.03,
+   "sl": 72.78783943627738,
+   "tps": [
+    {
+     "p": 69.93,
+     "rr": 2.016828419819912
+    },
+    {
+     "p": 69.5,
+     "rr": 2.470750429592569
+    },
+    {
+     "p": 67.41,
+     "rr": 4.677022523603824
+    }
+   ],
+   "conf": 61,
+   "smcOk": 3,
+   "trail": {
+    "activation": 69.93,
+    "callback": 2,
+    "beAfterTp1": 71.84054014093066
+   },
+   "lev": 5,
+   "liq": 85.84944546841214,
+   "bt": {
+    "n": 20,
+    "winrate": 45,
+    "expR": 0.33485585679101
+   },
+   "price": 72.06,
+   "at": "2026-11-16T21:50:35.077Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "ETH|1h|short_rally|1840",
+   "sym": "ETH",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 1839.795,
+   "entryLo": 1834.41,
+   "entryHi": 1845.18,
+   "trigger": null,
+   "sl": 1888.2879615702611,
+   "tps": [
+    {
+     "p": 1794.43,
+     "rr": 0.9354965861235559
+    },
+    {
+     "p": 1773.13,
+     "rr": 1.3747355872131997
+    },
+    {
+     "p": 1711.08,
+     "rr": 2.6543027241903143
+    }
+   ],
+   "conf": 78,
+   "smcOk": 1,
+   "trail": {
+    "activation": 1794.43,
+    "callback": 1.7,
+    "beAfterTp1": 1839.795
+   },
+   "lev": 5,
+   "liq": 2198.555025,
+   "bt": {
+    "n": 20,
+    "winrate": 55.00000000000001,
+    "expR": 0.3049478294653557
+   },
+   "price": 1831.51,
+   "at": "2026-11-16T21:50:32.480Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
   {
    "key": "SOL|1h|short_rally|72.15",
    "sym": "SOL",
