@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T22:45:35.203Z",
+ "updated": "2026-11-17T22:50:30.952Z",
  "minConf": 60,
  "active": [
   {
@@ -91,51 +91,6 @@
    "at": "2026-11-17T21:30:34.934Z",
    "stage": "open",
    "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
-  },
-  {
-   "key": "BTC|4h|short_breakdown|63660",
-   "sym": "BTC",
-   "tf": "4h",
-   "setup": "short_breakdown",
-   "name": "Short saat breakdown",
-   "side": -1,
-   "entry": 63664.90450878578,
-   "entryLo": 63664.90450878578,
-   "entryHi": 63664.90450878578,
-   "trigger": 63905.01,
-   "sl": 64865.43196485688,
-   "tps": [
-    {
-     "p": 62535.24,
-     "rr": 0.9409734888386285
-    },
-    {
-     "p": 62006,
-     "rr": 1.381813052585062
-    },
-    {
-     "p": 59130.91,
-     "rr": 3.7766687349441748
-    }
-   ],
-   "conf": 64,
-   "smcOk": 1,
-   "trail": {
-    "activation": 62535.24,
-    "callback": 2.8,
-    "beAfterTp1": 63664.90450878578
-   },
-   "lev": 8,
-   "liq": 71304.69304984008,
-   "bt": {
-    "n": 10,
-    "winrate": 60,
-    "expR": 0.28865280254249337
-   },
-   "price": 64311.55,
-   "at": "2026-11-17T21:20:28.180Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
   },
   {
    "key": "SOL|4h|short_breakdown|72.54",
@@ -1171,6 +1126,52 @@
   }
  ],
  "history": [
+  {
+   "key": "BTC|4h|short_breakdown|63660",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 63664.90450878578,
+   "entryLo": 63664.90450878578,
+   "entryHi": 63664.90450878578,
+   "trigger": 63905.01,
+   "sl": 64865.43196485688,
+   "tps": [
+    {
+     "p": 62535.24,
+     "rr": 0.9409734888386285
+    },
+    {
+     "p": 62006,
+     "rr": 1.381813052585062
+    },
+    {
+     "p": 59130.91,
+     "rr": 3.7766687349441748
+    }
+   ],
+   "conf": 64,
+   "smcOk": 1,
+   "trail": {
+    "activation": 62535.24,
+    "callback": 2.8,
+    "beAfterTp1": 63664.90450878578
+   },
+   "lev": 8,
+   "liq": 71304.69304984008,
+   "bt": {
+    "n": 10,
+    "winrate": 60,
+    "expR": 0.28865280254249337
+   },
+   "price": 64311.55,
+   "at": "2026-11-17T21:20:28.180Z",
+   "stage": "sl",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC",
+   "stageAt": "2026-11-17T22:50:26.013Z"
+  },
   {
    "key": "BTC|4h|short_breakdown|63670",
    "sym": "BTC",
