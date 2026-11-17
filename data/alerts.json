@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T09:05:30.606Z",
+ "updated": "2026-11-17T09:20:34.478Z",
  "minConf": 60,
  "active": [
   {
@@ -495,8 +495,9 @@
    },
    "price": 594.44,
    "at": "2026-11-17T03:30:42.286Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB",
+   "stageAt": "2026-11-17T09:20:33.332Z"
   },
   {
    "key": "XRP|1h|short_breakdown|0.9627",
