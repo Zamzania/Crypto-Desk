@@ -1,7 +1,48 @@
 {
- "updated": "2026-11-17T16:00:47.058Z",
+ "updated": "2026-11-17T16:10:35.746Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "ETH|4h|short_breakdown|1778",
+   "sym": "ETH",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 1778.2669112399042,
+   "entryLo": 1778.2669112399042,
+   "entryHi": 1778.2669112399042,
+   "trigger": 1787.11,
+   "sl": 1822.4823550403823,
+   "tps": [
+    {
+     "p": 1713.44,
+     "rr": 1.466159913093602
+    },
+    {
+     "p": 1512,
+     "rr": 6.022034120960799
+    }
+   ],
+   "conf": 74,
+   "smcOk": 2,
+   "trail": {
+    "activation": 1713.44,
+    "callback": 3.7,
+    "beAfterTp1": 1778.2669112399042
+   },
+   "lev": 5,
+   "liq": 2125.028958931686,
+   "bt": {
+    "n": 12,
+    "winrate": 25,
+    "expR": -0.26891908106918677
+   },
+   "price": 1789.52,
+   "at": "2026-11-17T16:10:31.786Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
   {
    "key": "ETH|4h|short_rally|1793",
    "sym": "ETH",
