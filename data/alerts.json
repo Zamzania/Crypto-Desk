@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-17T05:25:29.620Z",
+ "updated": "2026-11-17T06:00:42.577Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|1h|short_rally|0.966",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.9659868079974419,
+   "entryLo": 0.9648,
+   "entryHi": 0.9671736159948837,
+   "trigger": null,
+   "sl": 0.9847472319897673,
+   "tps": [
+    {
+     "p": 0.9452,
+     "rr": 1.1080137637585004
+    },
+    {
+     "p": 0.893,
+     "rr": 3.8904668693681628
+    },
+    {
+     "p": 0.89094511202814,
+     "rr": 4
+    }
+   ],
+   "conf": 73,
+   "smcOk": 2,
+   "trail": {
+    "activation": 0.9452,
+    "callback": 1.5,
+    "beAfterTp1": 0.9659868079974419
+   },
+   "lev": 5,
+   "liq": 1.1543542355569432,
+   "bt": {
+    "n": 22,
+    "winrate": 54.54545454545454,
+    "expR": 0.29095162050316764
+   },
+   "price": 0.9633,
+   "at": "2026-11-17T06:00:40.302Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "BTC|1h|short_rally|65100",
+   "sym": "BTC",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 65100,
+   "entryLo": 65000,
+   "entryHi": 65200,
+   "trigger": null,
+   "sl": 66034.54377975674,
+   "tps": [
+    {
+     "p": 63905.01,
+     "rr": 1.2786880891883394
+    },
+    {
+     "p": 62006,
+     "rr": 3.310706322185733
+    },
+    {
+     "p": 61361.82488097303,
+     "rr": 4
+    }
+   ],
+   "conf": 88,
+   "smcOk": 4,
+   "trail": {
+    "activation": 63905.01,
+    "callback": 1.1,
+    "beAfterTp1": 65100
+   },
+   "lev": 8,
+   "liq": 72912,
+   "bt": {
+    "n": 15,
+    "winrate": 40,
+    "expR": 0.04586430101185712
+   },
+   "price": 64824,
+   "at": "2026-11-17T06:00:38.200Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "ETH|4h|short_rally|1851",
    "sym": "ETH",
