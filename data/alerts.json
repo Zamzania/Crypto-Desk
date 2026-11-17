@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-17T21:20:34.723Z",
+ "updated": "2026-11-17T21:30:38.623Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|4h|short_breakdown|72.53",
+   "sym": "SOL",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 72.53140330851244,
+   "entryLo": 72.53140330851244,
+   "entryHi": 72.53140330851244,
+   "trigger": 72.92,
+   "sl": 74.73723759307839,
+   "tps": [
+    {
+     "p": 69.93,
+     "rr": 1.17932853193653
+    },
+    {
+     "p": 67.41,
+     "rr": 2.3217534265137205
+    },
+    {
+     "p": 65.91390045481458,
+     "rr": 3
+    }
+   ],
+   "conf": 65,
+   "smcOk": 2,
+   "trail": {
+    "activation": 69.93,
+    "callback": 4,
+    "beAfterTp1": 72.53140330851244
+   },
+   "lev": 5,
+   "liq": 86.67502695367237,
+   "bt": {
+    "n": 14,
+    "winrate": 64.28571428571429,
+    "expR": 0.5449544199549037
+   },
+   "price": 74.04,
+   "at": "2026-11-17T21:30:37.408Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "ETH|1h|short_breakdown|1799",
+   "sym": "ETH",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 1799.4007878478412,
+   "entryLo": 1799.4007878478412,
+   "entryHi": 1799.4007878478412,
+   "trigger": 1803.63,
+   "sl": 1827.1495455705958,
+   "tps": [
+    {
+     "p": 1773.13,
+     "rr": 0.9467374399358606
+    },
+    {
+     "p": 1751.39,
+     "rr": 1.73019593624803
+    },
+    {
+     "p": 1711.08,
+     "rr": 3.182873580514068
+    }
+   ],
+   "conf": 67,
+   "smcOk": 3,
+   "trail": {
+    "activation": 1773.13,
+    "callback": 1.8,
+    "beAfterTp1": 1799.4007878478412
+   },
+   "lev": 5,
+   "liq": 2150.28394147817,
+   "bt": {
+    "n": 20,
+    "winrate": 45,
+    "expR": 0.018898313495574248
+   },
+   "price": 1817.34,
+   "at": "2026-11-17T21:30:34.934Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
   {
    "key": "BTC|4h|short_breakdown|63660",
    "sym": "BTC",
