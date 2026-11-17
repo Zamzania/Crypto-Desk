@@ -1,51 +1,51 @@
 {
- "updated": "2026-11-17T15:55:31.640Z",
+ "updated": "2026-11-17T16:00:47.058Z",
  "minConf": 60,
  "active": [
   {
-   "key": "BNB|1h|short_rally|586.3",
-   "sym": "BNB",
-   "tf": "1h",
+   "key": "ETH|4h|short_rally|1793",
+   "sym": "ETH",
+   "tf": "4h",
    "setup": "short_rally",
    "name": "Short di area resistance",
    "side": -1,
-   "entry": 586.27,
-   "entryLo": 583.17,
-   "entryHi": 589.37,
+   "entry": 1792.5375554750597,
+   "entryLo": 1787.11,
+   "entryHi": 1797.9651109501194,
    "trigger": null,
-   "sl": 592.7321324222943,
+   "sl": 1866.890221900239,
    "tps": [
     {
-     "p": 566,
-     "rr": 3.136735472963793
+     "p": 1713.44,
+     "rr": 1.063815990441377
     },
     {
-     "p": 560.4,
-     "rr": 4.003322480788032
+     "p": 1512,
+     "rr": 3.773066508076917
     },
     {
-     "p": 540.6,
-     "rr": 7.067326544166573
+     "p": 1495.1268897743419,
+     "rr": 4
     }
    ],
-   "conf": 80,
-   "smcOk": 2,
+   "conf": 68,
+   "smcOk": 3,
    "trail": {
-    "activation": 566,
-    "callback": 1.1,
-    "beAfterTp1": 586.27
+    "activation": 1713.44,
+    "callback": 3.6,
+    "beAfterTp1": 1792.5375554750597
    },
-   "lev": 7,
-   "liq": 667.0915071428572,
+   "lev": 5,
+   "liq": 2142.0823787926965,
    "bt": {
-    "n": 14,
-    "winrate": 28.57142857142857,
-    "expR": -0.39470031501637853
+    "n": 10,
+    "winrate": 60,
+    "expR": 0.4259499948722504
    },
-   "price": 582.11,
-   "at": "2026-11-17T15:55:31.180Z",
+   "price": 1786.51,
+   "at": "2026-11-17T16:00:43.067Z",
    "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
   },
   {
    "key": "BTC|4h|short_rally|64060",
@@ -729,6 +729,52 @@
   }
  ],
  "history": [
+  {
+   "key": "BNB|1h|short_rally|586.3",
+   "sym": "BNB",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 586.27,
+   "entryLo": 583.17,
+   "entryHi": 589.37,
+   "trigger": null,
+   "sl": 592.7321324222943,
+   "tps": [
+    {
+     "p": 566,
+     "rr": 3.136735472963793
+    },
+    {
+     "p": 560.4,
+     "rr": 4.003322480788032
+    },
+    {
+     "p": 540.6,
+     "rr": 7.067326544166573
+    }
+   ],
+   "conf": 80,
+   "smcOk": 2,
+   "trail": {
+    "activation": 566,
+    "callback": 1.1,
+    "beAfterTp1": 586.27
+   },
+   "lev": 7,
+   "liq": 667.0915071428572,
+   "bt": {
+    "n": 14,
+    "winrate": 28.57142857142857,
+    "expR": -0.39470031501637853
+   },
+   "price": 582.11,
+   "at": "2026-11-17T15:55:31.180Z",
+   "stage": "sl",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB",
+   "stageAt": "2026-11-17T16:00:46.044Z"
+  },
   {
    "key": "ETH|1h|short_rally|1776",
    "sym": "ETH",
