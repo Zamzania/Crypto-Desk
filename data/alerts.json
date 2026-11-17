@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-17T07:10:31.242Z",
+ "updated": "2026-11-17T08:00:43.848Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|4h|short_rally|73.15",
+   "sym": "SOL",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 73.15068483199872,
+   "entryLo": 72.92,
+   "entryHi": 73.38136966399743,
+   "trigger": null,
+   "sl": 74.76547865598974,
+   "tps": [
+    {
+     "p": 70.58,
+     "rr": 1.591958548395471
+    },
+    {
+     "p": 69.93,
+     "rr": 1.9944867166005567
+    },
+    {
+     "p": 67.92,
+     "rr": 3.2392276675116873
+    }
+   ],
+   "conf": 66,
+   "smcOk": 2,
+   "trail": {
+    "activation": 70.58,
+    "callback": 3.8,
+    "beAfterTp1": 73.15068483199872
+   },
+   "lev": 5,
+   "liq": 87.41506837423847,
+   "bt": {
+    "n": 17,
+    "winrate": 41.17647058823529,
+    "expR": 0.031591270985094455
+   },
+   "price": 72.9,
+   "at": "2026-11-17T08:00:42.234Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "SOL|1h|short_rally|73.11",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 73.11,
+   "entryLo": 72.92,
+   "entryHi": 73.3,
+   "trigger": null,
+   "sl": 73.84968352925979,
+   "tps": [
+    {
+     "p": 72.27,
+     "rr": 1.1356207983170832
+    },
+    {
+     "p": 71.17,
+     "rr": 2.622743272303726
+    },
+    {
+     "p": 69.93,
+     "rr": 4.299135879343216
+    }
+   ],
+   "conf": 90,
+   "smcOk": 2,
+   "trail": {
+    "activation": 72.27,
+    "callback": 1.5,
+    "beAfterTp1": 73.11
+   },
+   "lev": 5,
+   "liq": 87.36645,
+   "bt": {
+    "n": 31,
+    "winrate": 54.83870967741935,
+    "expR": 0.331135567733578
+   },
+   "price": 72.9,
+   "at": "2026-11-17T08:00:41.676Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "XRP|1h|short_rally|0.9667",
    "sym": "XRP",
