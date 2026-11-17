@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-17T20:00:49.398Z",
+ "updated": "2026-11-17T20:20:34.137Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BTC|4h|short_breakdown|63670",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 63670.01393735721,
+   "entryLo": 63670.01393735721,
+   "entryHi": 63670.01393735721,
+   "trigger": 63905.01,
+   "sl": 64844.994250571166,
+   "tps": [
+    {
+     "p": 62535.24,
+     "rr": 0.9657812344559477
+    },
+    {
+     "p": 62006,
+     "rr": 1.416205802466243
+    },
+    {
+     "p": 59130.91,
+     "rr": 3.8631319063902154
+    }
+   ],
+   "conf": 64,
+   "smcOk": 1,
+   "trail": {
+    "activation": 62535.24,
+    "callback": 2.8,
+    "beAfterTp1": 63670.01393735721
+   },
+   "lev": 8,
+   "liq": 71310.41560984009,
+   "bt": {
+    "n": 10,
+    "winrate": 60,
+    "expR": 0.3183518173782677
+   },
+   "price": 63936.91,
+   "at": "2026-11-17T20:20:28.898Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "BTC|4h|short_rally|64050",
    "sym": "BTC",
