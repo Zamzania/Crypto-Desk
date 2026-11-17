@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T10:15:36.614Z",
+ "updated": "2026-11-17T10:25:33.774Z",
  "minConf": 60,
  "active": [
   {
@@ -360,8 +360,9 @@
    },
    "price": 1840.79,
    "at": "2026-11-17T05:25:25.438Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH",
+   "stageAt": "2026-11-17T10:25:29.611Z"
   },
   {
    "key": "SOL|4h|short_rally|73.16",
@@ -762,8 +763,9 @@
    },
    "price": 1831.51,
    "at": "2026-11-16T21:50:32.480Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH",
+   "stageAt": "2026-11-17T10:25:29.636Z"
   },
   {
    "key": "SOL|1h|short_rally|72.15",
