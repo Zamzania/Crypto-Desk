@@ -1,7 +1,93 @@
 {
- "updated": "2026-11-17T03:20:37.350Z",
+ "updated": "2026-11-17T03:30:42.872Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|1h|short_rally|597.6",
+   "sym": "BNB",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 597.585,
+   "entryLo": 595.45,
+   "entryHi": 599.72,
+   "trigger": null,
+   "sl": 602.8991178491008,
+   "tps": [
+    {
+     "p": 589.37,
+     "rr": 1.5458821639400004
+    },
+    {
+     "p": 566,
+     "rr": 5.943601722220911
+    },
+    {
+     "p": 565.7002929053956,
+     "rr": 6
+    }
+   ],
+   "conf": 78,
+   "smcOk": 3,
+   "trail": {
+    "activation": 589.37,
+    "callback": 1.1,
+    "beAfterTp1": 597.585
+   },
+   "lev": 8,
+   "liq": 669.2952000000001,
+   "bt": {
+    "n": 14,
+    "winrate": 35.714285714285715,
+    "expR": -0.1912527644240169
+   },
+   "price": 594.44,
+   "at": "2026-11-17T03:30:42.286Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
+  {
+   "key": "XRP|1h|short_breakdown|0.9627",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 0.9626920831768138,
+   "entryLo": 0.9626920831768138,
+   "entryHi": 0.9626920831768138,
+   "trigger": 0.9648,
+   "sl": 0.9732316672927448,
+   "tps": [
+    {
+     "p": 0.9452,
+     "rr": 1.6596559204241927
+    },
+    {
+     "p": 0.893,
+     "rr": 6.612413014615176
+    }
+   ],
+   "conf": 61,
+   "smcOk": 1,
+   "trail": {
+    "activation": 0.9452,
+    "callback": 1.6,
+    "beAfterTp1": 0.9626920831768138
+   },
+   "lev": 5,
+   "liq": 1.1504170393962925,
+   "bt": {
+    "n": 21,
+    "winrate": 38.095238095238095,
+    "expR": 0.0982287460628996
+   },
+   "price": 0.9653,
+   "at": "2026-11-17T03:30:39.766Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "SOL|1h|short_breakdown|71.86",
    "sym": "SOL",
