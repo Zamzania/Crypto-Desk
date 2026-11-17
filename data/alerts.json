@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-17T11:35:30.107Z",
+ "updated": "2026-11-17T11:40:35.210Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1h|short_breakdown|72.75",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 72.75440957939072,
+   "entryLo": 72.75440957939072,
+   "entryHi": 72.75440957939072,
+   "trigger": 72.92,
+   "sl": 73.9209640772848,
+   "tps": [
+    {
+     "p": 71.17,
+     "rr": 1.3581959370530825
+    },
+    {
+     "p": 69.93,
+     "rr": 2.421155277776996
+    },
+    {
+     "p": 69.5,
+     "rr": 2.789762145931263
+    }
+   ],
+   "conf": 81,
+   "smcOk": 2,
+   "trail": {
+    "activation": 71.17,
+    "callback": 1.7,
+    "beAfterTp1": 72.75440957939072
+   },
+   "lev": 5,
+   "liq": 86.94151944737192,
+   "bt": {
+    "n": 19,
+    "winrate": 47.368421052631575,
+    "expR": 0.3793507805413579
+   },
+   "price": 73.43,
+   "at": "2026-11-17T11:40:32.912Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "XRP|1h|short_breakdown|0.9629",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 0.9628829206155347,
+   "entryLo": 0.9628829206155347,
+   "entryHi": 0.9628829206155347,
+   "trigger": 0.9648,
+   "sl": 0.975689047691745,
+   "tps": [
+    {
+     "p": 0.9452,
+     "rr": 1.3808172065060853
+    },
+    {
+     "p": 0.893,
+     "rr": 5.45699103246873
+    },
+    {
+     "p": 0.8860461581582728,
+     "rr": 6
+    }
+   ],
+   "conf": 66,
+   "smcOk": 1,
+   "trail": {
+    "activation": 0.9452,
+    "callback": 1.5,
+    "beAfterTp1": 0.9628829206155347
+   },
+   "lev": 5,
+   "liq": 1.150645090135564,
+   "bt": {
+    "n": 21,
+    "winrate": 33.33333333333333,
+    "expR": 0.04867236712163002
+   },
+   "price": 0.9686,
+   "at": "2026-11-17T11:40:31.357Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "SOL|1h|short_breakdown|72.76",
    "sym": "SOL",
