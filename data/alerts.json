@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-18T05:35:26.869Z",
+ "updated": "2026-11-18T07:00:45.741Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1h|short_rally|74.95",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 74.95387334673454,
+   "entryLo": 74.85,
+   "entryHi": 75.05774669346908,
+   "trigger": null,
+   "sl": 76.63549338693818,
+   "tps": [
+    {
+     "p": 73.3,
+     "rr": 0.9835000221181132
+    },
+    {
+     "p": 72.27,
+     "rr": 1.5960046161257289
+    },
+    {
+     "p": 71.17,
+     "rr": 2.2501357359396836
+    }
+   ],
+   "conf": 76,
+   "smcOk": 2,
+   "trail": {
+    "activation": 73.3,
+    "callback": 1.7,
+    "beAfterTp1": 74.95387334673454
+   },
+   "lev": 5,
+   "liq": 89.56987864934779,
+   "bt": {
+    "n": 30,
+    "winrate": 53.333333333333336,
+    "expR": 0.2791684165553495
+   },
+   "price": 74.7,
+   "at": "2026-11-18T07:00:43.450Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "XRP|1day|short_breakdown|0.9749",
    "sym": "XRP",
