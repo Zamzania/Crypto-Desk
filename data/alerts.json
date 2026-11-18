@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-18T07:05:35.439Z",
+ "updated": "2026-11-18T07:10:35.050Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|1day|short_breakdown|0.9748",
+   "sym": "XRP",
+   "tf": "1day",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 0.9748499754981566,
+   "entryLo": 0.9748499754981566,
+   "entryHi": 0.9748499754981566,
+   "trigger": 0.9862,
+   "sl": 1.0316000980073738,
+   "tps": [
+    {
+     "p": 0.893,
+     "rr": 1.442287203606698
+    },
+    {
+     "p": 0.861349730479722,
+     "rr": 2
+    },
+    {
+     "p": 0.8045996079705047,
+     "rr": 3
+    }
+   ],
+   "conf": 62,
+   "smcOk": 1,
+   "trail": {
+    "activation": 0.893,
+    "callback": 5,
+    "beAfterTp1": 0.9748499754981566
+   },
+   "lev": 5,
+   "liq": 1.1649457207202971,
+   "bt": {
+    "n": 23,
+    "winrate": 39.130434782608695,
+    "expR": 0.1967235623865501
+   },
+   "price": 0.9911,
+   "at": "2026-11-18T07:10:32.380Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "XRP|1h|short_rally|0.995",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.99505,
+   "entryLo": 0.9918,
+   "entryHi": 0.9983,
+   "trigger": null,
+   "sl": 1.013626627516399,
+   "tps": [
+    {
+     "p": 0.98,
+     "rr": 0.8101578172202806
+    },
+    {
+     "p": 0.9702,
+     "rr": 1.337702442386976
+    },
+    {
+     "p": 0.9557,
+     "rr": 2.1182531632968784
+    }
+   ],
+   "conf": 71,
+   "smcOk": 3,
+   "trail": {
+    "activation": 0.98,
+    "callback": 1.4,
+    "beAfterTp1": 0.99505
+   },
+   "lev": 5,
+   "liq": 1.1890847500000001,
+   "bt": {
+    "n": 23,
+    "winrate": 47.82608695652174,
+    "expR": 0.07100373212771993
+   },
+   "price": 0.9911,
+   "at": "2026-11-18T07:10:31.434Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "SOL|1h|short_breakdown|74.68",
    "sym": "SOL",
