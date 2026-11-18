@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-18T04:20:36.420Z",
+ "updated": "2026-11-18T05:15:34.359Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|1h|short_rally|0.9855",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.985484247242709,
+   "entryLo": 0.9843,
+   "entryHi": 0.9866684944854182,
+   "trigger": null,
+   "sl": 1.0030369889708364,
+   "tps": [
+    {
+     "p": 0.9702,
+     "rr": 0.8707612451345319
+    },
+    {
+     "p": 0.9557,
+     "rr": 1.6968430176911489
+    },
+    {
+     "p": 0.9456,
+     "rr": 2.27225170064438
+    }
+   ],
+   "conf": 69,
+   "smcOk": 3,
+   "trail": {
+    "activation": 0.9702,
+    "callback": 1.4,
+    "beAfterTp1": 0.985484247242709
+   },
+   "lev": 5,
+   "liq": 1.1776536754550373,
+   "bt": {
+    "n": 23,
+    "winrate": 47.82608695652174,
+    "expR": 0.09612877648180108
+   },
+   "price": 0.9824,
+   "at": "2026-11-18T05:15:30.718Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "ETH|1h|short_rally|1813",
+   "sym": "ETH",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 1812.9735964326374,
+   "entryLo": 1810.73,
+   "entryHi": 1815.2171928652747,
+   "trigger": null,
+   "sl": 1854.1543857305494,
+   "tps": [
+    {
+     "p": 1773.13,
+     "rr": 0.9675287218124642
+    },
+    {
+     "p": 1751.39,
+     "rr": 1.4954447809906275
+    },
+    {
+     "p": 1711.08,
+     "rr": 2.474299258703224
+    }
+   ],
+   "conf": 78,
+   "smcOk": 3,
+   "trail": {
+    "activation": 1773.13,
+    "callback": 1.5,
+    "beAfterTp1": 1812.9735964326374
+   },
+   "lev": 6,
+   "liq": 2106.070994522581,
+   "bt": {
+    "n": 21,
+    "winrate": 47.61904761904761,
+    "expR": 0.168182033066061
+   },
+   "price": 1808.58,
+   "at": "2026-11-18T05:15:28.969Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
   {
    "key": "SOL|1h|short_breakdown|74.67",
    "sym": "SOL",
