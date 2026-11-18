@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-18T17:35:31.194Z",
+ "updated": "2026-11-18T17:40:36.607Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|1h|short_breakdown|579.9",
+   "sym": "BNB",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 579.9330461912564,
+   "entryLo": 579.9330461912564,
+   "entryHi": 579.9330461912564,
+   "trigger": 580.78,
+   "sl": 586.9860767827882,
+   "tps": [
+    {
+     "p": 566,
+     "rr": 1.9754694114023725
+    },
+    {
+     "p": 560.4,
+     "rr": 2.769454341330735
+    },
+    {
+     "p": 540.6,
+     "rr": 5.576758200720283
+    }
+   ],
+   "conf": 84,
+   "smcOk": 2,
+   "trail": {
+    "activation": 566,
+    "callback": 1.1,
+    "beAfterTp1": 579.9330461912564
+   },
+   "lev": 7,
+   "liq": 659.8809589876224,
+   "bt": {
+    "n": 10,
+    "winrate": 60,
+    "expR": 0.528095290095253
+   },
+   "price": 585.07,
+   "at": "2026-11-18T17:40:35.825Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
+  {
+   "key": "SOL|1h|short_breakdown|72.73",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 72.73426671258113,
+   "entryLo": 72.73426671258113,
+   "entryHi": 72.73426671258113,
+   "trigger": 72.92,
+   "sl": 73.99649982782074,
+   "tps": [
+    {
+     "p": 71.17,
+     "rr": 1.2392851159543417
+    },
+    {
+     "p": 69.93,
+     "rr": 2.2216710041304775
+    },
+    {
+     "p": 69.5,
+     "rr": 2.5623370782560797
+    }
+   ],
+   "conf": 85,
+   "smcOk": 1,
+   "trail": {
+    "activation": 71.17,
+    "callback": 1.9,
+    "beAfterTp1": 72.73426671258113
+   },
+   "lev": 5,
+   "liq": 86.91744872153446,
+   "bt": {
+    "n": 21,
+    "winrate": 42.857142857142854,
+    "expR": 0.31701085588673
+   },
+   "price": 73.82,
+   "at": "2026-11-18T17:40:34.344Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "ETH|4h|short_breakdown|1771",
    "sym": "ETH",
@@ -130,8 +220,9 @@
    },
    "price": 1784.36,
    "at": "2026-11-18T17:35:25.793Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH",
+   "stageAt": "2026-11-18T17:40:30.900Z"
   },
   {
    "key": "XRP|1h|short_rally|0.9858",
