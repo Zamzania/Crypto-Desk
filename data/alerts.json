@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T14:00:50.120Z",
+ "updated": "2026-11-19T14:35:29.032Z",
  "minConf": 60,
  "active": [
   {
@@ -228,52 +228,6 @@
    "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
   },
   {
-   "key": "SOL|1h|short_rally|75.31",
-   "sym": "SOL",
-   "tf": "1h",
-   "setup": "short_rally",
-   "name": "Short di area resistance",
-   "side": -1,
-   "entry": 75.315,
-   "entryLo": 74.85,
-   "entryHi": 75.78,
-   "trigger": null,
-   "sl": 76.32176441178487,
-   "tps": [
-    {
-     "p": 74.34,
-     "rr": 0.9684490120895685
-    },
-    {
-     "p": 73.3,
-     "rr": 2.001461291651787
-    },
-    {
-     "p": 72.32,
-     "rr": 2.974876708931568
-    }
-   ],
-   "conf": 93,
-   "smcOk": 3,
-   "trail": {
-    "activation": 74.34,
-    "callback": 1.4,
-    "beAfterTp1": 75.315
-   },
-   "lev": 5,
-   "liq": 90.001425,
-   "bt": {
-    "n": 32,
-    "winrate": 50,
-    "expR": 0.17791585450879854
-   },
-   "price": 74.75,
-   "at": "2026-11-19T10:05:28.969Z",
-   "stage": "tp1",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
-   "stageAt": "2026-11-19T12:30:39.914Z"
-  },
-  {
    "key": "XRP|4h|short_breakdown|0.9724",
    "sym": "XRP",
    "tf": "4h",
@@ -315,51 +269,6 @@
    },
    "price": 0.9827,
    "at": "2026-11-19T06:35:25.950Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
-  },
-  {
-   "key": "XRP|4h|short_breakdown|0.9725",
-   "sym": "XRP",
-   "tf": "4h",
-   "setup": "short_breakdown",
-   "name": "Short saat breakdown",
-   "side": -1,
-   "entry": 0.9724703077980826,
-   "entryLo": 0.9724703077980826,
-   "entryHi": 0.9724703077980826,
-   "trigger": 0.9769,
-   "sl": 0.9960113457571901,
-   "tps": [
-    {
-     "p": 0.9456,
-     "rr": 1.1414240886386735
-    },
-    {
-     "p": 0.893,
-     "rr": 3.3758200439644384
-    },
-    {
-     "p": 0.8783061559616528,
-     "rr": 4
-    }
-   ],
-   "conf": 76,
-   "smcOk": 1,
-   "trail": {
-    "activation": 0.9456,
-    "callback": 3.4,
-    "beAfterTp1": 0.9724703077980826
-   },
-   "lev": 5,
-   "liq": 1.1621020178187087,
-   "bt": {
-    "n": 16,
-    "winrate": 50,
-    "expR": 0.3526428826369753
-   },
-   "price": 0.9796,
-   "at": "2026-11-19T06:30:37.812Z",
    "stage": "open",
    "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
   },
@@ -1763,6 +1672,98 @@
   }
  ],
  "history": [
+  {
+   "key": "SOL|1h|short_rally|75.31",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 75.315,
+   "entryLo": 74.85,
+   "entryHi": 75.78,
+   "trigger": null,
+   "sl": 76.32176441178487,
+   "tps": [
+    {
+     "p": 74.34,
+     "rr": 0.9684490120895685
+    },
+    {
+     "p": 73.3,
+     "rr": 2.001461291651787
+    },
+    {
+     "p": 72.32,
+     "rr": 2.974876708931568
+    }
+   ],
+   "conf": 93,
+   "smcOk": 3,
+   "trail": {
+    "activation": 74.34,
+    "callback": 1.4,
+    "beAfterTp1": 75.315
+   },
+   "lev": 5,
+   "liq": 90.001425,
+   "bt": {
+    "n": 32,
+    "winrate": 50,
+    "expR": 0.17791585450879854
+   },
+   "price": 74.75,
+   "at": "2026-11-19T10:05:28.969Z",
+   "stage": "be",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-19T14:35:26.686Z"
+  },
+  {
+   "key": "XRP|4h|short_breakdown|0.9725",
+   "sym": "XRP",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 0.9724703077980826,
+   "entryLo": 0.9724703077980826,
+   "entryHi": 0.9724703077980826,
+   "trigger": 0.9769,
+   "sl": 0.9960113457571901,
+   "tps": [
+    {
+     "p": 0.9456,
+     "rr": 1.1414240886386735
+    },
+    {
+     "p": 0.893,
+     "rr": 3.3758200439644384
+    },
+    {
+     "p": 0.8783061559616528,
+     "rr": 4
+    }
+   ],
+   "conf": 76,
+   "smcOk": 1,
+   "trail": {
+    "activation": 0.9456,
+    "callback": 3.4,
+    "beAfterTp1": 0.9724703077980826
+   },
+   "lev": 5,
+   "liq": 1.1621020178187087,
+   "bt": {
+    "n": 16,
+    "winrate": 50,
+    "expR": 0.3526428826369753
+   },
+   "price": 0.9796,
+   "at": "2026-11-19T06:30:37.812Z",
+   "stage": "sl",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP",
+   "stageAt": "2026-11-19T14:35:25.404Z"
+  },
   {
    "key": "ETH|4h|short_breakdown|1771",
    "sym": "ETH",
@@ -4402,98 +4403,6 @@
    "stage": "be",
    "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB",
    "stageAt": "2026-11-17T23:10:32.812Z"
-  },
-  {
-   "key": "SOL|4h|short_rally|73.17",
-   "sym": "SOL",
-   "tf": "4h",
-   "setup": "short_rally",
-   "name": "Short di area resistance",
-   "side": -1,
-   "entry": 73.17434084066124,
-   "entryLo": 72.92,
-   "entryHi": 73.42868168132247,
-   "trigger": null,
-   "sl": 74.95472672528987,
-   "tps": [
-    {
-     "p": 70.58,
-     "rr": 1.4571789537650712
-    },
-    {
-     "p": 69.93,
-     "rr": 1.8222683456839333
-    },
-    {
-     "p": 67.92,
-     "rr": 2.951237080694586
-    }
-   ],
-   "conf": 66,
-   "smcOk": 2,
-   "trail": {
-    "activation": 70.58,
-    "callback": 4.2,
-    "beAfterTp1": 73.17434084066124
-   },
-   "lev": 5,
-   "liq": 87.44333730459019,
-   "bt": {
-    "n": 16,
-    "winrate": 43.75,
-    "expR": 0.026499271991000384
-   },
-   "price": 72.74,
-   "at": "2026-11-17T03:35:27.263Z",
-   "stage": "sl",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
-   "stageAt": "2026-11-17T23:10:31.726Z"
-  },
-  {
-   "key": "SOL|4h|short_rally|73.16",
-   "sym": "SOL",
-   "tf": "4h",
-   "setup": "short_rally",
-   "name": "Short di area resistance",
-   "side": -1,
-   "entry": 73.15702185204258,
-   "entryLo": 72.92,
-   "entryHi": 73.39404370408515,
-   "trigger": null,
-   "sl": 74.81617481634059,
-   "tps": [
-    {
-     "p": 70.58,
-     "rr": 1.5532153499378576
-    },
-    {
-     "p": 69.93,
-     "rr": 1.944981518571384
-    },
-    {
-     "p": 67.92,
-     "rr": 3.1564430554227685
-    }
-   ],
-   "conf": 66,
-   "smcOk": 2,
-   "trail": {
-    "activation": 70.58,
-    "callback": 3.9,
-    "beAfterTp1": 73.15702185204258
-   },
-   "lev": 5,
-   "liq": 87.42264111319088,
-   "bt": {
-    "n": 16,
-    "winrate": 43.75,
-    "expR": 0.02649927199074903
-   },
-   "price": 72.84,
-   "at": "2026-11-17T04:00:45.384Z",
-   "stage": "sl",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
-   "stageAt": "2026-11-17T23:10:31.717Z"
   }
  ]
 }
