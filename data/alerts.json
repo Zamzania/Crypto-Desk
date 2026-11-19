@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T20:30:42.686Z",
+ "updated": "2026-11-19T21:20:33.795Z",
  "minConf": 60,
  "active": [
   {
@@ -265,8 +265,9 @@
    },
    "price": 0.966,
    "at": "2026-11-19T20:00:44.097Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP",
+   "stageAt": "2026-11-19T21:20:30.736Z"
   },
   {
    "key": "SOL|1h|short_breakdown|73.8",
@@ -445,8 +446,9 @@
    },
    "price": 583.99,
    "at": "2026-11-19T17:00:47.205Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB",
+   "stageAt": "2026-11-19T21:20:32.855Z"
   },
   {
    "key": "BNB|1h|short_rally|594.7",
@@ -490,8 +492,9 @@
    },
    "price": 592.91,
    "at": "2026-11-19T14:00:49.200Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB",
+   "stageAt": "2026-11-19T21:20:32.895Z"
   },
   {
    "key": "XRP|1day|short_breakdown|0.9747",
@@ -580,8 +583,9 @@
    },
    "price": 592.77,
    "at": "2026-11-19T11:30:39.218Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB",
+   "stageAt": "2026-11-19T21:20:32.931Z"
   },
   {
    "key": "XRP|1h|short_rally|0.9854",
@@ -625,8 +629,9 @@
    },
    "price": 0.9822,
    "at": "2026-11-19T11:00:43.407Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP",
+   "stageAt": "2026-11-19T21:20:30.865Z"
   },
   {
    "key": "BNB|1h|short_rally|589.6",
@@ -670,8 +675,9 @@
    },
    "price": 587.59,
    "at": "2026-11-19T06:00:43.871Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB",
+   "stageAt": "2026-11-19T21:20:32.971Z"
   },
   {
    "key": "XRP|4h|short_rally|0.9796",
