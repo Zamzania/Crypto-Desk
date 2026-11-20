@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-20T22:45:35.762Z",
+ "updated": "2026-11-20T23:05:28.715Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1h|short_breakdown|69.28",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 69.27683513096409,
+   "entryLo": 69.27683513096409,
+   "entryHi": 69.27683513096409,
+   "trigger": 69.5,
+   "sl": 70.39265947614362,
+   "tps": [
+    {
+     "p": 67.92,
+     "rr": 1.2159934821513285
+    },
+    {
+     "p": 64.04,
+     "rr": 4.693243299079919
+    },
+    {
+     "p": 60.13,
+     "rr": 8.197379068201265
+    }
+   ],
+   "conf": 66,
+   "smcOk": 1,
+   "trail": {
+    "activation": 67.92,
+    "callback": 2.4,
+    "beAfterTp1": 69.27683513096409
+   },
+   "lev": 4,
+   "liq": 86.2496597380503,
+   "bt": {
+    "n": 21,
+    "winrate": 42.857142857142854,
+    "expR": 0.34517386368085046
+   },
+   "price": 69.55,
+   "at": "2026-11-20T23:05:26.911Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "SOL|1h|short_rally|69.65",
    "sym": "SOL",
@@ -226,52 +271,6 @@
    "at": "2026-11-20T21:45:27.466Z",
    "stage": "open",
    "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
-  },
-  {
-   "key": "SOL|1h|short_rally|69.63",
-   "sym": "SOL",
-   "tf": "1h",
-   "setup": "short_rally",
-   "name": "Short di area resistance",
-   "side": -1,
-   "entry": 69.63196715085746,
-   "entryLo": 69.5,
-   "entryHi": 69.76393430171494,
-   "trigger": null,
-   "sl": 70.55573720685977,
-   "tps": [
-    {
-     "p": 67.92,
-     "rr": 1.853239493674579
-    },
-    {
-     "p": 64.04,
-     "rr": 6.053418937454133
-    },
-    {
-     "p": 60.13,
-     "rr": 10.286073995489723
-    }
-   ],
-   "conf": 75,
-   "smcOk": 2,
-   "trail": {
-    "activation": 67.92,
-    "callback": 2.3,
-    "beAfterTp1": 69.63196715085746
-   },
-   "lev": 4,
-   "liq": 86.69179910281755,
-   "bt": {
-    "n": 30,
-    "winrate": 56.666666666666664,
-    "expR": 0.31657293684307664
-   },
-   "price": 69.37,
-   "at": "2026-11-20T17:00:48.970Z",
-   "stage": "tp1",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
-   "stageAt": "2026-11-20T19:20:36.429Z"
   },
   {
    "key": "ETH|4h|short_rally|1716",
@@ -1137,6 +1136,52 @@
   }
  ],
  "history": [
+  {
+   "key": "SOL|1h|short_rally|69.63",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 69.63196715085746,
+   "entryLo": 69.5,
+   "entryHi": 69.76393430171494,
+   "trigger": null,
+   "sl": 70.55573720685977,
+   "tps": [
+    {
+     "p": 67.92,
+     "rr": 1.853239493674579
+    },
+    {
+     "p": 64.04,
+     "rr": 6.053418937454133
+    },
+    {
+     "p": 60.13,
+     "rr": 10.286073995489723
+    }
+   ],
+   "conf": 75,
+   "smcOk": 2,
+   "trail": {
+    "activation": 67.92,
+    "callback": 2.3,
+    "beAfterTp1": 69.63196715085746
+   },
+   "lev": 4,
+   "liq": 86.69179910281755,
+   "bt": {
+    "n": 30,
+    "winrate": 56.666666666666664,
+    "expR": 0.31657293684307664
+   },
+   "price": 69.37,
+   "at": "2026-11-20T17:00:48.970Z",
+   "stage": "be",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-20T23:05:26.395Z"
+  },
   {
    "key": "XRP|4h|short_rally|0.8959",
    "sym": "XRP",
@@ -3822,52 +3867,6 @@
    "stage": "tp2",
    "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB",
    "stageAt": "2026-11-20T12:10:36.908Z"
-  },
-  {
-   "key": "BNB|1h|short_rally|587.8",
-   "sym": "BNB",
-   "tf": "1h",
-   "setup": "short_rally",
-   "name": "Short di area resistance",
-   "side": -1,
-   "entry": 587.75,
-   "entryLo": 584.45,
-   "entryHi": 591.05,
-   "trigger": null,
-   "sl": 597.431711471751,
-   "tps": [
-    {
-     "p": 577.5,
-     "rr": 1.058697114648288
-    },
-    {
-     "p": 566,
-     "rr": 2.2465036335219772
-    },
-    {
-     "p": 558.704865584747,
-     "rr": 3
-    }
-   ],
-   "conf": 85,
-   "smcOk": 3,
-   "trail": {
-    "activation": 577.5,
-    "callback": 1,
-    "beAfterTp1": 587.75
-   },
-   "lev": 7,
-   "liq": 668.7755357142858,
-   "bt": {
-    "n": 14,
-    "winrate": 21.428571428571427,
-    "expR": -0.40875198749243724
-   },
-   "price": 583.99,
-   "at": "2026-11-19T17:00:47.205Z",
-   "stage": "tp2",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB",
-   "stageAt": "2026-11-20T12:10:36.833Z"
   }
  ]
 }
