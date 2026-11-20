@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T16:50:35.940Z",
+ "updated": "2026-11-20T16:55:29.930Z",
  "minConf": 60,
  "active": [
   {
@@ -44,8 +44,9 @@
    },
    "price": 69.47,
    "at": "2026-11-20T16:50:33.582Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-20T16:55:27.126Z"
   },
   {
    "key": "ETH|4h|short_rally|1716",
