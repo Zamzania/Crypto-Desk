@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-20T18:30:44.677Z",
+ "updated": "2026-11-20T18:35:27.229Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BTC|4h|short_rally|59280",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 59281.28384443345,
+   "entryLo": 59130.91,
+   "entryHi": 59431.6576888669,
+   "trigger": null,
+   "sl": 60333.900755467585,
+   "tps": [
+    {
+     "p": 58115.01,
+     "rr": 1.1079755913171192
+    },
+    {
+     "p": 57176.050022365176,
+     "rr": 2
+    },
+    {
+     "p": 56123.43311133104,
+     "rr": 3
+    }
+   ],
+   "conf": 70,
+   "smcOk": 1,
+   "trail": {
+    "activation": 58115.01,
+    "callback": 3,
+    "beAfterTp1": 59281.28384443345
+   },
+   "lev": 7,
+   "liq": 67453.63226013035,
+   "bt": {
+    "n": 11,
+    "winrate": 36.36363636363637,
+    "expR": 0.22970989403856065
+   },
+   "price": 59124.01,
+   "at": "2026-11-20T18:35:22.932Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
+  {
+   "key": "BTC|1h|short_rally|59230",
+   "sym": "BTC",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 59226.04564878358,
+   "entryLo": 59130.91,
+   "entryHi": 59321.181297567164,
+   "trigger": null,
+   "sl": 59891.99519026865,
+   "tps": [
+    {
+     "p": 58115.01,
+     "rr": 1.6683480948210747
+    },
+    {
+     "p": 57894.14656581345,
+     "rr": 2
+    },
+    {
+     "p": 57228.19702432838,
+     "rr": 3
+    }
+   ],
+   "conf": 78,
+   "smcOk": 1,
+   "trail": {
+    "activation": 58115.01,
+    "callback": 1.9,
+    "beAfterTp1": 59226.04564878358
+   },
+   "lev": 7,
+   "liq": 67390.77908465161,
+   "bt": {
+    "n": 15,
+    "winrate": 40,
+    "expR": 0.15806983498888696
+   },
+   "price": 59124.01,
+   "at": "2026-11-20T18:35:22.458Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "SOL|1h|short_breakdown|69.29",
    "sym": "SOL",
