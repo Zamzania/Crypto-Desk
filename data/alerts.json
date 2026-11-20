@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-20T02:10:35.698Z",
+ "updated": "2026-11-20T02:40:33.446Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BTC|4h|short_rally|62150",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 62146.48407177639,
+   "entryLo": 62006,
+   "entryHi": 62286.96814355277,
+   "trigger": null,
+   "sl": 64642.73628710554,
+   "tps": [
+    {
+     "p": 59130.91,
+     "rr": 1.2080406191562485
+    },
+    {
+     "p": 58115.01,
+     "rr": 1.6150107136689327
+    },
+    {
+     "p": 57153.97964111809,
+     "rr": 2
+    }
+   ],
+   "conf": 69,
+   "smcOk": 1,
+   "trail": {
+    "activation": 59130.91,
+    "callback": 2.7,
+    "beAfterTp1": 62146.48407177639
+   },
+   "lev": 8,
+   "liq": 69604.06216038956,
+   "bt": {
+    "n": 10,
+    "winrate": 40,
+    "expR": 0.12471629985081131
+   },
+   "price": 61820,
+   "at": "2026-11-20T02:40:27.951Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "SOL|1h|short_rally|72.17",
    "sym": "SOL",
