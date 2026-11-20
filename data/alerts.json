@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-20T00:00:45.485Z",
+ "updated": "2026-11-20T00:05:29.144Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|4h|short_breakdown|72.95",
+   "sym": "SOL",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 72.95273037495724,
+   "entryLo": 72.95273037495724,
+   "entryHi": 72.95273037495724,
+   "trigger": 73.28,
+   "sl": 74.58907850017107,
+   "tps": [
+    {
+     "p": 71.07,
+     "rr": 1.150568357641638
+    },
+    {
+     "p": 69.93,
+     "rr": 1.8472416280993027
+    },
+    {
+     "p": 67.41,
+     "rr": 3.387256225953113
+    }
+   ],
+   "conf": 66,
+   "smcOk": 1,
+   "trail": {
+    "activation": 71.07,
+    "callback": 3.4,
+    "beAfterTp1": 72.95273037495724
+   },
+   "lev": 5,
+   "liq": 87.17851279807391,
+   "bt": {
+    "n": 14,
+    "winrate": 64.28571428571429,
+    "expR": 0.5514796819316504
+   },
+   "price": 73.29,
+   "at": "2026-11-20T00:05:27.504Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "BTC|4h|short_breakdown|61800",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 61798.38177087207,
+   "entryLo": 61798.38177087207,
+   "entryHi": 61798.38177087207,
+   "trigger": 62006,
+   "sl": 62841.53835922974,
+   "tps": [
+    {
+     "p": 59130.91,
+     "rr": 2.55711539441235
+    },
+    {
+     "p": 58115.01,
+     "rr": 3.5309864424775497
+    },
+    {
+     "p": 57625.75541744139,
+     "rr": 4
+    }
+   ],
+   "conf": 79,
+   "smcOk": 1,
+   "trail": {
+    "activation": 59130.91,
+    "callback": 2.5,
+    "beAfterTp1": 61798.38177087207
+   },
+   "lev": 8,
+   "liq": 69214.18758337673,
+   "bt": {
+    "n": 11,
+    "winrate": 54.54545454545454,
+    "expR": 0.2633440230881115
+   },
+   "price": 62118.01,
+   "at": "2026-11-20T00:05:23.293Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "BTC|4h|short_rally|62130",
    "sym": "BTC",
