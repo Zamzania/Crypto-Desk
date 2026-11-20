@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-20T21:00:49.470Z",
+ "updated": "2026-11-20T21:15:34.974Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|4h|short_rally|0.8959",
+   "sym": "XRP",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.8958999786875027,
+   "entryLo": 0.893,
+   "entryHi": 0.8987999573750054,
+   "trigger": null,
+   "sl": 0.9161998295000217,
+   "tps": [
+    {
+     "p": 0.8553002770624648,
+     "rr": 2
+    },
+    {
+     "p": 0.8350004262499459,
+     "rr": 3
+    },
+    {
+     "p": 0.8147005754374269,
+     "rr": 4
+    }
+   ],
+   "conf": 73,
+   "smcOk": 3,
+   "trail": {
+    "activation": 0.8553002770624648,
+    "callback": 3.9,
+    "beAfterTp1": 0.8958999786875027
+   },
+   "lev": 4,
+   "liq": 1.115395473465941,
+   "bt": {
+    "n": 22,
+    "winrate": 54.54545454545454,
+    "expR": 0.3359266228887432
+   },
+   "price": 0.8908,
+   "at": "2026-11-20T21:15:31.604Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "XRP|1h|short_rally|0.8947",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.8947363230246657,
+   "entryLo": 0.893,
+   "entryHi": 0.8964726460493312,
+   "trigger": null,
+   "sl": 0.9068905841973248,
+   "tps": [
+    {
+     "p": 0.8704278006793473,
+     "rr": 2
+    },
+    {
+     "p": 0.8582735395066882,
+     "rr": 3
+    },
+    {
+     "p": 0.846119278334029,
+     "rr": 4
+    }
+   ],
+   "conf": 78,
+   "smcOk": 1,
+   "trail": {
+    "activation": 0.8704278006793473,
+    "callback": 2.3,
+    "beAfterTp1": 0.8947363230246657
+   },
+   "lev": 4,
+   "liq": 1.113946722165709,
+   "bt": {
+    "n": 27,
+    "winrate": 59.25925925925925,
+    "expR": 0.3405057610801033
+   },
+   "price": 0.8908,
+   "at": "2026-11-20T21:15:31.098Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "BTC|4h|short_rally|59280",
    "sym": "BTC",
