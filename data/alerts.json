@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-20T13:55:31.224Z",
+ "updated": "2026-11-20T14:25:28.718Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1h|short_breakdown|71.42",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 71.42031497146287,
+   "entryLo": 71.42031497146287,
+   "entryHi": 71.42031497146287,
+   "trigger": 71.59,
+   "sl": 72.26874011414853,
+   "tps": [
+    {
+     "p": 69.93,
+     "rr": 1.7565662502001447
+    },
+    {
+     "p": 69.5,
+     "rr": 2.263387628264047
+    },
+    {
+     "p": 67.41,
+     "rr": 4.726775256528094
+    }
+   ],
+   "conf": 79,
+   "smcOk": 1,
+   "trail": {
+    "activation": 69.93,
+    "callback": 1.8,
+    "beAfterTp1": 71.42031497146287
+   },
+   "lev": 5,
+   "liq": 85.34727639089813,
+   "bt": {
+    "n": 20,
+    "winrate": 50,
+    "expR": 0.4934131727292601
+   },
+   "price": 71.64,
+   "at": "2026-11-20T14:25:27.404Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "ETH|1h|short_rally|1768",
+   "sym": "ETH",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 1768.23,
+   "entryLo": 1763.33,
+   "entryHi": 1773.13,
+   "trigger": null,
+   "sl": 1829.3455127938475,
+   "tps": [
+    {
+     "p": 1717.82,
+     "rr": 0.8248314985107158
+    },
+    {
+     "p": 1645.998974412305,
+     "rr": 2
+    },
+    {
+     "p": 1584.8834616184574,
+     "rr": 3
+    }
+   ],
+   "conf": 83,
+   "smcOk": 2,
+   "trail": {
+    "activation": 1717.82,
+    "callback": 1.6,
+    "beAfterTp1": 1768.23
+   },
+   "lev": 5,
+   "liq": 2113.03485,
+   "bt": {
+    "n": 24,
+    "winrate": 54.166666666666664,
+    "expR": 0.35493850158107215
+   },
+   "price": 1758.33,
+   "at": "2026-11-20T14:25:25.419Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
   {
    "key": "SOL|1h|short_rally|70.96",
    "sym": "SOL",
