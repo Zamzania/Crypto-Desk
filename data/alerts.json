@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-21T07:10:35.716Z",
+ "updated": "2026-11-21T07:50:36.348Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|4h|short_rally|0.8964",
+   "sym": "XRP",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.8963870033070814,
+   "entryLo": 0.893,
+   "entryHi": 0.8997740066141628,
+   "trigger": null,
+   "sl": 0.9200960264566513,
+   "tps": [
+    {
+     "p": 0.8489689570079416,
+     "rr": 2
+    },
+    {
+     "p": 0.8252599338583717,
+     "rr": 3
+    },
+    {
+     "p": 0.8015509107088018,
+     "rr": 4
+    }
+   ],
+   "conf": 70,
+   "smcOk": 1,
+   "trail": {
+    "activation": 0.8489689570079416,
+    "callback": 4.5,
+    "beAfterTp1": 0.8963870033070814
+   },
+   "lev": 4,
+   "liq": 1.1160018191173164,
+   "bt": {
+    "n": 22,
+    "winrate": 54.54545454545454,
+    "expR": 0.3359266244594627
+   },
+   "price": 0.8921,
+   "at": "2026-11-21T07:50:34.014Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "XRP|1h|short_rally|0.895",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.8950244370998492,
+   "entryLo": 0.893,
+   "entryHi": 0.8970488741996985,
+   "trigger": null,
+   "sl": 0.909195496798794,
+   "tps": [
+    {
+     "p": 0.8666823177019598,
+     "rr": 2
+    },
+    {
+     "p": 0.8525112580030151,
+     "rr": 3
+    },
+    {
+     "p": 0.8383401983040704,
+     "rr": 4
+    }
+   ],
+   "conf": 73,
+   "smcOk": 2,
+   "trail": {
+    "activation": 0.8666823177019598,
+    "callback": 2.7,
+    "beAfterTp1": 0.8950244370998492
+   },
+   "lev": 4,
+   "liq": 1.1143054241893124,
+   "bt": {
+    "n": 28,
+    "winrate": 57.14285714285714,
+    "expR": 0.2620617844019478
+   },
+   "price": 0.8921,
+   "at": "2026-11-21T07:50:33.532Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "BNB|1h|short_rally|531.1",
    "sym": "BNB",
