@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-21T07:00:45.383Z",
+ "updated": "2026-11-21T07:10:35.716Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|1h|short_rally|531.1",
+   "sym": "BNB",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 531.054085453889,
+   "entryLo": 530,
+   "entryHi": 532.1081709077779,
+   "trigger": null,
+   "sl": 538.4326836311117,
+   "tps": [
+    {
+     "p": 516.2968890994437,
+     "rr": 2
+    },
+    {
+     "p": 508.918290922221,
+     "rr": 3
+    },
+    {
+     "p": 501.5396927449983,
+     "rr": 4
+    }
+   ],
+   "conf": 63,
+   "smcOk": 2,
+   "trail": {
+    "activation": 516.2968890994437,
+    "callback": 2.4,
+    "beAfterTp1": 531.054085453889
+   },
+   "lev": 6,
+   "liq": 616.9078292689345,
+   "bt": {
+    "n": 13,
+    "winrate": 30.76923076923077,
+    "expR": -0.23153563143605657
+   },
+   "price": 529.21,
+   "at": "2026-11-21T07:10:34.841Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
+  {
+   "key": "BTC|4h|short_breakdown|57490",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 57492.93236163749,
+   "entryLo": 57492.93236163749,
+   "entryHi": 57492.93236163749,
+   "trigger": 57800.19,
+   "sl": 59267.22614385943,
+   "tps": [
+    {
+     "p": 53944.34479719361,
+     "rr": 2
+    },
+    {
+     "p": 52170.05101497167,
+     "rr": 3
+    },
+    {
+     "p": 50395.75723274973,
+     "rr": 4
+    }
+   ],
+   "conf": 83,
+   "smcOk": 1,
+   "trail": {
+    "activation": 53944.34479719361,
+    "callback": 4,
+    "beAfterTp1": 57492.93236163749
+   },
+   "lev": 6,
+   "liq": 66787.62309343556,
+   "bt": {
+    "n": 11,
+    "winrate": 63.63636363636363,
+    "expR": 0.435511395950104
+   },
+   "price": 58640,
+   "at": "2026-11-21T07:10:29.369Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "SOL|4h|short_breakdown|66.98",
    "sym": "SOL",
