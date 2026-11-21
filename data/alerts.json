@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-21T19:40:35.024Z",
+ "updated": "2026-11-21T22:00:46.973Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|1h|short_rally|551.7",
+   "sym": "BNB",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 551.7225374227964,
+   "entryLo": 551.03,
+   "entryHi": 552.415074845593,
+   "trigger": null,
+   "sl": 556.5702993823724,
+   "tps": [
+    {
+     "p": 540.6,
+     "rr": 2.2943654237860835
+    },
+    {
+     "p": 530,
+     "rr": 4.480941433167398
+    },
+    {
+     "p": 503.75,
+     "rr": 9.89581126772017
+    }
+   ],
+   "conf": 83,
+   "smcOk": 3,
+   "trail": {
+    "activation": 540.6,
+    "callback": 1.5,
+    "beAfterTp1": 551.7225374227964
+   },
+   "lev": 6,
+   "liq": 640.9176809728153,
+   "bt": {
+    "n": 14,
+    "winrate": 28.57142857142857,
+    "expR": -0.29197645550660123
+   },
+   "price": 549.86,
+   "at": "2026-11-21T22:00:46.242Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
+  {
+   "key": "ETH|1h|short_rally|1694",
+   "sym": "ETH",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 1693.678853511833,
+   "entryLo": 1691.11,
+   "entryHi": 1696.2477070236662,
+   "trigger": null,
+   "sl": 1728.0954140473325,
+   "tps": [
+    {
+     "p": 1657.19,
+     "rr": 1.0602120881369315
+    },
+    {
+     "p": 1581.47,
+     "rr": 3.260315724928224
+    },
+    {
+     "p": 1538,
+     "rr": 4.523370467285824
+    }
+   ],
+   "conf": 83,
+   "smcOk": 3,
+   "trail": {
+    "activation": 1657.19,
+    "callback": 1.8,
+    "beAfterTp1": 1693.678853511833
+   },
+   "lev": 4,
+   "liq": 2108.6301726222323,
+   "bt": {
+    "n": 24,
+    "winrate": 54.166666666666664,
+    "expR": 0.3798600245827255
+   },
+   "price": 1688.19,
+   "at": "2026-11-21T22:00:41.977Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
   {
    "key": "BNB|1h|short_rally|551.9",
    "sym": "BNB",
