@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-21T11:36:15.385Z",
+ "updated": "2026-11-21T11:40:34.542Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|1h|short_rally|531",
+   "sym": "BNB",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 530.98392359783,
+   "entryLo": 530,
+   "entryHi": 531.9678471956599,
+   "trigger": null,
+   "sl": 537.8713887826399,
+   "tps": [
+    {
+     "p": 503.75,
+     "rr": 3.954128676816187
+    },
+    {
+     "p": 503.4340628585903,
+     "rr": 4
+    },
+    {
+     "p": 496.5465976737804,
+     "rr": 5
+    }
+   ],
+   "conf": 68,
+   "smcOk": 4,
+   "trail": {
+    "activation": 503.75,
+    "callback": 2.2,
+    "beAfterTp1": 530.98392359783
+   },
+   "lev": 6,
+   "liq": 616.8263245794792,
+   "bt": {
+    "n": 13,
+    "winrate": 30.76923076923077,
+    "expR": -0.23153563144633887
+   },
+   "price": 529.83,
+   "at": "2026-11-21T11:40:33.942Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
+  {
+   "key": "XRP|1h|short_rally|0.9058",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.9058111694710967,
+   "entryLo": 0.9039,
+   "entryHi": 0.9077223389421935,
+   "trigger": null,
+   "sl": 0.9191893557687737,
+   "tps": [
+    {
+     "p": 0.893,
+     "rr": 0.9576163155480438
+    },
+    {
+     "p": 0.8842,
+     "rr": 1.615403537537029
+    },
+    {
+     "p": 0.86,
+     "rr": 3.424318398006732
+    }
+   ],
+   "conf": 74,
+   "smcOk": 4,
+   "trail": {
+    "activation": 0.893,
+    "callback": 2.5,
+    "beAfterTp1": 0.9058111694710967
+   },
+   "lev": 5,
+   "liq": 1.0824443475179606,
+   "bt": {
+    "n": 27,
+    "winrate": 55.55555555555556,
+    "expR": 0.2577954690568834
+   },
+   "price": 0.9031,
+   "at": "2026-11-21T11:40:31.479Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "ETH|1h|short_rally|1661",
    "sym": "ETH",
