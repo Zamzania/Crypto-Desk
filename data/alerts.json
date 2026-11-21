@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-21T06:20:34.349Z",
+ "updated": "2026-11-21T06:45:34.491Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|4h|short_breakdown|66.99",
+   "sym": "SOL",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 66.994221729587,
+   "entryLo": 66.994221729587,
+   "entryHi": 66.994221729587,
+   "trigger": 67.41,
+   "sl": 69.073113081652,
+   "tps": [
+    {
+     "p": 64.04,
+     "rr": 1.421056336904047
+    },
+    {
+     "p": 60.13,
+     "rr": 3.3018665082081564
+    },
+    {
+     "p": 58.678656321327,
+     "rr": 4
+    }
+   ],
+   "conf": 75,
+   "smcOk": 1,
+   "trail": {
+    "activation": 64.04,
+    "callback": 4.7,
+    "beAfterTp1": 66.994221729587
+   },
+   "lev": 4,
+   "liq": 83.40780605333582,
+   "bt": {
+    "n": 14,
+    "winrate": 64.28571428571429,
+    "expR": 0.6135547296951962
+   },
+   "price": 67.57,
+   "at": "2026-11-21T06:45:32.579Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "SOL|1h|short_breakdown|66.89",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 66.89487526413868,
+   "entryLo": 66.89487526413868,
+   "entryHi": 66.89487526413868,
+   "trigger": 67.15,
+   "sl": 68.36671775947995,
+   "tps": [
+    {
+     "p": 64.04,
+     "rr": 1.9396608490208775
+    },
+    {
+     "p": 60.13,
+     "rr": 4.596195099374471
+    },
+    {
+     "p": 59.53566278743229,
+     "rr": 5
+    }
+   ],
+   "conf": 85,
+   "smcOk": 2,
+   "trail": {
+    "activation": 64.04,
+    "callback": 2.9,
+    "beAfterTp1": 66.89487526413868
+   },
+   "lev": 4,
+   "liq": 83.28411970385265,
+   "bt": {
+    "n": 20,
+    "winrate": 45,
+    "expR": 0.45997002070249093
+   },
+   "price": 67.57,
+   "at": "2026-11-21T06:45:32.131Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "XRP|1h|short_rally|0.8859",
    "sym": "XRP",
