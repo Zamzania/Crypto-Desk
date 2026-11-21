@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-21T12:00:45.043Z",
+ "updated": "2026-11-21T12:25:29.941Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BTC|1h|short_rally|58780",
+   "sym": "BTC",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 58778.154704985805,
+   "entryLo": 58672.05,
+   "entryHi": 58884.25940997161,
+   "trigger": null,
+   "sl": 59520.887639886416,
+   "tps": [
+    {
+     "p": 58115.01,
+     "rr": 0.8928440813985754
+    },
+    {
+     "p": 55130,
+     "rr": 4.911798755058555
+    },
+    {
+     "p": 55064.49003048275,
+     "rr": 5
+    }
+   ],
+   "conf": 73,
+   "smcOk": 3,
+   "trail": {
+    "activation": 58115.01,
+    "callback": 2.2,
+    "beAfterTp1": 58778.154704985805
+   },
+   "lev": 6,
+   "liq": 68280.62304895851,
+   "bt": {
+    "n": 15,
+    "winrate": 40,
+    "expR": 0.1569849030454794
+   },
+   "price": 58530.25,
+   "at": "2026-11-21T12:25:22.925Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "XRP|1h|short_rally|0.9057",
    "sym": "XRP",
