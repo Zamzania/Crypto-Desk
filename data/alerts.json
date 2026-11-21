@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T01:15:33.160Z",
+ "updated": "2026-11-21T03:05:28.545Z",
  "minConf": 60,
  "active": [
   {
@@ -224,8 +224,9 @@
    },
    "price": 69.55,
    "at": "2026-11-20T23:05:26.911Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-21T03:05:26.217Z"
   },
   {
    "key": "SOL|1h|short_rally|69.65",
@@ -269,8 +270,9 @@
    },
    "price": 69.31,
    "at": "2026-11-20T22:20:39.492Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-21T03:05:26.436Z"
   },
   {
    "key": "BTC|1h|short_breakdown|58970",
