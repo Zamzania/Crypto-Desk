@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T04:00:43.328Z",
+ "updated": "2026-11-21T04:05:30.563Z",
  "minConf": 60,
  "active": [
   {
@@ -272,8 +272,9 @@
    },
    "price": 541.77,
    "at": "2026-11-20T21:45:33.239Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB",
+   "stageAt": "2026-11-21T04:05:29.736Z"
   },
   {
    "key": "BTC|4h|short_breakdown|58880",
@@ -317,8 +318,9 @@
    },
    "price": 59216.62,
    "at": "2026-11-20T21:45:27.884Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC",
+   "stageAt": "2026-11-21T04:05:25.675Z"
   },
   {
    "key": "ETH|4h|short_rally|1716",
