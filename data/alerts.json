@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-22T15:00:47.289Z",
+ "updated": "2026-11-22T16:00:49.199Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BTC|4h|short_rally|61170",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 61165.7919862671,
+   "entryLo": 60996,
+   "entryHi": 61335.5839725342,
+   "trigger": null,
+   "sl": 62354.33589013681,
+   "tps": [
+    {
+     "p": 59130.91,
+     "rr": 1.7120797806810777
+    },
+    {
+     "p": 58768.51,
+     "rr": 2.0169906879013184
+    },
+    {
+     "p": 58115.01,
+     "rr": 2.566823132350619
+    }
+   ],
+   "conf": 68,
+   "smcOk": 1,
+   "trail": {
+    "activation": 59130.91,
+    "callback": 3.3,
+    "beAfterTp1": 61165.7919862671
+   },
+   "lev": 6,
+   "liq": 71054.26169071363,
+   "bt": {
+    "n": 11,
+    "winrate": 45.45454545454545,
+    "expR": 0.33820652132547174
+   },
+   "price": 60912.18,
+   "at": "2026-11-22T16:00:42.624Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "BNB|1h|short_rally|560",
    "sym": "BNB",
