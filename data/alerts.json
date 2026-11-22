@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-22T04:05:28.540Z",
+ "updated": "2026-11-22T04:35:29.017Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1h|short_breakdown|69.35",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 69.34887551071841,
+   "entryLo": 69.34887551071841,
+   "entryHi": 69.34887551071841,
+   "trigger": 69.5,
+   "sl": 70.20671683480595,
+   "tps": [
+    {
+     "p": 67.41,
+     "rr": 2.2601796582611158
+    },
+    {
+     "p": 64.87,
+     "rr": 5.221100202281003
+    },
+    {
+     "p": 64.20182756619323,
+     "rr": 6
+    }
+   ],
+   "conf": 80,
+   "smcOk": 2,
+   "trail": {
+    "activation": 67.41,
+    "callback": 1.6,
+    "beAfterTp1": 69.34887551071841
+   },
+   "lev": 5,
+   "liq": 82.87190623530851,
+   "bt": {
+    "n": 21,
+    "winrate": 42.857142857142854,
+    "expR": 0.3634577866152874
+   },
+   "price": 69.74,
+   "at": "2026-11-22T04:35:27.073Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "SOL|1h|short_rally|70.02",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 70.02445280580099,
+   "entryLo": 69.93,
+   "entryHi": 70.11890561160199,
+   "trigger": null,
+   "sl": 71.54781122320396,
+   "tps": [
+    {
+     "p": 67.41,
+     "rr": 1.7162427278657904
+    },
+    {
+     "p": 64.87,
+     "rr": 3.3836113332989037
+    },
+    {
+     "p": 63.93101913618909,
+     "rr": 4
+    }
+   ],
+   "conf": 88,
+   "smcOk": 3,
+   "trail": {
+    "activation": 67.41,
+    "callback": 1.6,
+    "beAfterTp1": 70.02445280580099
+   },
+   "lev": 5,
+   "liq": 83.67922110293219,
+   "bt": {
+    "n": 28,
+    "winrate": 53.57142857142857,
+    "expR": 0.3110358516134717
+   },
+   "price": 69.74,
+   "at": "2026-11-22T04:35:26.810Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "BTC|1h|short_breakdown|59290",
    "sym": "BTC",
