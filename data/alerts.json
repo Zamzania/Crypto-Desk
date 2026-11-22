@@ -1,7 +1,142 @@
 {
- "updated": "2026-11-22T10:00:44.930Z",
+ "updated": "2026-11-22T10:10:34.989Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1day|short_breakdown|69.65",
+   "sym": "SOL",
+   "tf": "1day",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 69.65293934105334,
+   "entryLo": 69.65293934105334,
+   "entryHi": 69.65293934105334,
+   "trigger": 70.58,
+   "sl": 74.28824263578666,
+   "tps": [
+    {
+     "p": 64.04,
+     "rr": 1.2109109122224677
+    },
+    {
+     "p": 60.13,
+     "rr": 2.054437160967094
+    },
+    {
+     "p": 55.74702945685338,
+     "rr": 3
+    }
+   ],
+   "conf": 62,
+   "smcOk": 1,
+   "trail": {
+    "activation": 64.04,
+    "callback": 5,
+    "beAfterTp1": 69.65293934105334
+   },
+   "lev": 5,
+   "liq": 83.23526251255875,
+   "bt": {
+    "n": 19,
+    "winrate": 52.63157894736842,
+    "expR": 0.29501726518756205
+   },
+   "price": 70.69,
+   "at": "2026-11-22T10:10:33.492Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "ETH|1day|short_breakdown|1689",
+   "sym": "ETH",
+   "tf": "1day",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 1688.8228555176167,
+   "entryLo": 1688.8228555176167,
+   "entryHi": 1688.8228555176167,
+   "trigger": 1711.08,
+   "sl": 1800.1085779295329,
+   "tps": [
+    {
+     "p": 1512,
+     "rr": 1.5889087268815993
+    },
+    {
+     "p": 1466.2514106937845,
+     "rr": 2
+    },
+    {
+     "p": 1354.9656882818683,
+     "rr": 3
+    }
+   ],
+   "conf": 67,
+   "smcOk": 2,
+   "trail": {
+    "activation": 1512,
+    "callback": 5,
+    "beAfterTp1": 1688.8228555176167
+   },
+   "lev": 5,
+   "liq": 2018.1433123435522,
+   "bt": {
+    "n": 23,
+    "winrate": 43.47826086956522,
+    "expR": 0.08287983182331529
+   },
+   "price": 1714.99,
+   "at": "2026-11-22T10:10:30.403Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
+  {
+   "key": "ETH|4h|short_breakdown|1702",
+   "sym": "ETH",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 1701.7517493232926,
+   "entryLo": 1701.7517493232926,
+   "entryHi": 1701.7517493232926,
+   "trigger": 1711.08,
+   "sl": 1748.4209400376526,
+   "tps": [
+    {
+     "p": 1538,
+     "rr": 3.5087762786704326
+    },
+    {
+     "p": 1512,
+     "rr": 4.0658890034042665
+    },
+    {
+     "p": 1468.4057957514929,
+     "rr": 5
+    }
+   ],
+   "conf": 65,
+   "smcOk": 4,
+   "trail": {
+    "activation": 1538,
+    "callback": 4.1,
+    "beAfterTp1": 1701.7517493232926
+   },
+   "lev": 5,
+   "liq": 2033.5933404413347,
+   "bt": {
+    "n": 13,
+    "winrate": 30.76923076923077,
+    "expR": -0.20097847475404806
+   },
+   "price": 1714.99,
+   "at": "2026-11-22T10:10:29.872Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
   {
    "key": "SOL|4h|short_breakdown|69.55",
    "sym": "SOL",
