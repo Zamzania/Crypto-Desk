@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-22T12:20:31.317Z",
+ "updated": "2026-11-22T15:00:47.289Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|1h|short_rally|560",
+   "sym": "BNB",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 559.9897150669119,
+   "entryLo": 559.4,
+   "entryHi": 560.579430133824,
+   "trigger": null,
+   "sl": 568.7988602676479,
+   "tps": [
+    {
+     "p": 551.13,
+     "rr": 1.0057406099029558
+    },
+    {
+     "p": 536.85,
+     "rr": 2.626783250772003
+    },
+    {
+     "p": 530,
+     "rr": 3.4043842374633915
+    }
+   ],
+   "conf": 66,
+   "smcOk": 3,
+   "trail": {
+    "activation": 551.13,
+    "callback": 1.3,
+    "beAfterTp1": 559.9897150669119
+   },
+   "lev": 6,
+   "liq": 650.5213856693961,
+   "bt": {
+    "n": 14,
+    "winrate": 28.57142857142857,
+    "expR": -0.29308652079894426
+   },
+   "price": 558,
+   "at": "2026-11-22T15:00:46.687Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
+  {
+   "key": "BTC|1h|short_rally|61330",
+   "sym": "BTC",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 61332.994999999995,
+   "entryLo": 60996,
+   "entryHi": 61669.99,
+   "trigger": null,
+   "sl": 62945.72726391902,
+   "tps": [
+    {
+     "p": 59410.63,
+     "rr": 1.1919926468938804
+    },
+    {
+     "p": 58768.51,
+     "rr": 1.5901492500485852
+    },
+    {
+     "p": 57778.35,
+     "rr": 2.2041135280334894
+    }
+   ],
+   "conf": 84,
+   "smcOk": 2,
+   "trail": {
+    "activation": 59410.63,
+    "callback": 1.5,
+    "beAfterTp1": 61332.994999999995
+   },
+   "lev": 6,
+   "liq": 71248.49585833334,
+   "bt": {
+    "n": 14,
+    "winrate": 42.857142857142854,
+    "expR": 0.24635151800826183
+   },
+   "price": 60934.92,
+   "at": "2026-11-22T15:00:40.995Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "ETH|4h|long_pullback|1717",
    "sym": "ETH",
