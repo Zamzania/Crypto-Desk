@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-23T03:25:30.651Z",
+ "updated": "2026-11-23T03:30:46.321Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1h|short_rally|71.51",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 71.51183532762761,
+   "entryLo": 71.43,
+   "entryHi": 71.59367065525522,
+   "trigger": null,
+   "sl": 72.64734131051043,
+   "tps": [
+    {
+     "p": 70.03,
+     "rr": 1.3050000175829355
+    },
+    {
+     "p": 68.74,
+     "rr": 2.4410574399533207
+    },
+    {
+     "p": 67.41,
+     "rr": 3.6123414490638663
+    }
+   ],
+   "conf": 75,
+   "smcOk": 2,
+   "trail": {
+    "activation": 70.03,
+    "callback": 1.4,
+    "beAfterTp1": 71.51183532762761
+   },
+   "lev": 5,
+   "liq": 85.45664321651499,
+   "bt": {
+    "n": 30,
+    "winrate": 50,
+    "expR": 0.2186729009658341
+   },
+   "price": 71.35,
+   "at": "2026-11-23T03:30:44.055Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "ETH|4h|short_rally|1738",
+   "sym": "ETH",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 1738.1887984104512,
+   "entryLo": 1732.83,
+   "entryHi": 1743.5475968209025,
+   "trigger": null,
+   "sl": 1775.7003872836106,
+   "tps": [
+    {
+     "p": 1648.35,
+     "rr": 2.394961160249165
+    },
+    {
+     "p": 1538,
+     "rr": 5.336718716111019
+    },
+    {
+     "p": 1513.1192651714953,
+     "rr": 6
+    }
+   ],
+   "conf": 68,
+   "smcOk": 2,
+   "trail": {
+    "activation": 1648.35,
+    "callback": 3.7,
+    "beAfterTp1": 1738.1887984104512
+   },
+   "lev": 5,
+   "liq": 2077.1356141004894,
+   "bt": {
+    "n": 11,
+    "winrate": 54.54545454545454,
+    "expR": 0.3517820074402626
+   },
+   "price": 1730.7,
+   "at": "2026-11-23T03:30:41.237Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
   {
    "key": "SOL|4h|short_breakdown|70.72",
    "sym": "SOL",
