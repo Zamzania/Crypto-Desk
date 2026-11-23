@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-23T16:05:29.730Z",
+ "updated": "2026-11-23T16:35:32.423Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|1h|short_rally|0.9861",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.9860765463600434,
+   "entryLo": 0.9843,
+   "entryHi": 0.9878530927200868,
+   "trigger": null,
+   "sl": 0.9985123708803474,
+   "tps": [
+    {
+     "p": 0.9557,
+     "rr": 2.4426644417865107
+    },
+    {
+     "p": 0.9487690727991314,
+     "rr": 3
+    },
+    {
+     "p": 0.9363332482788274,
+     "rr": 4
+    }
+   ],
+   "conf": 61,
+   "smcOk": 4,
+   "trail": {
+    "activation": 0.9557,
+    "callback": 2.2,
+    "beAfterTp1": 0.9860765463600434
+   },
+   "lev": 5,
+   "liq": 1.1783614729002518,
+   "bt": {
+    "n": 27,
+    "winrate": 55.55555555555556,
+    "expR": 0.2577818071926351
+   },
+   "price": 0.9816,
+   "at": "2026-11-23T16:35:28.612Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "XRP|4h|short_rally|1.011",
    "sym": "XRP",
