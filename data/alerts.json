@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-22T23:35:28.248Z",
+ "updated": "2026-11-23T00:00:47.542Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|1h|short_rally|0.9322",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.9321904927535534,
+   "entryLo": 0.9313,
+   "entryHi": 0.9330809855071068,
+   "trigger": null,
+   "sl": 0.9592619710142136,
+   "tps": [
+    {
+     "p": 0.9039,
+     "rr": 1.0450294764532504
+    },
+    {
+     "p": 0.893,
+     "rr": 1.4476672598446245
+    },
+    {
+     "p": 0.8842,
+     "rr": 1.77273262625234
+    }
+   ],
+   "conf": 68,
+   "smcOk": 1,
+   "trail": {
+    "activation": 0.9039,
+    "callback": 1.1,
+    "beAfterTp1": 0.9321904927535534
+   },
+   "lev": 5,
+   "liq": 1.1139676388404964,
+   "bt": {
+    "n": 26,
+    "winrate": 57.692307692307686,
+    "expR": 0.30915093297523
+   },
+   "price": 0.9287,
+   "at": "2026-11-23T00:00:45.070Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "ETH|4h|long_pullback|1716",
+   "sym": "ETH",
+   "tf": "4h",
+   "setup": "long_pullback",
+   "name": "Long di area support",
+   "side": 1,
+   "entry": 1715.9590662675942,
+   "entryLo": 1711.08,
+   "entryHi": 1720.8381325351884,
+   "trigger": null,
+   "sl": 1681.8056023944348,
+   "tps": [
+    {
+     "p": 1751.39,
+     "rr": 1.0374038154370204
+    },
+    {
+     "p": 1787.11,
+     "rr": 2.0832713775870357
+    },
+    {
+     "p": 1817.57,
+     "rr": 2.975128206900857
+    }
+   ],
+   "conf": 60,
+   "smcOk": 2,
+   "trail": {
+    "activation": 1751.39,
+    "callback": 3.4,
+    "beAfterTp1": 1715.9590662675942
+   },
+   "lev": 5,
+   "liq": 1381.3470483454134,
+   "bt": {
+    "n": 21,
+    "winrate": 57.14285714285714,
+    "expR": 0.2868467496932978
+   },
+   "price": 1725.42,
+   "at": "2026-11-23T00:00:44.067Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
   {
    "key": "BTC|1h|short_rally|61540",
    "sym": "BTC",
