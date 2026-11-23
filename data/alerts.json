@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-23T14:00:46.713Z",
+ "updated": "2026-11-23T14:05:31.939Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "ETH|1h|short_rally|1808",
+   "sym": "ETH",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 1808.24,
+   "entryLo": 1796.83,
+   "entryHi": 1819.65,
+   "trigger": null,
+   "sl": 1855.0767116232907,
+   "tps": [
+    {
+     "p": 1736.28,
+     "rr": 1.5364016282521447
+    },
+    {
+     "p": 1714.5665767534185,
+     "rr": 2
+    },
+    {
+     "p": 1667.7298651301278,
+     "rr": 3
+    }
+   ],
+   "conf": 63,
+   "smcOk": 3,
+   "trail": {
+    "activation": 1736.28,
+    "callback": 1.6,
+    "beAfterTp1": 1808.24
+   },
+   "lev": 5,
+   "liq": 2160.8468000000003,
+   "bt": {
+    "n": 24,
+    "winrate": 54.166666666666664,
+    "expR": 0.2591947526538822
+   },
+   "price": 1794.6,
+   "at": "2026-11-23T14:05:26.916Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
+  {
+   "key": "BTC|4h|short_rally|63710",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 63708.4,
+   "entryLo": 63336,
+   "entryHi": 64080.8,
+   "trigger": null,
+   "sl": 66404.30593104556,
+   "tps": [
+    {
+     "p": 60996,
+     "rr": 1.0061181915750483
+    },
+    {
+     "p": 60386,
+     "rr": 1.2323872141605
+    },
+    {
+     "p": 58768.51,
+     "rr": 1.8323673475076176
+    }
+   ],
+   "conf": 68,
+   "smcOk": 2,
+   "trail": {
+    "activation": 60996,
+    "callback": 3.3,
+    "beAfterTp1": 63708.4
+   },
+   "lev": 6,
+   "liq": 74007.92466666667,
+   "bt": {
+    "n": 11,
+    "winrate": 45.45454545454545,
+    "expR": 0.33820652131394574
+   },
+   "price": 63190.85,
+   "at": "2026-11-23T14:05:25.643Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "BNB|4h|short_rally|578.1",
    "sym": "BNB",
