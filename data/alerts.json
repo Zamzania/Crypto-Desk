@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-23T15:00:51.245Z",
+ "updated": "2026-11-23T15:10:36.374Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1day|short_breakdown|72.4",
+   "sym": "SOL",
+   "tf": "1day",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 72.40007632689647,
+   "entryLo": 72.40007632689647,
+   "entryHi": 72.40007632689647,
+   "trigger": 73.39,
+   "sl": 77.81221377413824,
+   "tps": [
+    {
+     "p": 67.92,
+     "rr": 0.8277831763455449
+    },
+    {
+     "p": 64.04,
+     "rr": 1.5446903203016515
+    },
+    {
+     "p": 60.13,
+     "rr": 2.2671405607316473
+    }
+   ],
+   "conf": 63,
+   "smcOk": 1,
+   "trail": {
+    "activation": 67.92,
+    "callback": 5,
+    "beAfterTp1": 72.40007632689647
+   },
+   "lev": 5,
+   "liq": 86.51809121064129,
+   "bt": {
+    "n": 19,
+    "winrate": 52.63157894736842,
+    "expR": 0.29501726518756116
+   },
+   "price": 76.08,
+   "at": "2026-11-23T15:10:35.133Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "XRP|4h|short_rally|1.001",
    "sym": "XRP",
