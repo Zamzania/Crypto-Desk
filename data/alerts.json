@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-23T14:31:07.119Z",
+ "updated": "2026-11-23T14:35:34.840Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|4h|short_breakdown|75.25",
+   "sym": "SOL",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 75.25140971218178,
+   "entryLo": 75.25140971218178,
+   "entryHi": 75.25140971218178,
+   "trigger": 75.65,
+   "sl": 77.27471357931836,
+   "tps": [
+    {
+     "p": 73.28,
+     "rr": 0.9743517739486969
+    },
+    {
+     "p": 72.92,
+     "rr": 1.15227858259434
+    },
+    {
+     "p": 71.12,
+     "rr": 2.041912625822556
+    }
+   ],
+   "conf": 65,
+   "smcOk": 2,
+   "trail": {
+    "activation": 73.28,
+    "callback": 4,
+    "beAfterTp1": 75.25140971218178
+   },
+   "lev": 5,
+   "liq": 89.92543460605724,
+   "bt": {
+    "n": 15,
+    "winrate": 60,
+    "expR": 0.5037258547036252
+   },
+   "price": 76.99,
+   "at": "2026-11-23T14:35:33.559Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "XRP|4h|short_breakdown|0.9924",
+   "sym": "XRP",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 0.9923668198076558,
+   "entryLo": 0.9923668198076558,
+   "entryHi": 0.9923668198076558,
+   "trigger": 0.9975,
+   "sl": 1.0180327207693767,
+   "tps": [
+    {
+     "p": 0.9548,
+     "rr": 1.4636859958154027
+    },
+    {
+     "p": 0.9456,
+     "rr": 1.822138247841203
+    },
+    {
+     "p": 0.913,
+     "rr": 3.092306010454365
+    }
+   ],
+   "conf": 71,
+   "smcOk": 3,
+   "trail": {
+    "activation": 0.9548,
+    "callback": 3.9,
+    "beAfterTp1": 0.9923668198076558
+   },
+   "lev": 5,
+   "liq": 1.1858783496701488,
+   "bt": {
+    "n": 16,
+    "winrate": 56.25,
+    "expR": 0.4852668811606635
+   },
+   "price": 1.0018,
+   "at": "2026-11-23T14:35:32.329Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "BNB|4h|short_rally|585.3",
    "sym": "BNB",
