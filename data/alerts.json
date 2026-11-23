@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-23T02:45:36.457Z",
+ "updated": "2026-11-23T02:50:35.081Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|4h|short_rally|70.14",
+   "sym": "SOL",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 70.13798147020339,
+   "entryLo": 69.93,
+   "entryHi": 70.34596294040678,
+   "trigger": null,
+   "sl": 71.59385176162708,
+   "tps": [
+    {
+     "p": 68.74,
+     "rr": 0.9602376519657577
+    },
+    {
+     "p": 67.41,
+     "rr": 1.8737805739106745
+    },
+    {
+     "p": 64.87,
+     "rr": 3.618441492512242
+    }
+   ],
+   "conf": 69,
+   "smcOk": 4,
+   "trail": {
+    "activation": 68.74,
+    "callback": 3.6,
+    "beAfterTp1": 70.13798147020339
+   },
+   "lev": 5,
+   "liq": 83.81488785689305,
+   "bt": {
+    "n": 18,
+    "winrate": 44.44444444444444,
+    "expR": 0.009993395816048942
+   },
+   "price": 69.91,
+   "at": "2026-11-23T02:50:33.709Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "SOL|1h|short_rally|70",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 70.00351496821435,
+   "entryLo": 69.93,
+   "entryHi": 70.0770299364287,
+   "trigger": null,
+   "sl": 71.88405987285739,
+   "tps": [
+    {
+     "p": 67.41,
+     "rr": 1.3791295075225216
+    },
+    {
+     "p": 64.87,
+     "rr": 2.7298018545261793
+    },
+    {
+     "p": 64.36188025428521,
+     "rr": 3
+    }
+   ],
+   "conf": 88,
+   "smcOk": 1,
+   "trail": {
+    "activation": 67.41,
+    "callback": 1.3,
+    "beAfterTp1": 70.00351496821435
+   },
+   "lev": 5,
+   "liq": 83.65420038701615,
+   "bt": {
+    "n": 30,
+    "winrate": 50,
+    "expR": 0.25446233135960067
+   },
+   "price": 69.91,
+   "at": "2026-11-23T02:50:33.422Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "BTC|1h|short_rally|60600",
    "sym": "BTC",
