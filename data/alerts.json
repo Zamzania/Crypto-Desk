@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T20:00:47.401Z",
+ "updated": "2026-11-23T21:45:37.334Z",
  "minConf": 60,
  "active": [
   {
@@ -450,8 +450,9 @@
    },
    "price": 73.55,
    "at": "2026-11-23T17:45:35.528Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-23T21:45:34.477Z"
   },
   {
    "key": "XRP|1h|short_rally|0.9717",
@@ -498,52 +499,6 @@
    "stage": "tp1",
    "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP",
    "stageAt": "2026-11-23T17:45:32.870Z"
-  },
-  {
-   "key": "SOL|1h|short_rally|75.31",
-   "sym": "SOL",
-   "tf": "1h",
-   "setup": "short_rally",
-   "name": "Short di area resistance",
-   "side": -1,
-   "entry": 75.315,
-   "entryLo": 74.85,
-   "entryHi": 75.78,
-   "trigger": null,
-   "sl": 76.66167542418536,
-   "tps": [
-    {
-     "p": 73.98,
-     "rr": 0.9913301869361486
-    },
-    {
-     "p": 72.32,
-     "rr": 2.223995438107703
-    },
-    {
-     "p": 71.2749737274439,
-     "rr": 3
-    }
-   ],
-   "conf": 78,
-   "smcOk": 4,
-   "trail": {
-    "activation": 73.98,
-    "callback": 2.3,
-    "beAfterTp1": 75.315
-   },
-   "lev": 5,
-   "liq": 90.001425,
-   "bt": {
-    "n": 30,
-    "winrate": 50,
-    "expR": 0.21867290053333538
-   },
-   "price": 74.69,
-   "at": "2026-11-23T17:15:32.114Z",
-   "stage": "tp1",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
-   "stageAt": "2026-11-23T17:30:40.383Z"
   },
   {
    "key": "XRP|1h|short_rally|0.9747",
@@ -723,8 +678,9 @@
    },
    "price": 74.16,
    "at": "2026-11-23T16:45:33.017Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-23T21:45:34.620Z"
   },
   {
    "key": "ETH|1h|short_rally|1768",
@@ -1859,6 +1815,52 @@
   }
  ],
  "history": [
+  {
+   "key": "SOL|1h|short_rally|75.31",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 75.315,
+   "entryLo": 74.85,
+   "entryHi": 75.78,
+   "trigger": null,
+   "sl": 76.66167542418536,
+   "tps": [
+    {
+     "p": 73.98,
+     "rr": 0.9913301869361486
+    },
+    {
+     "p": 72.32,
+     "rr": 2.223995438107703
+    },
+    {
+     "p": 71.2749737274439,
+     "rr": 3
+    }
+   ],
+   "conf": 78,
+   "smcOk": 4,
+   "trail": {
+    "activation": 73.98,
+    "callback": 2.3,
+    "beAfterTp1": 75.315
+   },
+   "lev": 5,
+   "liq": 90.001425,
+   "bt": {
+    "n": 30,
+    "winrate": 50,
+    "expR": 0.21867290053333538
+   },
+   "price": 74.69,
+   "at": "2026-11-23T17:15:32.114Z",
+   "stage": "tp2",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-23T21:45:34.582Z"
+  },
   {
    "key": "BTC|4h|short_rally|64260",
    "sym": "BTC",
@@ -4572,52 +4574,6 @@
    "stage": "be",
    "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
    "stageAt": "2026-11-23T08:35:31.713Z"
-  },
-  {
-   "key": "SOL|1day|short_breakdown|72.44",
-   "sym": "SOL",
-   "tf": "1day",
-   "setup": "short_breakdown",
-   "name": "Short saat breakdown",
-   "side": -1,
-   "entry": 72.44193029037856,
-   "entryLo": 72.44193029037856,
-   "entryHi": 72.44193029037856,
-   "trigger": 73.39,
-   "sl": 77.65526141108039,
-   "tps": [
-    {
-     "p": 67.92,
-     "rr": 0.8673783010678624
-    },
-    {
-     "p": 64.04,
-     "rr": 1.6116241412357255
-    },
-    {
-     "p": 60.13,
-     "rr": 2.3616244595492177
-    }
-   ],
-   "conf": 67,
-   "smcOk": 1,
-   "trail": {
-    "activation": 67.92,
-    "callback": 5,
-    "beAfterTp1": 72.44193029037856
-   },
-   "lev": 5,
-   "liq": 86.56810669700239,
-   "bt": {
-    "n": 19,
-    "winrate": 52.63157894736842,
-    "expR": 0.2950172651875622
-   },
-   "price": 75.39,
-   "at": "2026-11-17T23:10:32.614Z",
-   "stage": "be",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
-   "stageAt": "2026-11-23T08:35:31.643Z"
   }
  ]
 }
