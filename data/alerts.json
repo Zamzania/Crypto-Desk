@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T17:15:34.435Z",
+ "updated": "2026-11-23T17:30:42.488Z",
  "minConf": 60,
  "active": [
   {
@@ -44,8 +44,9 @@
    },
    "price": 74.69,
    "at": "2026-11-23T17:15:32.114Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-23T17:30:40.383Z"
   },
   {
    "key": "XRP|1h|short_rally|0.9747",
