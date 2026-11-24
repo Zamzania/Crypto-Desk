@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-24T13:15:31.140Z",
+ "updated": "2026-11-24T13:30:45.630Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|4h|short_rally|70.17",
+   "sym": "SOL",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 70.1747536981822,
+   "entryLo": 69.93,
+   "entryHi": 70.41950739636441,
+   "trigger": null,
+   "sl": 71.88802958545762,
+   "tps": [
+    {
+     "p": 68.74,
+     "rr": 0.8374329603528495
+    },
+    {
+     "p": 67.41,
+     "rr": 1.6137235799068712
+    },
+    {
+     "p": 64.87,
+     "rr": 3.096263560107782
+    }
+   ],
+   "conf": 74,
+   "smcOk": 1,
+   "trail": {
+    "activation": 68.74,
+    "callback": 4.2,
+    "beAfterTp1": 70.1747536981822
+   },
+   "lev": 4,
+   "liq": 87.36756835423685,
+   "bt": {
+    "n": 20,
+    "winrate": 45,
+    "expR": 0.0046816601356890145
+   },
+   "price": 69.78,
+   "at": "2026-11-24T13:30:44.212Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "SOL|1h|short_rally|70.04",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 70.04456635331181,
+   "entryLo": 69.93,
+   "entryHi": 70.15913270662362,
+   "trigger": null,
+   "sl": 72.77826541324723,
+   "tps": [
+    {
+     "p": 67.41,
+     "rr": 0.9637367887063806
+    },
+    {
+     "p": 64.87,
+     "rr": 1.8928807596817365
+    },
+    {
+     "p": 64.57716823344097,
+     "rr": 2
+    }
+   ],
+   "conf": 66,
+   "smcOk": 1,
+   "trail": {
+    "activation": 67.41,
+    "callback": 2,
+    "beAfterTp1": 70.04456635331181
+   },
+   "lev": 4,
+   "liq": 87.20548510987321,
+   "bt": {
+    "n": 31,
+    "winrate": 51.61290322580645,
+    "expR": 0.261887842813944
+   },
+   "price": 69.78,
+   "at": "2026-11-24T13:30:43.734Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "XRP|1h|short_rally|0.9195",
    "sym": "XRP",
