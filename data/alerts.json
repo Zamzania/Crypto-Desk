@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-24T04:35:30.683Z",
+ "updated": "2026-11-24T04:40:34.342Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|4h|short_breakdown|0.9497",
+   "sym": "XRP",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 0.9497310787309053,
+   "entryLo": 0.9497310787309053,
+   "entryHi": 0.9497310787309053,
+   "trigger": 0.9548,
+   "sl": 0.9750756850763788,
+   "tps": [
+    {
+     "p": 0.913,
+     "rr": 1.4492660974971319
+    },
+    {
+     "p": 0.893,
+     "rr": 2.2383886321847557
+    },
+    {
+     "p": 0.86,
+     "rr": 3.540440814419335
+    }
+   ],
+   "conf": 76,
+   "smcOk": 2,
+   "trail": {
+    "activation": 0.913,
+    "callback": 4,
+    "beAfterTp1": 0.9497310787309053
+   },
+   "lev": 5,
+   "liq": 1.134928639083432,
+   "bt": {
+    "n": 16,
+    "winrate": 56.25,
+    "expR": 0.5353198887658752
+   },
+   "price": 0.9575,
+   "at": "2026-11-24T04:40:31.053Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "BTC|1h|short_breakdown|60250",
+   "sym": "BTC",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 60247.728424815214,
+   "entryLo": 60247.728424815214,
+   "entryHi": 60247.728424815214,
+   "trigger": 60386,
+   "sl": 61086.52840694295,
+   "tps": [
+    {
+     "p": 59410.63,
+     "rr": 0.9979714385446206
+    },
+    {
+     "p": 58768.51,
+     "rr": 1.7634936293906052
+    },
+    {
+     "p": 57778.35,
+     "rr": 2.943941913960574
+    }
+   ],
+   "conf": 85,
+   "smcOk": 2,
+   "trail": {
+    "activation": 59410.63,
+    "callback": 1.7,
+    "beAfterTp1": 60247.728424815214
+   },
+   "lev": 6,
+   "liq": 69987.77785349368,
+   "bt": {
+    "n": 21,
+    "winrate": 33.33333333333333,
+    "expR": 0.016045463208724756
+   },
+   "price": 60606.73,
+   "at": "2026-11-24T04:40:27.538Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "XRP|4h|short_breakdown|0.9498",
    "sym": "XRP",
