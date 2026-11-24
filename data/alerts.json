@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T12:45:32.902Z",
+ "updated": "2026-11-24T13:10:36.283Z",
  "minConf": 60,
  "active": [
   {
@@ -811,8 +811,9 @@
    },
    "price": 0.9501,
    "at": "2026-11-24T01:15:32.206Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP",
+   "stageAt": "2026-11-24T13:10:32.456Z"
   },
   {
    "key": "ETH|1day|short_breakdown|1690",
@@ -1219,8 +1220,9 @@
    },
    "price": 0.9508,
    "at": "2026-11-23T19:10:30.719Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP",
+   "stageAt": "2026-11-24T13:10:32.485Z"
   },
   {
    "key": "XRP|1h|short_rally|0.9546",
@@ -1264,8 +1266,9 @@
    },
    "price": 0.9518,
    "at": "2026-11-23T18:30:37.389Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP",
+   "stageAt": "2026-11-24T13:10:32.494Z"
   },
   {
    "key": "ETH|4h|short_rally|1757",
