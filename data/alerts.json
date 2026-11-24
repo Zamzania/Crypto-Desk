@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-24T13:30:45.630Z",
+ "updated": "2026-11-24T14:30:46.699Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|1h|short_breakdown|549.8",
+   "sym": "BNB",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 549.7647956486302,
+   "entryLo": 549.7647956486302,
+   "entryHi": 549.7647956486302,
+   "trigger": 550.82,
+   "sl": 557.717016317637,
+   "tps": [
+    {
+     "p": 536.85,
+     "rr": 1.6240489526359128
+    },
+    {
+     "p": 530,
+     "rr": 2.485443559892901
+    },
+    {
+     "p": 503.75,
+     "rr": 5.7864082957317144
+    }
+   ],
+   "conf": 70,
+   "smcOk": 1,
+   "trail": {
+    "activation": 536.85,
+    "callback": 1.4,
+    "beAfterTp1": 549.7647956486302
+   },
+   "lev": 6,
+   "liq": 638.6434376118254,
+   "bt": {
+    "n": 12,
+    "winrate": 58.333333333333336,
+    "expR": 0.39508320224239735
+   },
+   "price": 553.94,
+   "at": "2026-11-24T14:30:45.875Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
+  {
+   "key": "BTC|1h|short_breakdown|60260",
+   "sym": "BTC",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 60258.23750269417,
+   "entryLo": 60258.23750269417,
+   "entryHi": 60258.23750269417,
+   "trigger": 60386,
+   "sl": 61047.11936489685,
+   "tps": [
+    {
+     "p": 59455.31,
+     "rr": 1.0178044916031972
+    },
+    {
+     "p": 58768.51,
+     "rr": 1.8884037953853243
+    },
+    {
+     "p": 57778.35,
+     "rr": 3.1435473693994758
+    }
+   ],
+   "conf": 71,
+   "smcOk": 2,
+   "trail": {
+    "activation": 59455.31,
+    "callback": 1.6,
+    "beAfterTp1": 60258.23750269417
+   },
+   "lev": 6,
+   "liq": 69999.98589896307,
+   "bt": {
+    "n": 21,
+    "winrate": 33.33333333333333,
+    "expR": 0.04754727299678534
+   },
+   "price": 60595.63,
+   "at": "2026-11-24T14:30:38.848Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "SOL|4h|short_rally|70.17",
    "sym": "SOL",
