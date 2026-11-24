@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-24T15:20:34.349Z",
+ "updated": "2026-11-24T15:50:39.860Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|4h|short_rally|0.915",
+   "sym": "XRP",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.915016824827505,
+   "entryLo": 0.9118,
+   "entryHi": 0.9182336496550101,
+   "trigger": null,
+   "sl": 0.9584672993100201,
+   "tps": [
+    {
+     "p": 0.86,
+     "rr": 1.266196180427084
+    },
+    {
+     "p": 0.8281158758624749,
+     "rr": 2
+    },
+    {
+     "p": 0.7846654013799599,
+     "rr": 3
+    }
+   ],
+   "conf": 80,
+   "smcOk": 2,
+   "trail": {
+    "activation": 0.86,
+    "callback": 4.2,
+    "beAfterTp1": 0.915016824827505
+   },
+   "lev": 4,
+   "liq": 1.139195946910244,
+   "bt": {
+    "n": 21,
+    "winrate": 52.38095238095239,
+    "expR": 0.25205425690472744
+   },
+   "price": 0.9117,
+   "at": "2026-11-24T15:50:37.390Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "XRP|1h|short_rally|0.9133",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.9132991365136264,
+   "entryLo": 0.9118,
+   "entryHi": 0.9147982730272527,
+   "trigger": null,
+   "sl": 0.9237930921090105,
+   "tps": [
+    {
+     "p": 0.9039,
+     "rr": 0.8956714585070896
+    },
+    {
+     "p": 0.893,
+     "rr": 1.9343646282013176
+    },
+    {
+     "p": 0.8842,
+     "rr": 2.7729426000645487
+    }
+   ],
+   "conf": 76,
+   "smcOk": 1,
+   "trail": {
+    "activation": 0.9039,
+    "callback": 2,
+    "beAfterTp1": 0.9132991365136264
+   },
+   "lev": 4,
+   "liq": 1.137057424959465,
+   "bt": {
+    "n": 28,
+    "winrate": 57.14285714285714,
+    "expR": 0.2977541294793427
+   },
+   "price": 0.9117,
+   "at": "2026-11-24T15:50:36.891Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "SOL|4h|short_rally|70.18",
    "sym": "SOL",
