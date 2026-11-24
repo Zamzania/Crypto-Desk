@@ -397,3 +397,25 @@ a.cd-news:hover { border-top-color: var(--cd-brass); }
 .cd-toc { margin-left: 0; }
 .cd-nav-in.cd-toc { padding: 12px clamp(16px, 4vw, 48px); gap: 6px 22px; }
 .cd-band .cd-chip .cd-pos { color: #A9D3B8; } .cd-band .cd-chip .cd-neg { color: #EAA4AE; }
+
+/* ---------- Ruang belajar ---------- */
+.cd-learn-series { display: grid; gap: 14px; padding-top: 6px; }
+.cd-learn-head { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; }
+.cd-learn-letter { font-family: var(--cd-serif); font-weight: 600; font-size: 3.4rem; line-height: .9; color: var(--cd-brass); border-right: 1px solid var(--cd-rule-strong); padding: 4px 18px 4px 2px; min-width: 2.2ch; text-align: center; }
+.cd-learn-name { margin: 2px 0 0; font-family: var(--cd-serif); font-weight: 600; font-size: var(--fs-h3); color: var(--cd-ink); line-height: 1.2; }
+.cd-learn-head .cd-card-note { margin-bottom: 0; }
+.cd-learn-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); }
+.cd-learn-card { display: flex; flex-direction: column; gap: 6px; border-top: 3px solid var(--cd-green); }
+.cd-learn-code { margin: 0; font-family: var(--cd-serif); font-size: 1.05rem; font-weight: 600; color: var(--cd-brass); letter-spacing: .04em; }
+.cd-learn-title { margin: 0; font-family: var(--cd-serif); font-weight: 600; font-size: 1.28rem; line-height: 1.2; color: var(--cd-ink); text-wrap: balance; }
+.cd-learn-sub { margin: 0; color: var(--cd-muted); font-size: 14.5px; line-height: 1.5; }
+.cd-learn-meta { margin: 6px 0 10px; display: grid; gap: 3px; font-size: 13.5px; }
+.cd-learn-meta div { display: grid; grid-template-columns: 5.2rem 1fr; gap: 8px; }
+.cd-learn-meta dt { color: var(--cd-muted); }
+.cd-learn-meta dd { margin: 0; color: var(--cd-ink); }
+.cd-learn-card .cd-card-actions { margin-top: auto; }
+.cd-learn-series.is-soon .cd-learn-letter { color: var(--cd-rule-strong); }
+.cd-learn-soon { list-style: none; margin: 0 0 0 calc(2.2ch * 1.7 + 38px); padding: 0; display: grid; gap: 4px 24px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); color: var(--cd-muted); font-size: 14.5px; }
+.cd-learn-soon li { display: flex; gap: 10px; }
+.cd-learn-soon span { font-family: var(--cd-serif); font-weight: 600; color: var(--cd-brass); min-width: 2ch; }
+@media (max-width: 620px) { .cd-learn-soon { margin-left: 0; } .cd-learn-letter { font-size: 2.6rem; padding-right: 12px; } }
