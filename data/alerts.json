@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T01:50:36.862Z",
+ "updated": "2026-11-25T01:55:28.173Z",
  "minConf": 60,
  "active": [
   {
@@ -181,52 +181,6 @@
    "at": "2026-11-25T00:30:39.026Z",
    "stage": "open",
    "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
-  },
-  {
-   "key": "XRP|1h|short_rally|0.942",
-   "sym": "XRP",
-   "tf": "1h",
-   "setup": "short_rally",
-   "name": "Short di area resistance",
-   "side": -1,
-   "entry": 0.942,
-   "entryLo": 0.9283,
-   "entryHi": 0.9557,
-   "trigger": null,
-   "sl": 0.96984620179396,
-   "tps": [
-    {
-     "p": 0.9183,
-     "rr": 0.8511035068754184
-    },
-    {
-     "p": 0.913,
-     "rr": 1.041434670860216
-    },
-    {
-     "p": 0.893,
-     "rr": 1.759665478350023
-    }
-   ],
-   "conf": 73,
-   "smcOk": 3,
-   "trail": {
-    "activation": 0.9183,
-    "callback": 1.6,
-    "beAfterTp1": 0.942
-   },
-   "lev": 4,
-   "liq": 1.17279,
-   "bt": {
-    "n": 30,
-    "winrate": 53.333333333333336,
-    "expR": 0.22951674074243572
-   },
-   "price": 0.9258,
-   "at": "2026-11-24T22:50:33.054Z",
-   "stage": "tp1",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP",
-   "stageAt": "2026-11-25T01:30:38.615Z"
   },
   {
    "key": "SOL|4h|short_breakdown|69.55",
@@ -1217,8 +1171,9 @@
    },
    "price": 60344.09,
    "at": "2026-11-24T08:05:22.746Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC",
+   "stageAt": "2026-11-25T01:55:21.851Z"
   },
   {
    "key": "XRP|4h|short_breakdown|0.9497",
@@ -1445,8 +1400,9 @@
    },
    "price": 60303.14,
    "at": "2026-11-24T04:00:42.156Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC",
+   "stageAt": "2026-11-25T01:55:21.961Z"
   },
   {
    "key": "SOL|1h|short_rally|71.53",
@@ -1626,8 +1582,9 @@
    },
    "price": 60319.23,
    "at": "2026-11-24T02:45:31.074Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC",
+   "stageAt": "2026-11-25T01:55:21.999Z"
   },
   {
    "key": "BTC|1h|short_rally|61390",
@@ -2942,8 +2899,9 @@
    },
    "price": 63355.44,
    "at": "2026-11-23T14:00:41.655Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC",
+   "stageAt": "2026-11-25T01:55:22.037Z"
   },
   {
    "key": "BTC|4h|short_rally|62170",
@@ -3127,6 +3085,52 @@
   }
  ],
  "history": [
+  {
+   "key": "XRP|1h|short_rally|0.942",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.942,
+   "entryLo": 0.9283,
+   "entryHi": 0.9557,
+   "trigger": null,
+   "sl": 0.96984620179396,
+   "tps": [
+    {
+     "p": 0.9183,
+     "rr": 0.8511035068754184
+    },
+    {
+     "p": 0.913,
+     "rr": 1.041434670860216
+    },
+    {
+     "p": 0.893,
+     "rr": 1.759665478350023
+    }
+   ],
+   "conf": 73,
+   "smcOk": 3,
+   "trail": {
+    "activation": 0.9183,
+    "callback": 1.6,
+    "beAfterTp1": 0.942
+   },
+   "lev": 4,
+   "liq": 1.17279,
+   "bt": {
+    "n": 30,
+    "winrate": 53.333333333333336,
+    "expR": 0.22951674074243572
+   },
+   "price": 0.9258,
+   "at": "2026-11-24T22:50:33.054Z",
+   "stage": "tp2",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP",
+   "stageAt": "2026-11-25T01:55:24.730Z"
+  },
   {
    "key": "ETH|1h|short_rally|1762",
    "sym": "ETH",
@@ -5840,52 +5844,6 @@
    "stage": "be",
    "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH",
    "stageAt": "2026-11-23T14:00:42.273Z"
-  },
-  {
-   "key": "ETH|1day|short_rally|1793",
-   "sym": "ETH",
-   "tf": "1day",
-   "setup": "short_rally",
-   "name": "Short di area resistance",
-   "side": -1,
-   "entry": 1793.076678741744,
-   "entryLo": 1779.9,
-   "entryHi": 1806.253357483488,
-   "trigger": null,
-   "sl": 1885.313429933951,
-   "tps": [
-    {
-     "p": 1713.44,
-     "rr": 0.86339422965791
-    },
-    {
-     "p": 1512,
-     "rr": 3.0473393209180126
-    },
-    {
-     "p": 1424.1296739729157,
-     "rr": 4
-    }
-   ],
-   "conf": 66,
-   "smcOk": 2,
-   "trail": {
-    "activation": 1713.44,
-    "callback": 5,
-    "beAfterTp1": 1793.076678741744
-   },
-   "lev": 5,
-   "liq": 2142.726631096384,
-   "bt": {
-    "n": 25,
-    "winrate": 48,
-    "expR": 0.03325392023985605
-   },
-   "price": 1778.25,
-   "at": "2026-11-17T16:35:33.760Z",
-   "stage": "be",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH",
-   "stageAt": "2026-11-23T14:00:42.233Z"
   }
  ]
 }
