@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-25T14:45:37.047Z",
+ "updated": "2026-11-25T15:00:51.572Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|4h|short_rally|538.2",
+   "sym": "BNB",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 538.1639848947539,
+   "entryLo": 536.85,
+   "entryHi": 539.4779697895078,
+   "trigger": null,
+   "sl": 547.3618791580312,
+   "tps": [
+    {
+     "p": 503.75,
+     "rr": 3.741506904700119
+    },
+    {
+     "p": 501.3724078416444,
+     "rr": 4
+    },
+    {
+     "p": 492.17451357836705,
+     "rr": 5
+    }
+   ],
+   "conf": 65,
+   "smcOk": 1,
+   "trail": {
+    "activation": 503.75,
+    "callback": 2.9,
+    "beAfterTp1": 538.1639848947539
+   },
+   "lev": 6,
+   "liq": 625.1671624527391,
+   "bt": {
+    "n": 12,
+    "winrate": 66.66666666666666,
+    "expR": 0.6311283163335487
+   },
+   "price": 535.42,
+   "at": "2026-11-25T15:00:51.229Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
+  {
+   "key": "SOL|1day|short_rally|68.01",
+   "sym": "SOL",
+   "tf": "1day",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 68.01397034679368,
+   "entryLo": 67.41,
+   "entryHi": 68.61794069358736,
+   "trigger": null,
+   "sl": 72.24176277434943,
+   "tps": [
+    {
+     "p": 60.13,
+     "rr": 1.864795985585254
+    },
+    {
+     "p": 59.5583854916822,
+     "rr": 2
+    },
+    {
+     "p": 55.33059306412646,
+     "rr": 3
+    }
+   ],
+   "conf": 61,
+   "smcOk": 1,
+   "trail": {
+    "activation": 60.13,
+    "callback": 5,
+    "beAfterTp1": 68.01397034679368
+   },
+   "lev": 4,
+   "liq": 84.67739308175814,
+   "bt": {
+    "n": 25,
+    "winrate": 44,
+    "expR": 0.027516121938139414
+   },
+   "price": 67.28,
+   "at": "2026-11-25T15:00:49.924Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "XRP|4h|short_rally|0.8959",
    "sym": "XRP",
