@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-25T17:10:34.677Z",
+ "updated": "2026-11-25T17:15:32.155Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|1h|short_breakdown|542.2",
+   "sym": "BNB",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 542.1534867074834,
+   "entryLo": 542.1534867074834,
+   "entryHi": 542.1534867074834,
+   "trigger": 543.26,
+   "sl": 549.0694248469375,
+   "tps": [
+    {
+     "p": 530,
+     "rr": 1.7573157050306625
+    },
+    {
+     "p": 526.72,
+     "rr": 2.2315825266623035
+    },
+    {
+     "p": 503.75,
+     "rr": 5.552896213515624
+    }
+   ],
+   "conf": 66,
+   "smcOk": 1,
+   "trail": {
+    "activation": 530,
+    "callback": 1.5,
+    "beAfterTp1": 542.1534867074834
+   },
+   "lev": 6,
+   "liq": 629.8016337251933,
+   "bt": {
+    "n": 12,
+    "winrate": 66.66666666666666,
+    "expR": 0.5704001706820926
+   },
+   "price": 545.38,
+   "at": "2026-11-25T17:15:31.578Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
   {
    "key": "XRP|4h|short_breakdown|0.9047",
    "sym": "XRP",
