@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T18:25:29.599Z",
+ "updated": "2026-11-25T18:35:32.220Z",
  "minConf": 60,
  "active": [
   {
@@ -179,8 +179,9 @@
    },
    "price": 59972.17,
    "at": "2026-11-25T18:20:37.142Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC",
+   "stageAt": "2026-11-25T18:35:25.457Z"
   },
   {
    "key": "XRP|1h|short_rally|0.9415",
