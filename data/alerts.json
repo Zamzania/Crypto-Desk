@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-25T08:05:26.764Z",
+ "updated": "2026-11-25T08:30:42.878Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "ETH|4h|short_breakdown|1641",
+   "sym": "ETH",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 1640.791792794081,
+   "entryLo": 1640.791792794081,
+   "entryHi": 1640.791792794081,
+   "trigger": 1648.35,
+   "sl": 1678.5828288236755,
+   "tps": [
+    {
+     "p": 1538,
+     "rr": 2.7200046252657257
+    },
+    {
+     "p": 1512,
+     "rr": 3.407998465382708
+    },
+    {
+     "p": 1489.6276486757026,
+     "rr": 4
+    }
+   ],
+   "conf": 74,
+   "smcOk": 2,
+   "trail": {
+    "activation": 1538,
+    "callback": 3.5,
+    "beAfterTp1": 1640.791792794081
+   },
+   "lev": 5,
+   "liq": 1960.7461923889268,
+   "bt": {
+    "n": 14,
+    "winrate": 35.714285714285715,
+    "expR": -0.08459793349798754
+   },
+   "price": 1650.63,
+   "at": "2026-11-25T08:30:38.027Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
+  {
+   "key": "BTC|4h|short_breakdown|58890",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 58891.57876879462,
+   "entryLo": 58891.57876879462,
+   "entryHi": 58891.57876879462,
+   "trigger": 59130.91,
+   "sl": 60088.23492482152,
+   "tps": [
+    {
+     "p": 55130,
+     "rr": 3.143408196121856
+    },
+    {
+     "p": 54104.954144687035,
+     "rr": 4
+    },
+    {
+     "p": 52908.29798866014,
+     "rr": 5
+    }
+   ],
+   "conf": 79,
+   "smcOk": 2,
+   "trail": {
+    "activation": 55130,
+    "callback": 3,
+    "beAfterTp1": 58891.57876879462
+   },
+   "lev": 6,
+   "liq": 68412.38400308309,
+   "bt": {
+    "n": 13,
+    "winrate": 61.53846153846154,
+    "expR": 0.3761525444582476
+   },
+   "price": 59241.63,
+   "at": "2026-11-25T08:30:36.176Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "ETH|4h|short_rally|1653",
    "sym": "ETH",
