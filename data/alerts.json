@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-25T17:30:43.757Z",
+ "updated": "2026-11-25T17:35:32.389Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1h|short_breakdown|68.38",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 68.37686408837268,
+   "entryLo": 68.37686408837268,
+   "entryHi": 68.37686408837268,
+   "trigger": 68.57,
+   "sl": 69.62425966860239,
+   "tps": [
+    {
+     "p": 65.84,
+     "rr": 2.0337286171123994
+    },
+    {
+     "p": 64.87,
+     "rr": 2.8113488166495615
+    },
+    {
+     "p": 64.63467734768356,
+     "rr": 3
+    }
+   ],
+   "conf": 71,
+   "smcOk": 2,
+   "trail": {
+    "activation": 65.84,
+    "callback": 2.1,
+    "beAfterTp1": 68.37686408837268
+   },
+   "lev": 4,
+   "liq": 85.129195790024,
+   "bt": {
+    "n": 23,
+    "winrate": 39.130434782608695,
+    "expR": 0.15605619985949654
+   },
+   "price": 68.95,
+   "at": "2026-11-25T17:35:29.744Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "BTC|1h|short_rally|59370",
    "sym": "BTC",
