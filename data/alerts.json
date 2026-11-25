@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-25T15:25:31.501Z",
+ "updated": "2026-11-25T16:25:54.866Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|4h|short_rally|0.9121",
+   "sym": "XRP",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.9120572368073897,
+   "entryLo": 0.9093,
+   "entryHi": 0.9148144736147794,
+   "trigger": null,
+   "sl": 0.9566289472295588,
+   "tps": [
+    {
+     "p": 0.86,
+     "rr": 1.1679434402296898
+    },
+    {
+     "p": 0.8229138159630515,
+     "rr": 2
+    },
+    {
+     "p": 0.7783421055408823,
+     "rr": 3
+    }
+   ],
+   "conf": 88,
+   "smcOk": 2,
+   "trail": {
+    "activation": 0.86,
+    "callback": 3.6,
+    "beAfterTp1": 0.9120572368073897
+   },
+   "lev": 4,
+   "liq": 1.1355112598252002,
+   "bt": {
+    "n": 21,
+    "winrate": 52.38095238095239,
+    "expR": 0.3059339416669592
+   },
+   "price": 0.907,
+   "at": "2026-11-25T16:25:52.694Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "BTC|1h|short_breakdown|58510",
+   "sym": "BTC",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 58506.46375807549,
+   "entryLo": 58506.46375807549,
+   "entryHi": 58506.46375807549,
+   "trigger": 58633.12,
+   "sl": 59243.47090721692,
+   "tps": [
+    {
+     "p": 57778.35,
+     "rr": 0.9879331006811903
+    },
+    {
+     "p": 55130,
+     "rr": 4.581317510975148
+    },
+    {
+     "p": 54821.42801236836,
+     "rr": 5
+    }
+   ],
+   "conf": 75,
+   "smcOk": 2,
+   "trail": {
+    "activation": 57778.35,
+    "callback": 1.6,
+    "beAfterTp1": 58506.46375807549
+   },
+   "lev": 6,
+   "liq": 67965.0087322977,
+   "bt": {
+    "n": 21,
+    "winrate": 33.33333333333333,
+    "expR": 0.051214981217326774
+   },
+   "price": 58966,
+   "at": "2026-11-25T16:25:50.136Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "ETH|4h|short_breakdown|1640",
    "sym": "ETH",
