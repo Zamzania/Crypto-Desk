@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-25T04:00:50.212Z",
+ "updated": "2026-11-25T05:35:31.629Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1h|short_rally|68.73",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 68.735,
+   "entryLo": 68.57,
+   "entryHi": 68.9,
+   "trigger": null,
+   "sl": 70.50130529884112,
+   "tps": [
+    {
+     "p": 64.87,
+     "rr": 2.188183437221097
+    },
+    {
+     "p": 60.13,
+     "rr": 4.871751223101567
+    },
+    {
+     "p": 59.90347350579441,
+     "rr": 5
+    }
+   ],
+   "conf": 90,
+   "smcOk": 1,
+   "trail": {
+    "activation": 64.87,
+    "callback": 1.7,
+    "beAfterTp1": 68.735
+   },
+   "lev": 4,
+   "liq": 85.57507500000001,
+   "bt": {
+    "n": 31,
+    "winrate": 51.61290322580645,
+    "expR": 0.2217637926349817
+   },
+   "price": 68.54,
+   "at": "2026-11-25T05:35:29.302Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "BNB|4h|short_rally|544.5",
    "sym": "BNB",
