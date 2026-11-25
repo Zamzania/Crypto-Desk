@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-25T14:40:32.761Z",
+ "updated": "2026-11-25T14:45:37.047Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|4h|short_rally|0.8959",
+   "sym": "XRP",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.8958607467815844,
+   "entryLo": 0.893,
+   "entryHi": 0.898721493563169,
+   "trigger": null,
+   "sl": 0.915885974252676,
+   "tps": [
+    {
+     "p": 0.86,
+     "rr": 1.7907784984391824
+    },
+    {
+     "p": 0.8558102918394013,
+     "rr": 2
+    },
+    {
+     "p": 0.8357850643683097,
+     "rr": 3
+    }
+   ],
+   "conf": 78,
+   "smcOk": 2,
+   "trail": {
+    "activation": 0.86,
+    "callback": 3.8,
+    "beAfterTp1": 0.8958607467815844
+   },
+   "lev": 4,
+   "liq": 1.1153466297430727,
+   "bt": {
+    "n": 21,
+    "winrate": 52.38095238095239,
+    "expR": 0.25199656560491723
+   },
+   "price": 0.8916,
+   "at": "2026-11-25T14:45:34.293Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "XRP|1h|short_rally|0.8943",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 0.8942666315745629,
+   "entryLo": 0.893,
+   "entryHi": 0.8955332631491256,
+   "trigger": null,
+   "sl": 0.9180665262982513,
+   "tps": [
+    {
+     "p": 0.86,
+     "rr": 1.439780804595611
+    },
+    {
+     "p": 0.8466668421271861,
+     "rr": 2
+    },
+    {
+     "p": 0.8228669474034978,
+     "rr": 3
+    }
+   ],
+   "conf": 75,
+   "smcOk": 1,
+   "trail": {
+    "activation": 0.86,
+    "callback": 1.7,
+    "beAfterTp1": 0.8942666315745629
+   },
+   "lev": 4,
+   "liq": 1.113361956310331,
+   "bt": {
+    "n": 29,
+    "winrate": 55.172413793103445,
+    "expR": 0.2473977629922955
+   },
+   "price": 0.8916,
+   "at": "2026-11-25T14:45:33.808Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "BNB|4h|short_rally|538.1",
    "sym": "BNB",
