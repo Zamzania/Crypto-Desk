@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-25T17:20:35.687Z",
+ "updated": "2026-11-25T17:25:30.468Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BTC|1h|short_breakdown|58490",
+   "sym": "BTC",
+   "tf": "1h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 58494.373285559894,
+   "entryLo": 58494.373285559894,
+   "entryHi": 58494.373285559894,
+   "trigger": 58633.12,
+   "sl": 59288.8101791504,
+   "tps": [
+    {
+     "p": 57778.35,
+     "rr": 0.9012966181917644
+    },
+    {
+     "p": 57300.38,
+     "rr": 1.502942896022324
+    },
+    {
+     "p": 55130,
+     "rr": 4.234915715399868
+    }
+   ],
+   "conf": 71,
+   "smcOk": 2,
+   "trail": {
+    "activation": 57778.35,
+    "callback": 1.8,
+    "beAfterTp1": 58494.373285559894
+   },
+   "lev": 6,
+   "liq": 67950.9636333921,
+   "bt": {
+    "n": 21,
+    "winrate": 33.33333333333333,
+    "expR": 0.05121498126240377
+   },
+   "price": 59147.01,
+   "at": "2026-11-25T17:25:23.567Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
+  {
+   "key": "BTC|1h|short_rally|59370",
+   "sym": "BTC",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 59374.815,
+   "entryLo": 59260,
+   "entryHi": 59489.63,
+   "trigger": null,
+   "sl": 62028.87678610027,
+   "tps": [
+    {
+     "p": 55130,
+     "rr": 1.5993655544233198
+    },
+    {
+     "p": 54066.691427799466,
+     "rr": 2
+    },
+    {
+     "p": 51412.6296416992,
+     "rr": 3
+    }
+   ],
+   "conf": 80,
+   "smcOk": 4,
+   "trail": {
+    "activation": 55130,
+    "callback": 1.8,
+    "beAfterTp1": 59374.815
+   },
+   "lev": 6,
+   "liq": 68973.74342500001,
+   "bt": {
+    "n": 19,
+    "winrate": 47.368421052631575,
+    "expR": 0.19796804624836709
+   },
+   "price": 59147.01,
+   "at": "2026-11-25T17:25:23.442Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "BNB|4h|short_breakdown|541.1",
    "sym": "BNB",
