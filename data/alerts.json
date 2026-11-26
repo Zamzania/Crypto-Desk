@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-26T19:20:37.132Z",
+ "updated": "2026-11-26T20:45:38.174Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "ETH|4h|short_rally|1715",
+   "sym": "ETH",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 1715.43767790302,
+   "entryLo": 1711.08,
+   "entryHi": 1719.79535580604,
+   "trigger": null,
+   "sl": 1745.9414232241606,
+   "tps": [
+    {
+     "p": 1648.35,
+     "rr": 2.1993259252831687
+    },
+    {
+     "p": 1608.86,
+     "rr": 3.4939210507096625
+    },
+    {
+     "p": 1538,
+     "rr": 5.816914481647144
+    }
+   ],
+   "conf": 73,
+   "smcOk": 4,
+   "trail": {
+    "activation": 1648.35,
+    "callback": 3,
+    "beAfterTp1": 1715.43767790302
+   },
+   "lev": 5,
+   "liq": 2049.9480250941087,
+   "bt": {
+    "n": 12,
+    "winrate": 58.333333333333336,
+    "expR": 0.3349669560649204
+   },
+   "price": 1706.19,
+   "at": "2026-11-26T20:45:33.439Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
+  {
+   "key": "BTC|4h|short_rally|61130",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 61130.41010545465,
+   "entryLo": 60996,
+   "entryHi": 61264.820210909296,
+   "trigger": null,
+   "sl": 62071.28084363718,
+   "tps": [
+    {
+     "p": 58768.51,
+     "rr": 2.5103343207560096
+    },
+    {
+     "p": 57300.38,
+     "rr": 4.070729325532092
+    },
+    {
+     "p": 55130,
+     "rr": 6.377507410896398
+    }
+   ],
+   "conf": 68,
+   "smcOk": 4,
+   "trail": {
+    "activation": 58768.51,
+    "callback": 2.6,
+    "beAfterTp1": 61130.41010545465
+   },
+   "lev": 6,
+   "liq": 71013.15973916983,
+   "bt": {
+    "n": 11,
+    "winrate": 45.45454545454545,
+    "expR": 0.3398519921815225
+   },
+   "price": 60818.47,
+   "at": "2026-11-26T20:45:31.560Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "BNB|4h|short_breakdown|548.8",
    "sym": "BNB",
