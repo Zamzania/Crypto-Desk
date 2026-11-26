@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-26T18:25:29.657Z",
+ "updated": "2026-11-26T19:20:37.132Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|4h|short_breakdown|548.8",
+   "sym": "BNB",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 548.8493540006039,
+   "entryLo": 548.8493540006039,
+   "entryHi": 548.8493540006039,
+   "trigger": 550.82,
+   "sl": 558.7025839975848,
+   "tps": [
+    {
+     "p": 536.85,
+     "rr": 1.2178091858487434
+    },
+    {
+     "p": 526.72,
+     "rr": 2.2458984523231695
+    },
+    {
+     "p": 503.75,
+     "rr": 4.577113699205461
+    }
+   ],
+   "conf": 68,
+   "smcOk": 2,
+   "trail": {
+    "activation": 536.85,
+    "callback": 2.7,
+    "beAfterTp1": 548.8493540006039
+   },
+   "lev": 6,
+   "liq": 637.5799995640349,
+   "bt": {
+    "n": 11,
+    "winrate": 45.45454545454545,
+    "expR": 0.2667565359351173
+   },
+   "price": 554.58,
+   "at": "2026-11-26T19:20:36.729Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
   {
    "key": "BTC|1h|short_rally|61580",
    "sym": "BTC",
