@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-26T15:15:36.507Z",
+ "updated": "2026-11-26T15:35:33.545Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "BNB|4h|short_rally|552.1",
+   "sym": "BNB",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 552.0979348072859,
+   "entryLo": 550.82,
+   "entryHi": 553.3758696145718,
+   "trigger": null,
+   "sl": 571.1117392291436,
+   "tps": [
+    {
+     "p": 536.85,
+     "rr": 0.8019402361032674
+    },
+    {
+     "p": 526.72,
+     "rr": 1.3347110469965813
+    },
+    {
+     "p": 503.75,
+     "rr": 2.542780694204818
+    }
+   ],
+   "conf": 70,
+   "smcOk": 3,
+   "trail": {
+    "activation": 536.85,
+    "callback": 2.8,
+    "beAfterTp1": 552.0979348072859
+   },
+   "lev": 6,
+   "liq": 641.3537676011306,
+   "bt": {
+    "n": 12,
+    "winrate": 66.66666666666666,
+    "expR": 0.6306261515923959
+   },
+   "price": 549.41,
+   "at": "2026-11-26T15:35:33.168Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=binancecoin&s=BNB"
+  },
+  {
+   "key": "SOL|1day|short_breakdown|69.64",
+   "sym": "SOL",
+   "tf": "1day",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 69.63528487251878,
+   "entryLo": 69.63528487251878,
+   "entryHi": 69.63528487251878,
+   "trigger": 70.58,
+   "sl": 74.35886050992488,
+   "tps": [
+    {
+     "p": 64.87,
+     "rr": 1.0088300131752692
+    },
+    {
+     "p": 60.13,
+     "rr": 2.0123071169319737
+    },
+    {
+     "p": 55.46455796030048,
+     "rr": 3
+    }
+   ],
+   "conf": 64,
+   "smcOk": 1,
+   "trail": {
+    "activation": 64.87,
+    "callback": 5,
+    "beAfterTp1": 69.63528487251878
+   },
+   "lev": 4,
+   "liq": 86.69592966628589,
+   "bt": {
+    "n": 20,
+    "winrate": 50,
+    "expR": 0.2690565477732577
+   },
+   "price": 70.73,
+   "at": "2026-11-26T15:35:31.841Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
   {
    "key": "SOL|1h|short_rally|71.38",
    "sym": "SOL",
