@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-26T12:00:48.099Z",
+ "updated": "2026-11-26T12:05:31.352Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|4h|short_breakdown|0.9505",
+   "sym": "XRP",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 0.9505051392647906,
+   "entryLo": 0.9505051392647906,
+   "entryHi": 0.9505051392647906,
+   "trigger": 0.9548,
+   "sl": 0.9719794429408376,
+   "tps": [
+    {
+     "p": 0.913,
+     "rr": 1.7465124751227612
+    },
+    {
+     "p": 0.893,
+     "rr": 2.6778581569996813
+    },
+    {
+     "p": 0.86,
+     "rr": 4.2145785320966
+    }
+   ],
+   "conf": 66,
+   "smcOk": 3,
+   "trail": {
+    "activation": 0.913,
+    "callback": 3.4,
+    "beAfterTp1": 0.9505051392647906
+   },
+   "lev": 5,
+   "liq": 1.1358536414214249,
+   "bt": {
+    "n": 17,
+    "winrate": 58.82352941176471,
+    "expR": 0.5379245827759631
+   },
+   "price": 0.9555,
+   "at": "2026-11-26T12:05:28.012Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
+  {
+   "key": "BTC|4h|short_rally|61140",
+   "sym": "BTC",
+   "tf": "4h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 61138.11624973269,
+   "entryLo": 60996,
+   "entryHi": 61280.23249946538,
+   "trigger": null,
+   "sl": 62132.92999786154,
+   "tps": [
+    {
+     "p": 58768.51,
+     "rr": 2.381959692645672
+    },
+    {
+     "p": 57300.38,
+     "rr": 3.857743479069429
+    },
+    {
+     "p": 55130,
+     "rr": 6.039438297905894
+    }
+   ],
+   "conf": 68,
+   "smcOk": 4,
+   "trail": {
+    "activation": 58768.51,
+    "callback": 2.8,
+    "beAfterTp1": 61138.11624973269
+   },
+   "lev": 6,
+   "liq": 71022.11171010615,
+   "bt": {
+    "n": 11,
+    "winrate": 45.45454545454545,
+    "expR": 0.3398519921816417
+   },
+   "price": 60848.94,
+   "at": "2026-11-26T12:05:24.735Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "SOL|4h|short_rally|71.27",
    "sym": "SOL",
