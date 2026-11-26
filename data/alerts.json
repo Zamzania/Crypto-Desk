@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-26T15:05:29.267Z",
+ "updated": "2026-11-26T15:10:36.800Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "ETH|1h|short_rally|1691",
+   "sym": "ETH",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 1690.615,
+   "entryLo": 1682.51,
+   "entryHi": 1698.72,
+   "trigger": null,
+   "sl": 1743.9796617970908,
+   "tps": [
+    {
+     "p": 1633.11,
+     "rr": 1.0775857667505175
+    },
+    {
+     "p": 1608.86,
+     "rr": 1.532006336156656
+    },
+    {
+     "p": 1581.47,
+     "rr": 2.04526734217868
+    }
+   ],
+   "conf": 84,
+   "smcOk": 4,
+   "trail": {
+    "activation": 1633.11,
+    "callback": 1.4,
+    "beAfterTp1": 1690.615
+   },
+   "lev": 5,
+   "liq": 2020.2849250000002,
+   "bt": {
+    "n": 25,
+    "winrate": 52,
+    "expR": 0.2581901948765835
+   },
+   "price": 1678.41,
+   "at": "2026-11-26T15:10:31.337Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+  },
   {
    "key": "BTC|4h|short_rally|60530",
    "sym": "BTC",
@@ -269,8 +314,9 @@
    },
    "price": 70.89,
    "at": "2026-11-26T12:00:46.773Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-26T15:10:33.867Z"
   },
   {
    "key": "SOL|1h|short_rally|71.43",
@@ -449,8 +495,9 @@
    },
    "price": 1703.73,
    "at": "2026-11-26T09:40:33.012Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH",
+   "stageAt": "2026-11-26T15:10:30.642Z"
   },
   {
    "key": "SOL|1h|short_rally|71.65",
@@ -494,8 +541,9 @@
    },
    "price": 70.94,
    "at": "2026-11-26T09:30:38.323Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-26T15:10:33.877Z"
   },
   {
    "key": "XRP|4h|short_breakdown|0.9503",
@@ -1125,8 +1173,9 @@
    },
    "price": 70.96,
    "at": "2026-11-26T00:35:28.557Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-26T15:10:33.890Z"
   },
   {
    "key": "BTC|4h|short_rally|61160",
@@ -1305,8 +1354,9 @@
    },
    "price": 71.22,
    "at": "2026-11-26T00:20:34.493Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL",
+   "stageAt": "2026-11-26T15:10:33.900Z"
   },
   {
    "key": "SOL|4h|short_rally|71.3",
@@ -1395,8 +1445,9 @@
    },
    "price": 1705.57,
    "at": "2026-11-26T00:15:33.958Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH",
+   "stageAt": "2026-11-26T15:10:30.675Z"
   },
   {
    "key": "BTC|4h|short_rally|61150",
@@ -1575,8 +1626,9 @@
    },
    "price": 1696.46,
    "at": "2026-11-25T23:55:23.331Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH",
+   "stageAt": "2026-11-26T15:10:30.685Z"
   },
   {
    "key": "ETH|1h|short_rally|1712",
@@ -1620,8 +1672,9 @@
    },
    "price": 1683.99,
    "at": "2026-11-25T22:00:43.942Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ethereum&s=ETH",
+   "stageAt": "2026-11-26T15:10:30.695Z"
   },
   {
    "key": "XRP|1h|short_rally|0.9529",
