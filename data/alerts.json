@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T14:00:53.525Z",
+ "updated": "2026-11-27T14:25:33.822Z",
  "minConf": 60,
  "active": [
   {
@@ -404,8 +404,9 @@
    },
    "price": 0.9743,
    "at": "2026-11-27T07:05:29.730Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP",
+   "stageAt": "2026-11-27T14:25:29.654Z"
   },
   {
    "key": "SOL|4h|short_breakdown|72.59",
