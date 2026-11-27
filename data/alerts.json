@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-27T16:40:39.153Z",
+ "updated": "2026-11-27T17:40:37.966Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|1h|long_pullback|0.9331",
+   "sym": "XRP",
+   "tf": "1h",
+   "setup": "long_pullback",
+   "name": "Long di area support",
+   "side": 1,
+   "entry": 0.9331499999999999,
+   "entryLo": 0.9274,
+   "entryHi": 0.9389,
+   "trigger": null,
+   "sl": 0.9128307095431565,
+   "tps": [
+    {
+     "p": 0.9737885809136868,
+     "rr": 2
+    },
+    {
+     "p": 0.9941078713705302,
+     "rr": 3
+    },
+    {
+     "p": 1.0144271618273737,
+     "rr": 4
+    }
+   ],
+   "conf": 60,
+   "smcOk": 2,
+   "trail": {
+    "activation": 0.9737885809136868,
+    "callback": 1.7,
+    "beAfterTp1": 0.9331499999999999
+   },
+   "lev": 5,
+   "liq": 0.75118575,
+   "bt": {
+    "n": 10,
+    "winrate": 10,
+    "expR": -0.837620192190081
+   },
+   "price": 0.9417,
+   "at": "2026-11-27T17:40:35.318Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "ETH|1h|short_rally|1691",
    "sym": "ETH",
