@@ -1,7 +1,52 @@
 {
- "updated": "2026-11-27T07:20:33.023Z",
+ "updated": "2026-11-27T07:35:28.986Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "XRP|4h|short_breakdown|0.9726",
+   "sym": "XRP",
+   "tf": "4h",
+   "setup": "short_breakdown",
+   "name": "Short saat breakdown",
+   "side": -1,
+   "entry": 0.9725562864721239,
+   "entryLo": 0.9725562864721239,
+   "entryHi": 0.9725562864721239,
+   "trigger": 0.9769,
+   "sl": 0.9956889257295353,
+   "tps": [
+    {
+     "p": 0.913,
+     "rr": 2.5745564874549642
+    },
+    {
+     "p": 0.9031583686998897,
+     "rr": 3
+    },
+    {
+     "p": 0.8800257294424784,
+     "rr": 4
+    }
+   ],
+   "conf": 71,
+   "smcOk": 3,
+   "trail": {
+    "activation": 0.913,
+    "callback": 3.3,
+    "beAfterTp1": 0.9725562864721239
+   },
+   "lev": 5,
+   "liq": 1.162204762334188,
+   "bt": {
+    "n": 17,
+    "winrate": 58.82352941176471,
+    "expR": 0.4846755110996458
+   },
+   "price": 0.9799,
+   "at": "2026-11-27T07:35:26.732Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=ripple&s=XRP"
+  },
   {
    "key": "XRP|4h|short_rally|0.9796",
    "sym": "XRP",
