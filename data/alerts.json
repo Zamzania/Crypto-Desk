@@ -1,7 +1,97 @@
 {
- "updated": "2026-11-27T14:35:30.041Z",
+ "updated": "2026-11-27T14:40:39.247Z",
  "minConf": 60,
  "active": [
+  {
+   "key": "SOL|1h|short_rally|72.13",
+   "sym": "SOL",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 72.13499999999999,
+   "entryLo": 71.95,
+   "entryHi": 72.32,
+   "trigger": null,
+   "sl": 73.28072846008493,
+   "tps": [
+    {
+     "p": 71.17,
+     "rr": 0.8422589065549165
+    },
+    {
+     "p": 70.11,
+     "rr": 1.7674344930297596
+    },
+    {
+     "p": 68.9,
+     "rr": 2.8235311530623557
+    }
+   ],
+   "conf": 66,
+   "smcOk": 2,
+   "trail": {
+    "activation": 71.17,
+    "callback": 1.4,
+    "beAfterTp1": 72.13499999999999
+   },
+   "lev": 5,
+   "liq": 86.201325,
+   "bt": {
+    "n": 32,
+    "winrate": 50,
+    "expR": 0.144994310886977
+   },
+   "price": 71.78,
+   "at": "2026-11-27T14:40:37.004Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=solana&s=SOL"
+  },
+  {
+   "key": "BTC|1h|short_rally|61380",
+   "sym": "BTC",
+   "tf": "1h",
+   "setup": "short_rally",
+   "name": "Short di area resistance",
+   "side": -1,
+   "entry": 61384.365000000005,
+   "entryLo": 60380.01,
+   "entryHi": 62388.72,
+   "trigger": null,
+   "sl": 62741.41849265774,
+   "tps": [
+    {
+     "p": 60106,
+     "rr": 0.9420151872542439
+    },
+    {
+     "p": 59489.63,
+     "rr": 1.3962124634374142
+    },
+    {
+     "p": 58768.51,
+     "rr": 1.9275990328700672
+    }
+   ],
+   "conf": 63,
+   "smcOk": 4,
+   "trail": {
+    "activation": 60106,
+    "callback": 1.1,
+    "beAfterTp1": 61384.365000000005
+   },
+   "lev": 6,
+   "liq": 71308.17067500002,
+   "bt": {
+    "n": 21,
+    "winrate": 42.857142857142854,
+    "expR": 0.07702081453768417
+   },
+   "price": 60282.1,
+   "at": "2026-11-27T14:40:32.400Z",
+   "stage": "open",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+  },
   {
    "key": "XRP|1h|short_rally|0.967",
    "sym": "XRP",
