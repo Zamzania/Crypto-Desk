@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T05:15:36.688Z",
+ "updated": "2026-11-28T07:05:31.540Z",
  "minConf": 60,
  "active": [
   {
@@ -44,8 +44,9 @@
    },
    "price": 59783.24,
    "at": "2026-11-28T05:15:30.929Z",
-   "stage": "open",
-   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC"
+   "stage": "tp1",
+   "url": "https://zamzania.github.io/Crypto-Desk/coin.html?id=bitcoin&s=BTC",
+   "stageAt": "2026-11-28T07:05:25.827Z"
   },
   {
    "key": "SOL|4h|short_rally|72.13",
